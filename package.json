@@ -1,0 +1,24 @@
+{
+  "name": "health-track-ai-insight",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/riyaz-aykva/health-track-ai-insight#readme",
+  "bugs": {
+    "url": "https://github.com/riyaz-aykva/health-track-ai-insight/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riyaz-aykva/health-track-ai-insight.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "openai": "^6.16.0"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "data": {
+    "overallSummary": "John Doe shows stable vital signs and no current symptoms of asthma attack. Regular monitoring is important to maintain health.",
+    "healthAlerts": [
+      {
+        "level": "LOW",
+        "message": "No symptoms of asthma attack detected at this time."
+      }
+    ],
+    "vitalsSummary": [
+      "Blood pressure is consistently normal at 120/80 mmHg.",
+      "Heart rate remains steady at 70 bpm.",
+      "Oxygen levels are healthy at 98%.",
+      "Body temperature is normal at 98.6°F.",
+      "Blood sugar levels are within normal range at 100 mg/dL."
+    ],
+    "dailyPatterns": [
+      "Regular meals observed; last meal was breakfast at 10:00 AM.",
+      "No unusual activities reported that affect health.",
+      "Vital signs stable throughout recent measurements."
+    ],
+    "smartAdvices": [
+      "Continue regular monitoring of breathing and symptoms.",
+      "Maintain a healthy diet and routine physical activity.",
+      "Avoid exposure to asthma triggers such as smoke or allergens.",
+      "Stay hydrated and get adequate rest every day."
+    ],
+    "nextSteps": [
+      "Keep tracking symptoms and vitals daily to catch any changes early.",
+      "Consult healthcare provider if any asthma symptoms like coughing or difficulty breathing develop.",
+      "Follow up with regular health check-ups for asthma management.",
+      "Ensure access to rescue inhaler if prescribed by a healthcare professional."
+    ]
+  },
+  "tokenUsage": {
+    "prompt_tokens": 1655,
+    "completion_tokens": 305,
+    "total_tokens": 1960,
+    "prompt_tokens_details": {
+      "cached_tokens": 1024,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  }
+}

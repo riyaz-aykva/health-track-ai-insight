@@ -48,217 +48,80 @@ const client = new OpenAI({ apiKey: OPENAI_API_KEY });
 
 
 const conditions = {
-    "_id": "68e36fbc9950693f31349cc7",
-    "cured": {
-        "isCured": false
-    },
-    "baseline_data": {
-        "symptoms": [
-            {
-                "id": "38f82812-56ad-48c6-95a4-1acbef16cc6a",
-                "type": 1,
-                "alarm_max": 0,
-                "alarm_min": 0,
-                "high_label": "large amount",
-                "low_label": "none",
-                "unit": 0,
-                "step": 1,
-                "title": "Increased coughing",
-                "graphType": "A",
-                "min": 0,
-                "max": 10,
-                "options": [],
-                "baseline_value": 0
-            },
-            {
-                "id": "fc4fb222-b562-416a-8021-3743f534d40c",
-                "type": 1,
-                "alarm_max": 0,
-                "alarm_min": 0,
-                "high_label": "large amount",
-                "low_label": "none",
-                "unit": 0,
-                "step": 1,
-                "title": "Difficulty breathing",
-                "graphType": "A",
-                "min": 0,
-                "max": 10,
-                "options": [],
-                "baseline_value": 0
-            },
-            {
-                "id": "ad794088-9a79-4882-b733-88b68ff0d05c",
-                "type": 1,
-                "alarm_max": 0,
-                "alarm_min": 0,
-                "high_label": "large amount",
-                "low_label": "none",
-                "unit": 0,
-                "step": 1,
-                "title": "Inability to talk",
-                "graphType": "A",
-                "min": 0,
-                "max": 10,
-                "options": [],
-                "baseline_value": 0
-            },
-            {
-                "id": "76250cae-df4e-4f21-9413-ff8053da6aba",
-                "type": 1,
-                "alarm_max": 0,
-                "alarm_min": 0,
-                "high_label": "large amount",
-                "low_label": "none",
-                "unit": 0,
-                "step": 1,
-                "title": "Inability to eat",
-                "graphType": "A",
-                "min": 0,
-                "max": 10,
-                "options": [],
-                "baseline_value": 0
-            },
-            {
-                "id": "d8841bbc-35e1-4ee5-a951-72b701f7befe",
-                "type": 1,
-                "alarm_max": 0,
-                "alarm_min": 0,
-                "high_label": "large amount",
-                "low_label": "none",
-                "unit": 0,
-                "step": 1,
-                "title": "Inability to sleep",
-                "graphType": "A",
-                "min": 0,
-                "max": 10,
-                "options": [],
-                "baseline_value": 0
-            },
-            {
-                "id": "3e147111-5bc1-4910-9f47-2e9eb00e9aa8",
-                "type": 1,
-                "alarm_max": 0,
-                "alarm_min": 0,
-                "high_label": "large amount",
-                "low_label": "none",
-                "unit": 0,
-                "step": 1,
-                "title": "Inability to perform usual tasks",
-                "graphType": "A",
-                "min": 0,
-                "max": 10,
-                "options": [],
-                "baseline_value": 0
-            },
-            {
-                "id": "c57ba701-4a82-46fc-871c-007cde1258ed",
-                "type": 1,
-                "alarm_max": 0,
-                "alarm_min": 0,
-                "high_label": "large amount",
-                "low_label": "none",
-                "unit": 0,
-                "step": 1,
-                "title": "Faster breathing",
-                "graphType": "A",
-                "min": 0,
-                "max": 10,
-                "options": [],
-                "baseline_value": 0
-            },
-            {
-                "id": "cd15ab42-5e9e-470b-8dd8-9072b520eff0",
-                "type": 1,
-                "alarm_max": 0,
-                "alarm_min": 0,
-                "high_label": "large amount",
-                "low_label": "none",
-                "unit": 0,
-                "step": 1,
-                "title": "Gasping for air",
-                "graphType": "A",
-                "min": 0,
-                "max": 10,
-                "options": [],
-                "baseline_value": 0
-            },
-            {
-                "id": "3cb68a89-c2cd-4e5b-bfa4-43c992d15b53",
-                "type": 1,
-                "alarm_max": 0,
-                "alarm_min": 0,
-                "high_label": "large amount",
-                "low_label": "none",
-                "unit": 0,
-                "step": 1,
-                "title": "Noisy exhalation",
-                "graphType": "A",
-                "min": 0,
-                "max": 10,
-                "options": [],
-                "baseline_value": 0
-            },
-            {
-                "id": "55242aaf-1d16-495e-90f2-ea770279f071",
-                "type": 1,
-                "alarm_max": 0,
-                "alarm_min": 0,
-                "high_label": "large amount",
-                "low_label": "none",
-                "unit": 0,
-                "step": 1,
-                "title": "Low peak flow",
-                "graphType": "A",
-                "min": 0,
-                "max": 10,
-                "options": [],
-                "baseline_value": 0
-            },
-            {
-                "id": "9e2d9cb4-c5ce-4833-9e50-5e69b0ecaf0b",
-                "type": 1,
-                "alarm_max": 0,
-                "alarm_min": 0,
-                "high_label": "large amount",
-                "low_label": "none",
-                "unit": 0,
-                "step": 1,
-                "title": "Several hours or days attack build-up",
-                "graphType": "A",
-                "min": 0,
-                "max": 10,
-                "options": [],
-                "baseline_value": 0
-            }
-        ]
-    },
-    "symtpoms_tracker": [
+    "conditionId": "68e36fbc9950693f31349cc7",
+    "conditionName": "Asthma Attack",
+    "patientId": "6800f3c45de85f0d82851f5a",
+    "isCured": false,
+    "symptoms": [
         {
-            "_id": "68e36fbd9950693f31349cc8",
-            "status": "added",
-            "updatedAt": "2025-10-06T07:29:01.816Z"
+            "id": "38f82812-56ad-48c6-95a4-1acbef16cc6a",
+            "title": "Increased coughing",
+            "score": 5,
+            "baseline": 0
         },
         {
-            "_id": "68e376d09950693f31349cd6",
-            "status": "added",
-            "updatedAt": "2025-10-06T07:59:12.565Z"
+            "id": "fc4fb222-b562-416a-8021-3743f534d40c",
+            "title": "Difficulty breathing",
+            "score": 5,
+            "baseline": 0
+        },
+        {
+            "id": "ad794088-9a79-4882-b733-88b68ff0d05c",
+            "title": "Inability to talk",
+            "score": 6,
+            "baseline": 0
+        },
+        {
+            "id": "76250cae-df4e-4f21-9413-ff8053da6aba",
+            "title": "Inability to eat",
+            "score": 7,
+            "baseline": 0
+        },
+        {
+            "id": "d8841bbc-35e1-4ee5-a951-72b701f7befe",
+            "title": "Inability to sleep",
+            "score": 8,
+            "baseline": 0
+        },
+        {
+            "id": "3e147111-5bc1-4910-9f47-2e9eb00e9aa8",
+            "title": "Inability to perform usual tasks",
+            "score": 9,
+            "baseline": 0
+        },
+        {
+            "id": "c57ba701-4a82-46fc-871c-007cde1258ed",
+            "title": "Faster breathing",
+            "score": 10,
+            "baseline": 0
+        },
+        {
+            "id": "cd15ab42-5e9e-470b-8dd8-9072b520eff0",
+            "title": "Gasping for air",
+            "score": 2,
+            "baseline": 0
+        },
+        {
+            "id": "3cb68a89-c2cd-4e5b-bfa4-43c992d15b53",
+            "title": "Noisy exhalation",
+            "score": 3,
+            "baseline": 0
+        },
+        {
+            "id": "55242aaf-1d16-495e-90f2-ea770279f071",
+            "title": "Low peak flow",
+            "score": 4,
+            "baseline": 4
+        },
+        {
+            "id": "9e2d9cb4-c5ce-4833-9e50-5e69b0ecaf0b",
+            "title": "Attack build-up over hours/days",
+            "score": 5,
+            "baseline": 0
         }
     ],
-    "status": "added",
-    "ds_name": "Asthma Attack",
-    "ds_id": "67c7ee839f38b46fdfc288bb",
-    "recordType": "Disease",
-    "patient_id": "6800f3c45de85f0d82851f5a",
-    "added_by": {
-        "_id": "6800f3c45de85f0d82851f5a",
-        "role": "resident",
-        "name": "Vinayak Nayak"
-    },
-    "added_by_type": "patientModel",
-    "comment": [],
-    "createdAt": "2025-10-06T07:29:00.949Z",
-    "updatedAt": "2025-10-06T07:59:12.570Z",
-    "__v": 0
+    "status": "active",
+    "createdAt": "2025-10-06T07:29:00.949Z"
 }
 
 const payload = {
@@ -340,8 +203,17 @@ const prompt = `
   "vitalsSummary": ["string"],
   "dailyPatterns": ["string"],
   "smartAdvices": ["string"],
+  "careTeamNotes": ["string"],
   "nextSteps": ["string"]
 }
+
+User Requirements:
+• Health Alerts: Critical or abnormal findings requiring urgent attention
+• Vitals Summary: Consolidated AI insights on vital signs
+• Daily Patterns: How routine impacts vitals and symptoms
+• Smart Advice: AI-based lifestyle or diet suggestions
+• Care Team Notes: Doctor or caregiver comments on the AI report
+• Next Steps: Recommended actions or consultation scheduling
 
 Rules:
 - Not a medical diagnosis

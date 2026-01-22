@@ -226,9 +226,6 @@ Data:
 ${JSON.stringify(payload)}
 `;
 
-
-
-
 const test = async () => {
     const response = await client.chat.completions.create({
         model: OPENAI_MODEL || "gpt-4o-mini",

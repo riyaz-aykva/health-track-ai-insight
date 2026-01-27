@@ -1,47 +1,50 @@
 {
   "data": {
-    "overallSummary": "John Doe is currently experiencing an active asthma attack with several severe symptoms affecting breathing and daily activities. Vital signs are stable at present, but symptoms indicate urgent attention is needed. This overview is informational and not a medical diagnosis.",
+    "overallSummary": "John Doe is currently experiencing an active asthma attack with significant respiratory symptoms impacting daily function. Vitals remain stable at present, but symptoms indicate severe respiratory distress requiring close monitoring.",
     "healthAlerts": [
       {
         "level": "HIGH",
-        "message": "Severe asthma symptoms detected including inability to perform usual tasks, inability to eat or sleep, and faster breathing."
+        "message": "Severe breathing difficulties noted including inability to talk, eat, sleep, and perform usual tasks. Immediate follow-up is essential to prevent respiratory failure."
       },
       {
         "level": "MEDIUM",
-        "message": "Increased coughing, difficulty breathing, and low peak flow noted; monitor closely and seek care if symptoms worsen."
+        "message": "Increased coughing, faster breathing, and gradual attack build-up suggest worsening airway obstruction."
       }
     ],
     "vitalsSummary": [
-      "Vital signs such as blood pressure, heart rate, oxygen level, body temperature, and blood sugar are within normal ranges currently.",
-      "No abnormal vital sign fluctuations detected during recent assessments."
+      "Stable blood pressure at 120/80 mmHg.",
+      "Heart rate steady at 70 bpm.",
+      "Oxygen saturation normal at 98%.",
+      "Body temperature and blood sugar levels within normal limits."
     ],
     "dailyPatterns": [
-      "Symptoms worsen as daily tasks become difficult and sleep and eating are impaired.",
-      "Routine activities such as meals appear consistent, but respiratory symptoms impact overall well-being."
+      "Severe asthma symptoms are significantly limiting daily activities, including eating, sleeping, and speaking.",
+      "No variation noted in vitals throughout assessment period despite worsening symptoms."
     ],
     "smartAdvices": [
-      "Avoid known asthma triggers such as allergens and smoke.",
-      "Maintain regular breathing exercises to support lung function.",
-      "Ensure consistent medication adherence as prescribed by your healthcare provider.",
-      "Keep hydrated and rest as symptoms permit."
+      "Avoid known asthma triggers such as allergens, smoke, or strong odors.",
+      "Prioritize resting in an upright position to ease breathing.",
+      "Ensure good hydration and maintain a calm environment to reduce stress.",
+      "Seek immediate medical care if symptoms worsen or oxygen levels drop."
     ],
     "careTeamNotes": [
-      "Patient shows critical asthma symptoms that require close monitoring.",
-      "Encourage patient to report any worsening breathing difficulty immediately.",
-      "Support patient in managing lifestyle factors that impact asthma control."
+      "Patient is currently in respiratory distress with high symptom burden.",
+      "Vital signs do not yet reflect hypoxia but close monitoring is required.",
+      "Supportive care and prompt escalation plans need to be in place."
     ],
     "nextSteps": [
-      "Schedule an urgent consultation with your healthcare provider to reassess asthma management.",
-      "Consider visiting emergency care if symptoms like inability to talk or severe breathlessness persist or worsen.",
-      "Monitor symptoms and vitals regularly and maintain communication with your care team."
+      "Urgent evaluation by respiratory specialist is recommended.",
+      "Continuous monitoring of oxygen saturation and respiratory status.",
+      "Consider referral to emergency care if symptoms fail to improve or worsen.",
+      "Educate patient on recognizing early warning signs of severe asthma exacerbations."
     ]
   },
   "tokenUsage": {
-    "prompt_tokens": 1048,
-    "completion_tokens": 389,
-    "total_tokens": 1437,
+    "prompt_tokens": 1138,
+    "completion_tokens": 407,
+    "total_tokens": 1545,
     "prompt_tokens_details": {
-      "cached_tokens": 1024,
+      "cached_tokens": 0,
       "audio_tokens": 0
     },
     "completion_tokens_details": {

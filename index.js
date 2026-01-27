@@ -226,13 +226,50 @@ Data:
 ${JSON.stringify(payload)}
 `;
 
-const test = async () => {
+
+const doctor_prompt = `
+As a doctor, analyze the following patient data and generate an AI health overview in valid JSON format with this structure:
+{
+  "overallSummary": "string",
+  "healthAlerts": [
+    {
+      "level": "LOW|MEDIUM|HIGH",
+      "message": "string"
+    }
+  ],
+  "vitalsSummary": ["string"],
+  "dailyPatterns": ["string"],
+  "smartAdvices": ["string"],
+  "careTeamNotes": ["string"],
+  "nextSteps": ["string"]
+}
+
+Instructions (respond as a doctor):
+- Provide Health Alerts: Note any urgent or abnormal findings that would require immediate or close follow-up.
+- Summarize the vitals: Give concise insights based on provided vital sign trends.
+- Elaborate on Daily Patterns: Describe how routine and symptoms seem to interact and affect patient health.
+- Offer Smart Advices: Suggest lifestyle, diet, or routine adjustments grounded in medical best practice (no prescriptions).
+- Add Care Team Notes: Contribute professional comments as would be given in a care team note.
+- List Next Steps: Suggest any recommended actions, monitoring, possible referrals, or further evaluation.
+
+Rules:
+- This is NOT a formal diagnosis nor a prescription.
+- Write in clear, simple, reassuring language.
+- Do not include any medication names or instructions.
+- Return ONLY valid JSON per the structure above, with NO extra explanation or commentary.
+
+Here is the patient data:
+${JSON.stringify(payload)}
+`;
+
+
+const test = async (role = "user") => {
     const response = await client.chat.completions.create({
         model: OPENAI_MODEL || "gpt-4o-mini",
         messages: [
             {
                 role: "user",
-                content: prompt
+                content: role === "user" ? prompt : doctor_prompt
             }
         ],
         response_format: { type: "json_object" }

@@ -281,7 +281,7 @@ const test = async (role = "user") => {
     };
 
     // Save to Excel sheet
-    saveToExcel(result, payload.patient, conditions);
+    saveToExcel(result, payload.patient, conditions, OPENAI_MODEL);
 
     // Generate PDF report
     generatePDFReport(result, payload.patient, conditions, payload.vitals);

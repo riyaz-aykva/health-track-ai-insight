@@ -4,7 +4,7 @@ const fs = require("fs");
 const XLSX = require("xlsx");
 
 // Function to save record to Excel sheet
-const saveToExcel = (result, patientData, conditionData) => {
+const saveToExcel = (result, patientData, conditionData, model) => {
     const excelFileName = 'health_records.xlsx';
     const timestamp = new Date().toISOString();
 
@@ -23,6 +23,7 @@ const saveToExcel = (result, patientData, conditionData) => {
         'Smart Advices': result.data.smartAdvices.join(' | '),
         'Care Team Notes': result.data.careTeamNotes.join(' | '),
         'Next Steps': result.data.nextSteps.join(' | '),
+        'Model': model,
         'Prompt Tokens': result.tokenUsage.prompt_tokens,
         'Completion Tokens': result.tokenUsage.completion_tokens,
         'Total Tokens': result.tokenUsage.total_tokens

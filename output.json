@@ -1,48 +1,35 @@
 {
   "data": {
-    "overallSummary": "John Doe is currently experiencing an active asthma attack with significant respiratory symptoms impacting daily function. Vitals remain stable at present, but symptoms indicate severe respiratory distress requiring close monitoring.",
-    "healthAlerts": [
-      {
-        "level": "HIGH",
-        "message": "Severe breathing difficulties noted including inability to talk, eat, sleep, and perform usual tasks. Immediate follow-up is essential to prevent respiratory failure."
-      },
-      {
-        "level": "MEDIUM",
-        "message": "Increased coughing, faster breathing, and gradual attack build-up suggest worsening airway obstruction."
-      }
-    ],
+    "overallSummary": "John Doe has shown significant improvement in managing his health after recovering from Alcohol Withdrawal. His vital signs are stable, and there are no critical alerts at this time.",
+    "healthAlerts": [],
     "vitalsSummary": [
-      "Stable blood pressure at 120/80 mmHg.",
-      "Heart rate steady at 70 bpm.",
-      "Oxygen saturation normal at 98%.",
-      "Body temperature and blood sugar levels within normal limits."
+      "Blood Pressure: 120/80",
+      "Heart Rate: 70 bpm",
+      "Oxygen Level: 98%",
+      "Body Temperature: 98.6°F",
+      "Blood Sugar: 100 mg/dL"
     ],
     "dailyPatterns": [
-      "Severe asthma symptoms are significantly limiting daily activities, including eating, sleeping, and speaking.",
-      "No variation noted in vitals throughout assessment period despite worsening symptoms."
+      "Regular meals and maintaining hydration have contributed positively to his overall well-being.",
+      "Activity routines such as breakfast at 10:00 AM help in achieving consistent vital signs."
     ],
     "smartAdvices": [
-      "Avoid known asthma triggers such as allergens, smoke, or strong odors.",
-      "Prioritize resting in an upright position to ease breathing.",
-      "Ensure good hydration and maintain a calm environment to reduce stress.",
-      "Seek immediate medical care if symptoms worsen or oxygen levels drop."
+      "Continue to maintain a balanced diet rich in fruits and vegetables.",
+      "Stay hydrated by drinking plenty of water throughout the day.",
+      "Engage in regular physical activity to support mental and physical health."
     ],
     "careTeamNotes": [
-      "Patient is currently in respiratory distress with high symptom burden.",
-      "Vital signs do not yet reflect hypoxia but close monitoring is required.",
-      "Supportive care and prompt escalation plans need to be in place."
+      "John has shown considerable resilience in managing his symptoms post-recovery. Continue to monitor for any changes."
     ],
     "nextSteps": [
-      "Urgent evaluation by respiratory specialist is recommended.",
-      "Continuous monitoring of oxygen saturation and respiratory status.",
-      "Consider referral to emergency care if symptoms fail to improve or worsen.",
-      "Educate patient on recognizing early warning signs of severe asthma exacerbations."
+      "Schedule a follow-up appointment with the healthcare provider in the next month.",
+      "Maintain a daily log of symptoms and vital signs to discuss in the next visit."
     ]
   },
   "tokenUsage": {
-    "prompt_tokens": 1138,
-    "completion_tokens": 407,
-    "total_tokens": 1545,
+    "prompt_tokens": 1079,
+    "completion_tokens": 273,
+    "total_tokens": 1352,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0

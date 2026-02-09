@@ -46,84 +46,91 @@ if (!OPENAI_API_KEY) {
     process.exit(1);
 }
 
+
 const client = new OpenAI({ apiKey: OPENAI_API_KEY });
 
 const conditions = {
-    conditionId: "68e36fbc9950693f31349cc7",
-    conditionName: "Asthma Attack",
-    patientId: "6800f3c45de85f0d82851f5a",
-    isCured: false,
-    symptoms: [
+    "condition_id": "6985cb0d41eeb53a74254efe",
+    "type": "disease",
+    "status": "cured",
+    "disease_lookup_id": "e47e34b0-430a-4353-9935-7aa526d0686e",
+    "disease_title": "Alcohol Withdrawal",
+    "symptoms": [
         {
-            id: "38f82812-56ad-48c6-95a4-1acbef16cc6a",
-            title: "Increased coughing",
-            score: 5,
-            baseline: 0,
+            "symptom_id": "0fbab86a-d2a4-4e24-9892-a710b14114e5",
+            "title": "confusion",
+            "records": [
+                {
+                    "severity": 1,
+                    "recorded_at": "2026-02-06T11:14:39.036Z",
+                    "recorded_by": {
+                        "role": "patient",
+                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
+                    }
+                },
+                {
+                    "severity": 6,
+                    "recorded_at": "2026-02-06T11:12:05.141Z",
+                    "recorded_by": {
+                        "role": "patient",
+                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
+                    }
+                },
+                {
+                    "severity": 7,
+                    "recorded_at": "2026-02-06T11:05:49.613Z",
+                    "recorded_by": {
+                        "role": "patient",
+                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
+                    }
+                }
+            ],
+            "baselines": {
+                "patient_baseline": null
+            }
         },
         {
-            id: "fc4fb222-b562-416a-8021-3743f534d40c",
-            title: "Difficulty breathing",
-            score: 5,
-            baseline: 0,
-        },
-        {
-            id: "ad794088-9a79-4882-b733-88b68ff0d05c",
-            title: "Inability to talk",
-            score: 6,
-            baseline: 0,
-        },
-        {
-            id: "76250cae-df4e-4f21-9413-ff8053da6aba",
-            title: "Inability to eat",
-            score: 7,
-            baseline: 0,
-        },
-        {
-            id: "d8841bbc-35e1-4ee5-a951-72b701f7befe",
-            title: "Inability to sleep",
-            score: 8,
-            baseline: 0,
-        },
-        {
-            id: "3e147111-5bc1-4910-9f47-2e9eb00e9aa8",
-            title: "Inability to perform usual tasks",
-            score: 9,
-            baseline: 0,
-        },
-        {
-            id: "c57ba701-4a82-46fc-871c-007cde1258ed",
-            title: "Faster breathing",
-            score: 10,
-            baseline: 0,
-        },
-        {
-            id: "cd15ab42-5e9e-470b-8dd8-9072b520eff0",
-            title: "Gasping for air",
-            score: 2,
-            baseline: 0,
-        },
-        {
-            id: "3cb68a89-c2cd-4e5b-bfa4-43c992d15b53",
-            title: "Noisy exhalation",
-            score: 3,
-            baseline: 0,
-        },
-        {
-            id: "55242aaf-1d16-495e-90f2-ea770279f071",
-            title: "Low peak flow",
-            score: 4,
-            baseline: 4,
-        },
-        {
-            id: "9e2d9cb4-c5ce-4833-9e50-5e69b0ecaf0b",
-            title: "Attack build-up over hours/days",
-            score: 5,
-            baseline: 0,
-        },
+            "symptom_id": "50521e96-27d6-4506-add7-7f9ea693e78b",
+            "title": "sweating",
+            "records": [
+                {
+                    "severity": 1,
+                    "recorded_at": "2026-02-06T11:14:39.036Z",
+                    "recorded_by": {
+                        "role": "patient",
+                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
+                    }
+                },
+                {
+                    "severity": 6,
+                    "recorded_at": "2026-02-06T11:12:05.141Z",
+                    "recorded_by": {
+                        "role": "patient",
+                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
+                    }
+                },
+                {
+                    "severity": 5,
+                    "recorded_at": "2026-02-06T11:05:49.613Z",
+                    "recorded_by": {
+                        "role": "patient",
+                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
+                    }
+                }
+            ],
+            "baselines": {
+                "patient_baseline": null
+            }
+        }
     ],
-    status: "active",
-    createdAt: "2025-10-06T07:29:00.949Z",
-};
+    "date_range": {
+        "start_date": "2026-01-30T00:00:00.000Z",
+        "end_date": "2026-02-06T23:59:59.999Z",
+        "total_records": 6,
+        "date_range_days": 8,
+        "is_default": true
+    }
+}
 
 const payload = {
     conditions,
@@ -261,13 +268,26 @@ Here is the patient data:
 ${JSON.stringify(payload)}
 `;
 
+
+// Best OpenAI models for medical / health (accuracy & reasoning focus)
+const medicalHealthModels = [
+    'gpt-5.2-pro',      // Most capable, precise
+    'gpt-5.2',          // Best for complex/agentic tasks
+    'gpt-5.1',          // Strong reasoning, configurable
+    'o3-deep-research', // Deep research (e.g. literature)
+    'o3-pro',           // High-compute reasoning
+    'o3',               // Strong reasoning for complex tasks
+    'gpt-4.1',          // Smartest non-reasoning, good balance
+    'gpt-4o',           // Fast, intelligent, flexible
+];
+
 const test = async (role = "user") => {
     const response = await client.chat.completions.create({
         model: OPENAI_MODEL || "gpt-4o-mini",
         messages: [
             {
                 role: "user",
-                content: role === "user" ? prompt : doctor_prompt,
+                content: prompt,
             },
         ],
         response_format: { type: "json_object" },
@@ -283,8 +303,8 @@ const test = async (role = "user") => {
     // Save to Excel sheet
     saveToExcel(result, payload.patient, conditions, OPENAI_MODEL);
 
-    // Generate PDF report
-    generatePDFReport(result, payload.patient, conditions, payload.vitals);
+    // Generate PDF report (HTML-to-PDF via Puppeteer)
+    // await generatePDFReport(result, payload.patient, conditions, payload.vitals);
 
     return result;
 };

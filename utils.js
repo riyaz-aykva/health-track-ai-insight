@@ -3,13 +3,14 @@ const XLSX = require("xlsx");
 const { generatePDFReport } = require("./report-pdf");
 
 // Function to save record to Excel sheet
-const saveToExcel = (result, patientData, conditionData, model) => {
+const saveToExcel = (result, patientData, conditionData, model, payload) => {
     const excelFileName = 'health_records.xlsx';
     const timestamp = new Date().toISOString();
 
     // Prepare the record row
     const record = {
         'Timestamp': timestamp,
+        'Payload Data': JSON.stringify(payload),
         'Patient Name': patientData.name,
         'Patient Gender': patientData.gender,
         'Patient Age': patientData.age,

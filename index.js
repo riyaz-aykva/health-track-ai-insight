@@ -57,32 +57,19 @@ const conditions = {
     "disease_title": "Alcohol Withdrawal",
     "symptoms": [
         {
-            "symptom_id": "0fbab86a-d2a4-4e24-9892-a710b14114e5",
             "title": "confusion",
             "records": [
                 {
                     "severity": 1,
                     "recorded_at": "2026-02-06T11:14:39.036Z",
-                    "recorded_by": {
-                        "role": "patient",
-                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
-                    }
                 },
                 {
                     "severity": 6,
                     "recorded_at": "2026-02-06T11:12:05.141Z",
-                    "recorded_by": {
-                        "role": "patient",
-                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
-                    }
                 },
                 {
                     "severity": 7,
                     "recorded_at": "2026-02-06T11:05:49.613Z",
-                    "recorded_by": {
-                        "role": "patient",
-                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
-                    }
                 }
             ],
             "baselines": {
@@ -90,46 +77,26 @@ const conditions = {
             }
         },
         {
-            "symptom_id": "50521e96-27d6-4506-add7-7f9ea693e78b",
             "title": "sweating",
             "records": [
                 {
                     "severity": 1,
                     "recorded_at": "2026-02-06T11:14:39.036Z",
-                    "recorded_by": {
-                        "role": "patient",
-                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
-                    }
                 },
                 {
                     "severity": 6,
                     "recorded_at": "2026-02-06T11:12:05.141Z",
-                    "recorded_by": {
-                        "role": "patient",
-                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
-                    }
                 },
                 {
                     "severity": 5,
                     "recorded_at": "2026-02-06T11:05:49.613Z",
-                    "recorded_by": {
-                        "role": "patient",
-                        "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de"
-                    }
                 }
             ],
             "baselines": {
                 "patient_baseline": null
             }
         }
-    ],
-    "date_range": {
-        "start_date": "2026-01-30T00:00:00.000Z",
-        "end_date": "2026-02-06T23:59:59.999Z",
-        "total_records": 6,
-        "date_range_days": 8,
-        "is_default": true
-    }
+    ]
 }
 
 const payload = {
@@ -301,7 +268,7 @@ const test = async (role = "user") => {
     };
 
     // Save to Excel sheet
-    saveToExcel(result, payload.patient, conditions, OPENAI_MODEL);
+    saveToExcel(result, payload.patient, conditions, OPENAI_MODEL, payload);
 
     // Generate PDF report (HTML-to-PDF via Puppeteer)
     // await generatePDFReport(result, payload.patient, conditions, payload.vitals);

@@ -1,35 +1,32 @@
 {
   "data": {
-    "overallSummary": "John Doe has shown significant improvement in managing his health after recovering from Alcohol Withdrawal. His vital signs are stable, and there are no critical alerts at this time.",
-    "healthAlerts": [],
+    "overallSummary": "John Doe has successfully recovered from Alcohol Withdrawal. His vital signs are stable, and he has shown improvement in symptoms over time.",
+    "healthAlerts": [
+      {
+        "level": "LOW",
+        "message": "Symptoms of confusion and sweating were recorded but are currently not severe."
+      }
+    ],
     "vitalsSummary": [
-      "Blood Pressure: 120/80",
-      "Heart Rate: 70 bpm",
-      "Oxygen Level: 98%",
-      "Body Temperature: 98.6°F",
-      "Blood Sugar: 100 mg/dL"
+      "Blood Pressure: 120/80, Heart Rate: 70, Oxygen Level: 98%, Body Temperature: 98.6°F, Blood Sugar: 100 mg/dL"
     ],
     "dailyPatterns": [
-      "Regular meals and maintaining hydration have contributed positively to his overall well-being.",
-      "Activity routines such as breakfast at 10:00 AM help in achieving consistent vital signs."
+      "Routine activities like breakfast are consistent and likely contributing to stable vital signs."
     ],
     "smartAdvices": [
-      "Continue to maintain a balanced diet rich in fruits and vegetables.",
-      "Stay hydrated by drinking plenty of water throughout the day.",
-      "Engage in regular physical activity to support mental and physical health."
+      "Maintain a balanced diet and stay hydrated to support overall health."
     ],
     "careTeamNotes": [
-      "John has shown considerable resilience in managing his symptoms post-recovery. Continue to monitor for any changes."
+      "Continue monitoring symptoms and maintain regular check-ins to ensure ongoing recovery."
     ],
     "nextSteps": [
-      "Schedule a follow-up appointment with the healthcare provider in the next month.",
-      "Maintain a daily log of symptoms and vital signs to discuss in the next visit."
+      "Schedule a follow-up appointment to review progress and address any remaining concerns."
     ]
   },
   "tokenUsage": {
-    "prompt_tokens": 1079,
-    "completion_tokens": 273,
-    "total_tokens": 1352,
+    "prompt_tokens": 771,
+    "completion_tokens": 214,
+    "total_tokens": 985,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0

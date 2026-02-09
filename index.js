@@ -220,44 +220,43 @@ Data:
 ${JSON.stringify(payload)}
 `;
 
-// Best OpenAI models for medical / health (accuracy & reasoning focus)
+// Chat models only (v1/chat/completions). Run "node list-models.js" to see models for your key.
 const medicalHealthModels = [
-    'gpt-5.2-pro',      // Most capable, precise
-    'gpt-5.2',          // Best for complex/agentic tasks
-    'gpt-5.1',          // Strong reasoning, configurable
-    'o3-deep-research', // Deep research (e.g. literature)
-    'o3-pro',           // High-compute reasoning
-    'o3',               // Strong reasoning for complex tasks
-    'gpt-4.1',          // Smartest non-reasoning, good balance
-    'gpt-4o',           // Fast, intelligent, flexible
+    'gpt-4o',           // Fast, intelligent
+    'gpt-4o-mini',      // Fast, cost-effective
+    'gpt-4-turbo',
+    'gpt-4',
+    'gpt-3.5-turbo',
 ];
 
 const test = async () => {
+    const results = [];
     for (const model of medicalHealthModels) {
-        const response = await client.chat.completions.create({
-            model: model,
-            messages: [
-                {
-                    role: "user",
-                    content: prompt,
-                },
-            ],
-            response_format: { type: "json_object" },
-        });
+        try {
+            const response = await client.chat.completions.create({
+                model: model,
+                messages: [
+                    {
+                        role: "user",
+                        content: prompt,
+                    },
+                ],
+                response_format: { type: "json_object" },
+            });
 
-        const jsonResponse = JSON.parse(response.choices[0].message.content);
-
-
-        const result = {
-            data: jsonResponse,
-            tokenUsage: response.usage,
-        };
-
-        // Save to Excel sheet
-        saveToExcel(result, payload.patient, conditions, model, payload);
+            const jsonResponse = JSON.parse(response.choices[0].message.content);
+            const result = {
+                data: jsonResponse,
+                tokenUsage: response.usage,
+            };
+            saveToExcel(result, payload.patient, conditions, model, payload);
+            results.push({ model, ok: true });
+        } catch (err) {
+            console.warn(`Skipping ${model}: ${err.message || err.status}`);
+            results.push({ model, ok: false, error: err.message || String(err.status) });
+        }
     }
-
-    return result;
+    return results;
 };
 
 test()

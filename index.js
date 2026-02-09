@@ -59,45 +59,120 @@ const conditions = {
         {
             "title": "confusion",
             "records": [
-                {
-                    "severity": 1,
-                    "recorded_at": "2026-02-06T11:14:39.036Z",
-                },
-                {
-                    "severity": 6,
-                    "recorded_at": "2026-02-06T11:12:05.141Z",
-                },
-                {
-                    "severity": 7,
-                    "recorded_at": "2026-02-06T11:05:49.613Z",
-                }
+                { severity: 5, recorded_at: "2026-02-03T09:00:00.000Z" },
+                { severity: 6, recorded_at: "2026-02-04T09:15:00.000Z" },
+                { severity: 4, recorded_at: "2026-02-05T08:45:00.000Z" },
+                { severity: 5, recorded_at: "2026-02-06T09:30:00.000Z" },
+                { severity: 3, recorded_at: "2026-02-07T08:50:00.000Z" },
+                { severity: 4, recorded_at: "2026-02-08T09:10:00.000Z" },
+                { severity: 2, recorded_at: "2026-02-09T09:00:00.000Z" },
             ],
             "baselines": {
-                "patient_baseline": null
+                "patient_baseline": 8
             }
         },
         {
             "title": "sweating",
             "records": [
-                {
-                    "severity": 1,
-                    "recorded_at": "2026-02-06T11:14:39.036Z",
-                },
-                {
-                    "severity": 6,
-                    "recorded_at": "2026-02-06T11:12:05.141Z",
-                },
-                {
-                    "severity": 5,
-                    "recorded_at": "2026-02-06T11:05:49.613Z",
-                }
+                { severity: 6, recorded_at: "2026-02-03T09:00:00.000Z" },
+                { severity: 5, recorded_at: "2026-02-04T09:15:00.000Z" },
+                { severity: 5, recorded_at: "2026-02-05T08:45:00.000Z" },
+                { severity: 4, recorded_at: "2026-02-06T09:30:00.000Z" },
+                { severity: 4, recorded_at: "2026-02-07T08:50:00.000Z" },
+                { severity: 3, recorded_at: "2026-02-08T09:10:00.000Z" },
+                { severity: 2, recorded_at: "2026-02-09T09:00:00.000Z" },
             ],
             "baselines": {
-                "patient_baseline": null
+                "patient_baseline": 8
             }
         }
     ]
 }
+
+const vitals = [
+    {
+        lookup_id: "BLOOD_PRESSURE",
+        vital_name: "Blood Pressure",
+        records: [
+            { timestamp: "2026-02-03T08:15:00.000Z", value: "118/78" },
+            { timestamp: "2026-02-04T08:20:00.000Z", value: "122/82" },
+            { timestamp: "2026-02-05T08:10:00.000Z", value: "120/80" },
+            { timestamp: "2026-02-06T08:25:00.000Z", value: "121/79" },
+            { timestamp: "2026-02-07T08:30:00.000Z", value: "119/81" },
+            { timestamp: "2026-02-08T08:18:00.000Z", value: "120/80" },
+            { timestamp: "2026-02-09T08:22:00.000Z", value: "123/81" },
+        ]
+    },
+    {
+        lookup_id: "HEART_RATE",
+        vital_name: "Heart Rate",
+        records: [
+            { timestamp: "2026-02-03T08:15:00.000Z", value: "68" },
+            { timestamp: "2026-02-04T08:20:00.000Z", value: "72" },
+            { timestamp: "2026-02-05T08:10:00.000Z", value: "70" },
+            { timestamp: "2026-02-06T08:25:00.000Z", value: "71" },
+            { timestamp: "2026-02-07T08:30:00.000Z", value: "69" },
+            { timestamp: "2026-02-08T08:18:00.000Z", value: "70" },
+            { timestamp: "2026-02-09T08:22:00.000Z", value: "73" },
+        ]
+    },
+    {
+        lookup_id: "SPO2",
+        vital_name: "SpO2",
+        records: [
+            { timestamp: "2026-02-03T08:15:00.000Z", value: "97" },
+            { timestamp: "2026-02-04T08:20:00.000Z", value: "98" },
+            { timestamp: "2026-02-05T08:10:00.000Z", value: "98" },
+            { timestamp: "2026-02-06T08:25:00.000Z", value: "99" },
+            { timestamp: "2026-02-07T08:30:00.000Z", value: "97" },
+            { timestamp: "2026-02-08T08:18:00.000Z", value: "98" },
+            { timestamp: "2026-02-09T08:22:00.000Z", value: "98" },
+        ]
+    },
+    {
+        lookup_id: "BODY_TEMPERATURE",
+        vital_name: "Body Temperature",
+        records: [
+            { timestamp: "2026-02-03T08:15:00.000Z", value: "98.4" },
+            { timestamp: "2026-02-04T08:20:00.000Z", value: "98.6" },
+            { timestamp: "2026-02-05T08:10:00.000Z", value: "98.5" },
+            { timestamp: "2026-02-06T08:25:00.000Z", value: "98.6" },
+            { timestamp: "2026-02-07T08:30:00.000Z", value: "98.4" },
+            { timestamp: "2026-02-08T08:18:00.000Z", value: "98.5" },
+            { timestamp: "2026-02-09T08:22:00.000Z", value: "98.6" },
+        ]
+    },
+    {
+        lookup_id: "BLOOD_SUGAR",
+        vital_name: "Blood Sugar",
+        records: [
+            { timestamp: "2026-02-03T08:15:00.000Z", value: "95" },
+            { timestamp: "2026-02-04T08:20:00.000Z", value: "102" },
+            { timestamp: "2026-02-05T08:10:00.000Z", value: "98" },
+            { timestamp: "2026-02-06T08:25:00.000Z", value: "105" },
+            { timestamp: "2026-02-07T08:30:00.000Z", value: "99" },
+            { timestamp: "2026-02-08T08:18:00.000Z", value: "100" },
+            { timestamp: "2026-02-09T08:22:00.000Z", value: "103" },
+        ]
+    },
+]
+
+const activities = [
+    { activity_name: "Breakfast", createdAt: { $date: "2026-02-03T07:30:00.000Z" }, updatedAt: { $date: "2026-02-03T07:30:00.000Z" }, __v: 0, image: "8187733396.png" },
+    { activity_name: "Morning Walk", createdAt: { $date: "2026-02-03T09:00:00.000Z" }, updatedAt: { $date: "2026-02-03T09:00:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Lunch", createdAt: { $date: "2026-02-03T12:45:00.000Z" }, updatedAt: { $date: "2026-02-03T12:45:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Breakfast", createdAt: { $date: "2026-02-04T08:00:00.000Z" }, updatedAt: { $date: "2026-02-04T08:00:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Dinner", createdAt: { $date: "2026-02-04T18:30:00.000Z" }, updatedAt: { $date: "2026-02-04T18:30:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Breakfast", createdAt: { $date: "2026-02-05T07:45:00.000Z" }, updatedAt: { $date: "2026-02-05T07:45:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Light Exercise", createdAt: { $date: "2026-02-05T10:15:00.000Z" }, updatedAt: { $date: "2026-02-05T10:15:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Breakfast", createdAt: { $date: "2026-02-06T08:20:00.000Z" }, updatedAt: { $date: "2026-02-06T08:20:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Lunch", createdAt: { $date: "2026-02-06T13:00:00.000Z" }, updatedAt: { $date: "2026-02-06T13:00:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Breakfast", createdAt: { $date: "2026-02-07T07:30:00.000Z" }, updatedAt: { $date: "2026-02-07T07:30:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Morning Walk", createdAt: { $date: "2026-02-07T09:30:00.000Z" }, updatedAt: { $date: "2026-02-07T09:30:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Breakfast", createdAt: { $date: "2026-02-08T08:00:00.000Z" }, updatedAt: { $date: "2026-02-08T08:00:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Dinner", createdAt: { $date: "2026-02-08T19:00:00.000Z" }, updatedAt: { $date: "2026-02-08T19:00:00.000Z" }, __v: 0, image: null },
+    { activity_name: "Breakfast", createdAt: { $date: "2026-02-09T08:15:00.000Z" }, updatedAt: { $date: "2026-02-09T08:15:00.000Z" }, __v: 0, image: null },
+];
 
 const payload = {
     conditions,
@@ -106,63 +181,8 @@ const payload = {
         gender: "Male",
         age: new Date().getFullYear() - new Date("1990-01-01").getFullYear(),
     },
-    vitals: [
-        {
-            blood_pressure: "120/80",
-            heart_rate: "70",
-            oxygen_level: "98",
-            body_temp: "98.6",
-            blood_sugar: "100",
-        },
-        {
-            blood_pressure: "120/80",
-            heart_rate: "70",
-            oxygen_level: "98",
-            body_temp: "98.6",
-            blood_sugar: "100",
-        },
-        {
-            blood_pressure: "120/80",
-            heart_rate: "70",
-            oxygen_level: "98",
-            body_temp: "98.6",
-            blood_sugar: "100",
-        },
-        {
-            blood_pressure: "120/80",
-            heart_rate: "70",
-            oxygen_level: "98",
-            body_temp: "98.6",
-            blood_sugar: "100",
-        },
-    ],
-    activities: [
-        {
-            _id: {
-                $oid: "66e2761ae288f29d07a1d094",
-            },
-            attendees: [],
-            facility_id: {
-                $oid: "66b4cce3b672e092b873cace",
-            },
-            name: "Breakfast",
-            from_date: {
-                $date: "2024-09-13T00:00:00.000Z",
-            },
-            from_time: "10:00",
-            to_time: "10:30",
-            description: "The attitude of gratitude is the highest Lunch.",
-            location: "Canteen",
-            createdAt: {
-                $date: "2024-09-12T05:03:22.594Z",
-            },
-            updatedAt: {
-                $date: "2024-09-12T05:03:22.604Z",
-            },
-            __v: 0,
-            image: "8187733396.png",
-        },
-    ],
+    vitals,
+    activities,
 };
 
 const prompt = `
@@ -200,42 +220,6 @@ Data:
 ${JSON.stringify(payload)}
 `;
 
-const doctor_prompt = `
-As a doctor, analyze the following patient data and generate an AI health overview in valid JSON format with this structure:
-{
-  "overallSummary": "string",
-  "healthAlerts": [
-    {
-      "level": "LOW|MEDIUM|HIGH",
-      "message": "string"
-    }
-  ],
-  "vitalsSummary": ["string"],
-  "dailyPatterns": ["string"],
-  "smartAdvices": ["string"],
-  "careTeamNotes": ["string"],
-  "nextSteps": ["string"]
-}
-
-Instructions (respond as a doctor):
-- Provide Health Alerts: Note any urgent or abnormal findings that would require immediate or close follow-up.
-- Summarize the vitals: Give concise insights based on provided vital sign trends.
-- Elaborate on Daily Patterns: Describe how routine and symptoms seem to interact and affect patient health.
-- Offer Smart Advices: Suggest lifestyle, diet, or routine adjustments grounded in medical best practice (no prescriptions).
-- Add Care Team Notes: Contribute professional comments as would be given in a care team note.
-- List Next Steps: Suggest any recommended actions, monitoring, possible referrals, or further evaluation.
-
-Rules:
-- This is NOT a formal diagnosis nor a prescription.
-- Write in clear, simple, reassuring language.
-- Do not include any medication names or instructions.
-- Return ONLY valid JSON per the structure above, with NO extra explanation or commentary.
-
-Here is the patient data:
-${JSON.stringify(payload)}
-`;
-
-
 // Best OpenAI models for medical / health (accuracy & reasoning focus)
 const medicalHealthModels = [
     'gpt-5.2-pro',      // Most capable, precise
@@ -248,30 +232,30 @@ const medicalHealthModels = [
     'gpt-4o',           // Fast, intelligent, flexible
 ];
 
-const test = async (role = "user") => {
-    const response = await client.chat.completions.create({
-        model: OPENAI_MODEL || "gpt-4o-mini",
-        messages: [
-            {
-                role: "user",
-                content: prompt,
-            },
-        ],
-        response_format: { type: "json_object" },
-    });
+const test = async () => {
+    for (const model of medicalHealthModels) {
+        const response = await client.chat.completions.create({
+            model: model,
+            messages: [
+                {
+                    role: "user",
+                    content: prompt,
+                },
+            ],
+            response_format: { type: "json_object" },
+        });
 
-    const jsonResponse = JSON.parse(response.choices[0].message.content);
+        const jsonResponse = JSON.parse(response.choices[0].message.content);
 
-    const result = {
-        data: jsonResponse,
-        tokenUsage: response.usage,
-    };
 
-    // Save to Excel sheet
-    saveToExcel(result, payload.patient, conditions, OPENAI_MODEL, payload);
+        const result = {
+            data: jsonResponse,
+            tokenUsage: response.usage,
+        };
 
-    // Generate PDF report (HTML-to-PDF via Puppeteer)
-    // await generatePDFReport(result, payload.patient, conditions, payload.vitals);
+        // Save to Excel sheet
+        saveToExcel(result, payload.patient, conditions, model, payload);
+    }
 
     return result;
 };

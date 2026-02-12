@@ -78,7 +78,7 @@ function normalizeConditionsInput(input) {
 
 // Disease: single object only. Symptom: array of conditions (multiple allowed).
 // Example disease: conditionsInput = { type: "disease", disease_title: "...", condition_id: "...", symptoms: [...] };
-const conditionsInput1 = [
+const conditionsForSymptom = [
     {
         "condition_id": "6985cdf941eeb53a74254f5f",
         "type": "symptom",
@@ -159,7 +159,7 @@ const conditionsInput1 = [
     }
 ];
 
-const conditionsInput2 = [
+const conditionsForDisease = [
     {
         "condition_id": "6985cb0d41eeb53a74254efe",
         "type": "disease",
@@ -195,72 +195,107 @@ const conditionsInput2 = [
     }
 ];
 
-const conditions = normalizeConditionsInput(conditionsInput1);
+const conditions = normalizeConditionsInput(conditionsForDisease);
 
 const vitals = [
     {
         lookup_id: "BLOOD_PRESSURE",
         vital_name: "Blood Pressure",
         records: [
-            { timestamp: "2026-02-03T08:15:00.000Z", value: "118/78" },
-            { timestamp: "2026-02-04T08:20:00.000Z", value: "122/82" },
-            { timestamp: "2026-02-05T08:10:00.000Z", value: "120/80" },
-            { timestamp: "2026-02-06T08:25:00.000Z", value: "121/79" },
-            { timestamp: "2026-02-07T08:30:00.000Z", value: "119/81" },
-            { timestamp: "2026-02-08T08:18:00.000Z", value: "120/80" },
-            { timestamp: "2026-02-09T08:22:00.000Z", value: "123/81" },
+            {
+                recorded_at: "2026-02-03T08:15:00.000Z", value: {
+                    "systolic": 120,
+                    "diastolic": 80
+                }
+            },
+            {
+                recorded_at: "2026-02-04T08:20:00.000Z", value: {
+                    "systolic": 120,
+                    "diastolic": 80
+                }
+            },
+            {
+                recorded_at: "2026-02-05T08:10:00.000Z", value: {
+                    "systolic": 120,
+                    "diastolic": 80
+                }
+            },
+            {
+                recorded_at: "2026-02-06T08:25:00.000Z", value: {
+                    "systolic": 121,
+                    "diastolic": 79
+                }
+            },
+            {
+                recorded_at: "2026-02-07T08:30:00.000Z", value: {
+                    "systolic": 119,
+                    "diastolic": 81
+                }
+            },
+            {
+                recorded_at: "2026-02-08T08:18:00.000Z", value: {
+                    "systolic": 120,
+                    "diastolic": 80
+                }
+            },
+            {
+                recorded_at: "2026-02-09T08:22:00.000Z", value: {
+                    "systolic": 123,
+                    "diastolic": 81
+                }
+            },
         ]
     },
     {
         lookup_id: "HEART_RATE",
         vital_name: "Heart Rate",
         records: [
-            { timestamp: "2026-02-03T08:15:00.000Z", value: "68" },
-            { timestamp: "2026-02-04T08:20:00.000Z", value: "72" },
-            { timestamp: "2026-02-05T08:10:00.000Z", value: "70" },
-            { timestamp: "2026-02-06T08:25:00.000Z", value: "71" },
-            { timestamp: "2026-02-07T08:30:00.000Z", value: "69" },
-            { timestamp: "2026-02-08T08:18:00.000Z", value: "70" },
-            { timestamp: "2026-02-09T08:22:00.000Z", value: "73" },
+            { recorded_at: "2026-02-03T08:15:00.000Z", value: "68" },
+            { recorded_at: "2026-02-04T08:20:00.000Z", value: "72" },
+            { recorded_at: "2026-02-05T08:10:00.000Z", value: "70" },
+            { recorded_at: "2026-02-06T08:25:00.000Z", value: "71" },
+            { recorded_at: "2026-02-07T08:30:00.000Z", value: "69" },
+            { recorded_at: "2026-02-08T08:18:00.000Z", value: "70" },
+            { recorded_at: "2026-02-09T08:22:00.000Z", value: "73" },
         ]
     },
     {
         lookup_id: "SPO2",
         vital_name: "SpO2",
         records: [
-            { timestamp: "2026-02-03T08:15:00.000Z", value: "97" },
-            { timestamp: "2026-02-04T08:20:00.000Z", value: "98" },
-            { timestamp: "2026-02-05T08:10:00.000Z", value: "98" },
-            { timestamp: "2026-02-06T08:25:00.000Z", value: "99" },
-            { timestamp: "2026-02-07T08:30:00.000Z", value: "97" },
-            { timestamp: "2026-02-08T08:18:00.000Z", value: "98" },
-            { timestamp: "2026-02-09T08:22:00.000Z", value: "98" },
+            { recorded_at: "2026-02-03T08:15:00.000Z", value: "97" },
+            { recorded_at: "2026-02-04T08:20:00.000Z", value: "98" },
+            { recorded_at: "2026-02-05T08:10:00.000Z", value: "98" },
+            { recorded_at: "2026-02-06T08:25:00.000Z", value: "99" },
+            { recorded_at: "2026-02-07T08:30:00.000Z", value: "97" },
+            { recorded_at: "2026-02-08T08:18:00.000Z", value: "98" },
+            { recorded_at: "2026-02-09T08:22:00.000Z", value: "98" },
         ]
     },
     {
         lookup_id: "BODY_TEMPERATURE",
         vital_name: "Body Temperature",
         records: [
-            { timestamp: "2026-02-03T08:15:00.000Z", value: "98.4" },
-            { timestamp: "2026-02-04T08:20:00.000Z", value: "98.6" },
-            { timestamp: "2026-02-05T08:10:00.000Z", value: "98.5" },
-            { timestamp: "2026-02-06T08:25:00.000Z", value: "98.6" },
-            { timestamp: "2026-02-07T08:30:00.000Z", value: "98.4" },
-            { timestamp: "2026-02-08T08:18:00.000Z", value: "98.5" },
-            { timestamp: "2026-02-09T08:22:00.000Z", value: "98.6" },
+            { recorded_at: "2026-02-03T08:15:00.000Z", value: "98.4" },
+            { recorded_at: "2026-02-04T08:20:00.000Z", value: "98.6" },
+            { recorded_at: "2026-02-05T08:10:00.000Z", value: "98.5" },
+            { recorded_at: "2026-02-06T08:25:00.000Z", value: "98.6" },
+            { recorded_at: "2026-02-07T08:30:00.000Z", value: "98.4" },
+            { recorded_at: "2026-02-08T08:18:00.000Z", value: "98.5" },
+            { recorded_at: "2026-02-09T08:22:00.000Z", value: "98.6" },
         ]
     },
     {
         lookup_id: "BLOOD_SUGAR",
         vital_name: "Blood Sugar",
         records: [
-            { timestamp: "2026-02-03T08:15:00.000Z", value: "95" },
-            { timestamp: "2026-02-04T08:20:00.000Z", value: "102" },
-            { timestamp: "2026-02-05T08:10:00.000Z", value: "98" },
-            { timestamp: "2026-02-06T08:25:00.000Z", value: "105" },
-            { timestamp: "2026-02-07T08:30:00.000Z", value: "99" },
-            { timestamp: "2026-02-08T08:18:00.000Z", value: "100" },
-            { timestamp: "2026-02-09T08:22:00.000Z", value: "103" },
+            { recorded_at: "2026-02-03T08:15:00.000Z", value: "95" },
+            { recorded_at: "2026-02-04T08:20:00.000Z", value: "102" },
+            { recorded_at: "2026-02-05T08:10:00.000Z", value: "98" },
+            { recorded_at: "2026-02-06T08:25:00.000Z", value: "105" },
+            { recorded_at: "2026-02-07T08:30:00.000Z", value: "99" },
+            { recorded_at: "2026-02-08T08:18:00.000Z", value: "100" },
+            { recorded_at: "2026-02-09T08:22:00.000Z", value: "103" },
         ]
     },
 ]

@@ -81,21 +81,21 @@ Array of objects with at least `activity_name` and `createdAt` (e.g. `{ $date: "
 
 ## Output
 
-| Output            | Description                                      |
-|-------------------|--------------------------------------------------|
-| `output.json`     | Full AI response + token usage                   |
+| Output                | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| `output.json`         | Full AI response + token usage                           |
 | `health_records.xlsx` | One row per condition with summary, alerts, vitals, etc. |
-| `error.json`      | Error payload if the run fails                   |
+| `error.json`          | Error payload if the run fails                           |
 
 ## Project structure
 
-| File / folder   | Purpose                                      |
-|-----------------|----------------------------------------------|
-| `index.js`      | Main script: builds payload, calls OpenAI, saves JSON + Excel |
-| `utils.js`      | `saveToExcel()`, Excel read/write, sheet↔JSON |
-| `list-models.js`| Lists OpenAI models for your API key         |
-| `package.json`  | Dependencies: dotenv, openai, exceljs        |
-| `.env`          | `OPENAI_API_KEY`, optional `OPENAI_MODEL`    |
+| File / folder    | Purpose                                                       |
+| ---------------- | ------------------------------------------------------------- |
+| `index.js`       | Main script: builds payload, calls OpenAI, saves JSON + Excel |
+| `utils.js`       | `saveToExcel()`, Excel read/write, sheet↔JSON                 |
+| `list-models.js` | Lists OpenAI models for your API key                          |
+| `package.json`   | Dependencies: dotenv, openai, exceljs                         |
+| `.env`           | `OPENAI_API_KEY`, optional `OPENAI_MODEL`                     |
 
 ## Dependencies
 

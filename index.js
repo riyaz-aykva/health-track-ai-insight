@@ -222,11 +222,11 @@ ${JSON.stringify(payload)}
 
 // Chat models only (v1/chat/completions). Run "node list-models.js" to see models for your key.
 const medicalHealthModels = [
-    'gpt-4o',           // Fast, intelligent
-    'gpt-4o-mini',      // Fast, cost-effective
-    'gpt-4-turbo',
-    'gpt-4',
-    'gpt-3.5-turbo',
+    'gpt-5',           // Fast, intelligent
+    // 'gpt-4o-mini',      // Fast, cost-effective
+    // 'gpt-4-turbo',
+    // 'gpt-4',
+    // 'gpt-3.5-turbo',
 ];
 
 const test = async () => {

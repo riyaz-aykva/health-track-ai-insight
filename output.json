@@ -1,41 +1,6 @@
-{
-  "data": {
-    "overallSummary": "John Doe has successfully recovered from Alcohol Withdrawal. His vital signs are stable, and he has shown improvement in symptoms over time.",
-    "healthAlerts": [
-      {
-        "level": "LOW",
-        "message": "Symptoms of confusion and sweating were recorded but are currently not severe."
-      }
-    ],
-    "vitalsSummary": [
-      "Blood Pressure: 120/80, Heart Rate: 70, Oxygen Level: 98%, Body Temperature: 98.6°F, Blood Sugar: 100 mg/dL"
-    ],
-    "dailyPatterns": [
-      "Routine activities like breakfast are consistent and likely contributing to stable vital signs."
-    ],
-    "smartAdvices": [
-      "Maintain a balanced diet and stay hydrated to support overall health."
-    ],
-    "careTeamNotes": [
-      "Continue monitoring symptoms and maintain regular check-ins to ensure ongoing recovery."
-    ],
-    "nextSteps": [
-      "Schedule a follow-up appointment to review progress and address any remaining concerns."
-    ]
-  },
-  "tokenUsage": {
-    "prompt_tokens": 771,
-    "completion_tokens": 214,
-    "total_tokens": 985,
-    "prompt_tokens_details": {
-      "cached_tokens": 0,
-      "audio_tokens": 0
-    },
-    "completion_tokens_details": {
-      "reasoning_tokens": 0,
-      "audio_tokens": 0,
-      "accepted_prediction_tokens": 0,
-      "rejected_prediction_tokens": 0
-    }
+[
+  {
+    "model": "gpt-5",
+    "ok": true
   }
-}
+]

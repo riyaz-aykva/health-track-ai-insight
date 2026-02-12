@@ -1,65 +1,48 @@
 {
   "data": {
-    "overallSummary": "Vitals are stable and in normal ranges. Shortness of breath spiked on Feb 9 and has improved but is still present. Attention/forgetfulness remains moderate to high. Monitor closely and arrange follow-up.",
+    "overallSummary": "John Doe has successfully recovered from Alcohol Withdrawal with stable vital signs. However, some mild symptoms persist that need monitoring.",
     "healthAlerts": [
       {
-        "level": "HIGH",
-        "message": "Severe shortness of breath reported on Feb 9 with ongoing moderate episodes. Seek urgent care now if breathing is severe, happens at rest, gets worse, or comes with chest pain, fainting, blue/gray lips or face, confusion, or SpO2 under 92%."
-      },
-      {
-        "level": "MEDIUM",
-        "message": "Repeated shortness of breath over several days despite normal vitals. Needs same‑week medical review."
+        "level": "LOW",
+        "message": "Mild symptoms of confusion and sweating observed, but no immediate concern."
       }
     ],
     "vitalsSummary": [
-      "Blood pressure 119–123 / 79–81 mmHg: stable and normal.",
-      "Heart rate 68–73 bpm: steady resting range.",
-      "SpO2 97–99%: normal oxygen levels during recorded checks.",
-      "Body temperature 98.4–98.6°F: no fever pattern.",
-      "Blood sugar 95–105 mg/dL: near‑normal; keep noting whether readings are fasting or after meals."
+      "Blood Pressure: Stable around 120/80, slightly elevated recently to 123/81.",
+      "Heart Rate: Consistent around 70 bpm.",
+      "SpO2: Maintained at healthy levels around 97-99%.",
+      "Body Temperature: Normal range between 98.4°F and 98.6°F.",
+      "Blood Sugar: Fluctuates slightly but remains within normal limits."
     ],
     "dailyPatterns": [
-      "Shortness of breath often logged in the morning to late morning; peak on Feb 9, then gradual improvement.",
-      "No clear link between recorded walks/light exercise and worse breathing on logged days.",
-      "Regular breakfasts noted; no consistent impact on blood sugar or vitals seen.",
-      "Symptoms may be influenced by morning factors (cold air, allergens, rush/stress). Track context with each entry."
+      "Regular meals and light exercises appear to contribute positively to overall health.",
+      "Physical activities such as morning walks are linked to improvements in mood and energy levels."
     ],
     "smartAdvices": [
-      "During episodes, use slow deep breaths and pursed‑lip breathing (inhale through nose 2 counts, exhale through pursed lips 4 counts).",
-      "Warm up before activity, pace yourself, and avoid smoke, strong scents, and very cold air. Use a scarf over the mouth in cold weather.",
-      "Track triggers with each symptom: time, activity, location, allergens, stress, and meal timing.",
-      "If available, check and log SpO2 during symptoms.",
-      "Stay hydrated and avoid very large meals right before exertion.",
-      "For forgetfulness: use phone reminders and checklists, keep items in fixed spots, and set a simple daily routine.",
-      "Aim for a steady sleep schedule (7–9 hours) to support energy and focus.",
-      "Plan short, frequent movement breaks rather than long, intense sessions."
+      "Continue regular meals and maintain hydration.",
+      "Incorporate more light exercises into daily routine for better stress management.",
+      "Avoid caffeine and alcohol to promote better sleep and health."
     ],
     "careTeamNotes": [
-      "Vitals appear normal; breathing symptoms remain the main concern given the severe peak and persistence.",
-      "Recommend clinical assessment to evaluate lungs/airways and heart as appropriate.",
-      "Consider spirometry and objective breathing assessment if symptoms continue.",
-      "Review environmental/allergen exposures and recent illnesses.",
-      "Clarify context of glucose readings (fasting vs post‑meal) at next visit."
+      "Monitor the patient's mild symptoms. Ensure regular follow-ups to track improvement.",
+      "Encourage adherence to a balanced diet and maintain a consistent exercise regimen."
     ],
     "nextSteps": [
-      "Book a same‑week appointment with your primary care clinician to review shortness of breath.",
-      "Go to urgent care or call emergency services now if severe breathing returns, or if there is chest pain, fainting, blue lips/face, confusion, or SpO2 under 92%.",
-      "Log each breathing episode with time, activity, environment, and SpO2 if available.",
-      "Continue daily vitals; add readings during or soon after symptoms when safe.",
-      "Discuss attention/forgetfulness at the next visit and ask about simple screening and support strategies.",
-      "Reassess symptoms and vitals trends in 1–2 weeks or sooner if they worsen."
+      "Schedule a follow-up appointment with the healthcare provider.",
+      "Continue to record any new symptoms or changes in health status.",
+      "Consider joining a support group for ongoing recovery support."
     ]
   },
   "tokenUsage": {
-    "prompt_tokens": 2610,
-    "completion_tokens": 3104,
-    "total_tokens": 5714,
+    "prompt_tokens": 2538,
+    "completion_tokens": 340,
+    "total_tokens": 2878,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0
     },
     "completion_tokens_details": {
-      "reasoning_tokens": 2304,
+      "reasoning_tokens": 0,
       "audio_tokens": 0,
       "accepted_prediction_tokens": 0,
       "rejected_prediction_tokens": 0

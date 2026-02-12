@@ -1,43 +1,43 @@
 {
   "data": {
-    "overallSummary": "John Doe, a 36-year-old male, exhibits symptoms of shortness of breath and suspected ADHD-related forgetfulness. Monitoring of vital signs shows consistent readings, but attention to shortness of breath is advised.",
+    "overallSummary": "Patient John Doe is experiencing suspected shortness of breath and ADHD symptoms. Vital signs remain mostly stable but require monitoring.",
     "healthAlerts": [
       {
         "level": "HIGH",
-        "message": "Shortness of breath severity has reached an alarming level. Immediate assessment is recommended."
+        "message": "Shortness of breath has been reported with increasing severity. Immediate evaluation is recommended."
       }
     ],
     "vitalsSummary": [
-      "Blood Pressure: Stable, consistently around 120/80 mmHg.",
-      "Heart Rate: Generally stable ranging from 68 to 73 bpm.",
-      "SpO2: Remained steady between 97% and 99%.",
-      "Body Temperature: Consistent normal range between 98.4°F and 98.6°F.",
-      "Blood Sugar: Minor fluctuations observed, mostly within normal range."
+      "Blood Pressure: Stable around 120/80 mmHg.",
+      "Heart Rate: Averages around 70 bpm.",
+      "SpO2: Consistently at or above 97%.",
+      "Body Temperature: Remains within normal range at approximately 98.5°F.",
+      "Blood Sugar: Varies, with a recorded high of 105."
     ],
     "dailyPatterns": [
-      "Routine meals occurring regularly with breakfast being the most frequent activity.",
-      "Activity levels include light exercise and morning walks which may help improve overall well-being."
+      "Regular meals are observed, with a consistent breakfast routine.",
+      "Engaged in physical activity through morning walks and light exercises."
     ],
     "smartAdvices": [
-      "Engage in a breathing exercise regimen to alleviate shortness of breath.",
-      "Maintain a consistent eating schedule to support blood sugar levels.",
-      "Consider mindfulness activities to help manage ADHD symptoms."
+      "Consider breathing exercises to alleviate shortness of breath.",
+      "Maintain a balanced diet and regular meal times for better blood sugar levels.",
+      "Ensure consistent physical activity."
     ],
     "careTeamNotes": [
-      "Monitor shortness of breath severity and frequency closely.",
-      "Evaluate possible triggers for ADHD symptoms in daily activities."
+      "Monitor the patient's shortness of breath closely and document any changes.",
+      "Follow-up appointment advised to evaluate ADHD symptoms."
     ],
     "nextSteps": [
-      "Schedule a follow-up appointment for a thorough respiratory evaluation.",
-      "Consider a consultation with a mental health professional regarding ADHD."
+      "Schedule an appointment with the healthcare provider for evaluation of respiratory issues.",
+      "Review ADHD management plan."
     ]
   },
   "tokenUsage": {
     "prompt_tokens": 2611,
-    "completion_tokens": 341,
-    "total_tokens": 2952,
+    "completion_tokens": 300,
+    "total_tokens": 2911,
     "prompt_tokens_details": {
-      "cached_tokens": 0,
+      "cached_tokens": 2176,
       "audio_tokens": 0
     },
     "completion_tokens_details": {

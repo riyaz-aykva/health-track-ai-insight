@@ -1,5 +1,5 @@
 const fs = require("fs");
-const XLSX = require("xlsx");
+const ExcelJS = require("exceljs");
 
 // Derive display name and id from a condition (disease or symptom type)
 const getConditionDisplay = (conditionData) => ({
@@ -7,8 +7,27 @@ const getConditionDisplay = (conditionData) => ({
     conditionId: conditionData.conditionId || conditionData.condition_id || 'N/A',
 });
 
+// Convert ExcelJS worksheet to array of row objects (first row = headers)
+function sheetToJson(worksheet) {
+    const jsonData = [];
+    const headerRow = worksheet.getRow(1);
+    if (!headerRow || headerRow.cellCount === 0) return jsonData;
+    const headers = headerRow.values.slice(1); // values[0] is empty (1-based index)
+
+    worksheet.eachRow((row, rowNumber) => {
+        if (rowNumber === 1) return;
+        const rowData = {};
+        row.eachCell({ includeEmpty: true }, (cell, colNumber) => {
+            const key = headers[colNumber - 1];
+            if (key !== undefined && key !== null) rowData[key] = cell.value;
+        });
+        if (Object.keys(rowData).length) jsonData.push(rowData);
+    });
+    return jsonData;
+}
+
 // Function to save record to Excel sheet. conditionData can be a single condition or array of conditions.
-const saveToExcel = (result, patientData, conditionData, model, payload) => {
+const saveToExcel = async (result, patientData, conditionData, model, payload) => {
     const excelFileName = 'health_records.xlsx';
     const timestamp = new Date().toISOString();
     const conditionsList = Array.isArray(conditionData) ? conditionData : [conditionData];
@@ -37,62 +56,32 @@ const saveToExcel = (result, patientData, conditionData, model, payload) => {
         return { ...baseRecord, 'Condition Name': conditionName, 'Condition ID': conditionId };
     });
 
-    let workbook;
-    let worksheet;
+    const workbook = new ExcelJS.Workbook();
     let existingData = [];
 
-    // Check if Excel file exists
     if (fs.existsSync(excelFileName)) {
-        // Read existing workbook
-        workbook = XLSX.readFile(excelFileName);
-        // Get the first sheet (or create one if it doesn't exist)
-        const sheetName = workbook.SheetNames[0] || 'Health Records';
-        worksheet = workbook.Sheets[sheetName];
-
-        // Convert existing data to JSON
-        existingData = XLSX.utils.sheet_to_json(worksheet);
-    } else {
-        // Create new workbook
-        workbook = XLSX.utils.book_new();
+        await workbook.xlsx.readFile(excelFileName);
+        const worksheet = workbook.worksheets[0];
+        if (worksheet) existingData = sheetToJson(worksheet);
     }
 
-    // Add new record(s) to existing data (one row per condition)
     existingData.push(...records);
 
-    // Create new worksheet from updated data
-    worksheet = XLSX.utils.json_to_sheet(existingData);
-
-    // Set column widths for better readability
-    const colWidths = [
-        { wch: 25 }, // Timestamp
-        { wch: 15 }, // Patient Name
-        { wch: 12 }, // Patient Gender
-        { wch: 10 }, // Patient Age
-        { wch: 20 }, // Condition Name
-        { wch: 30 }, // Condition ID
-        { wch: 50 }, // Overall Summary
-        { wch: 60 }, // Health Alerts
-        { wch: 60 }, // Vitals Summary
-        { wch: 60 }, // Daily Patterns
-        { wch: 60 }, // Smart Advices
-        { wch: 60 }, // Care Team Notes
-        { wch: 60 }, // Next Steps
-        { wch: 15 }, // Prompt Tokens
-        { wch: 18 }, // Completion Tokens
-        { wch: 15 }  // Total Tokens
-    ];
-    worksheet['!cols'] = colWidths;
-
-    // Add worksheet to workbook
     const sheetName = 'Health Records';
-    if (workbook.SheetNames.includes(sheetName)) {
-        workbook.Sheets[sheetName] = worksheet;
-    } else {
-        XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
-    }
+    const existingSheet = workbook.getWorksheet(sheetName);
+    if (existingSheet) workbook.removeWorksheet(existingSheet.id);
+    const worksheet = workbook.addWorksheet(sheetName);
 
-    // Write workbook to file
-    XLSX.writeFile(workbook, excelFileName);
+    const headers = Object.keys(existingData[0]);
+    worksheet.addRow(headers);
+    existingData.forEach((row) => worksheet.addRow(headers.map((h) => row[h])));
+
+    const colWidths = [25, 15, 12, 10, 20, 30, 50, 60, 60, 60, 60, 60, 60, 15, 18, 15];
+    colWidths.forEach((wch, i) => {
+        worksheet.getColumn(i + 1).width = wch;
+    });
+
+    await workbook.xlsx.writeFile(excelFileName);
     console.log(`Record saved to ${excelFileName}`);
 };
 

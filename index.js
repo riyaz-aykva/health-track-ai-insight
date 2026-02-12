@@ -398,7 +398,7 @@ const test = async () => {
         };
 
         console.log(JSON.stringify(result, null, 2));
-        saveToExcel(result, payload.patient, conditions, OPENAI_MODEL, payload);
+        await saveToExcel(result, payload.patient, conditions, OPENAI_MODEL, payload);
         return result;
     } catch (err) {
         console.error(err);

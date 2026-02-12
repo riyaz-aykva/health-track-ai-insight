@@ -20,6 +20,6 @@
   "dependencies": {
     "dotenv": "^17.2.3",
     "openai": "^6.16.0",
-    "xlsx": "^0.18.5"
+    "exceljs": "^4.4.0"
   }
 }

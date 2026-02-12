@@ -381,7 +381,7 @@ const test = async () => {
 
     try {
         const response = await client.chat.completions.create({
-            model: OPENAI_MODEL,
+            model: 'gpt-5',
             messages: [
                 {
                     role: "user",

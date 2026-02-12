@@ -1,6 +1,51 @@
-[
-  {
-    "model": "gpt-5",
-    "ok": true
+{
+  "data": {
+    "overallSummary": "John Doe is currently experiencing some health concerns, primarily shortness of breath, with some variability in ADHD-related symptoms. Vital signs are mostly within normal ranges, but the shortness of breath requires attention.",
+    "healthAlerts": [
+      {
+        "level": "HIGH",
+        "message": "Shortness of breath has been reported with increasing severity. Immediate medical consultation is advised."
+      }
+    ],
+    "vitalsSummary": [
+      "Blood Pressure: Ranging from 118/78 to 123/81, generally stable.",
+      "Heart Rate: Consistent rates between 68 to 73 bpm, indicating normal heart function.",
+      "SpO2 Levels: Maintained between 97% to 99%, indicating adequate oxygen saturation.",
+      "Body Temperature: Normal, ranging from 98.4°F to 98.6°F.",
+      "Blood Sugar: Levels fluctuate between 95 and 105 mg/dL, generally within acceptable limits."
+    ],
+    "dailyPatterns": [
+      "Regular meals and light exercises are observed which contribute positively to vitals.",
+      "Increased severity of shortness of breath correlates with daily activities; relaxation and reduced exertion may help alleviate symptoms."
+    ],
+    "smartAdvices": [
+      "Incorporate relaxation techniques such as deep breathing exercises to manage shortness of breath.",
+      "Maintain a balanced diet with regular meal timings to support overall health.",
+      "Consider moderate physical activity, but avoid overexertion, particularly on days with noticeable symptoms."
+    ],
+    "careTeamNotes": [
+      "Monitor shortness of breath closely and document any changes. Suggest follow-up visit if symptoms escalate.",
+      "Review ADHD symptoms and consider strategies for improving daily task management."
+    ],
+    "nextSteps": [
+      "Schedule an appointment with a healthcare provider to discuss shortness of breath.",
+      "Conduct a follow-up assessment of ADHD symptoms with the care team.",
+      "Implement the recommended lifestyle changes and monitor progress."
+    ]
+  },
+  "tokenUsage": {
+    "prompt_tokens": 2479,
+    "completion_tokens": 413,
+    "total_tokens": 2892,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
   }
-]
+}

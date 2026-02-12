@@ -2,20 +2,24 @@ const fs = require("fs");
 const XLSX = require("xlsx");
 const { generatePDFReport } = require("./report-pdf");
 
-// Function to save record to Excel sheet
+// Derive display name and id from a condition (disease or symptom type)
+const getConditionDisplay = (conditionData) => ({
+    conditionName: conditionData.conditionName || conditionData.disease_title || conditionData.symptom_title || 'N/A',
+    conditionId: conditionData.conditionId || conditionData.condition_id || 'N/A',
+});
+
+// Function to save record to Excel sheet. conditionData can be a single condition or array of conditions.
 const saveToExcel = (result, patientData, conditionData, model, payload) => {
     const excelFileName = 'health_records.xlsx';
     const timestamp = new Date().toISOString();
+    const conditionsList = Array.isArray(conditionData) ? conditionData : [conditionData];
 
-    // Prepare the record row
-    const record = {
+    const baseRecord = {
         'Timestamp': timestamp,
         'Payload Data': JSON.stringify(payload),
         'Patient Name': patientData.name,
         'Patient Gender': patientData.gender,
         'Patient Age': patientData.age,
-        'Condition Name': conditionData.conditionName,
-        'Condition ID': conditionData.conditionId,
         'Overall Summary': result.data.overallSummary,
         'Health Alerts': result.data.healthAlerts.map(alert => `${alert.level}: ${alert.message}`).join(' | '),
         'Vitals Summary': result.data.vitalsSummary.join(' | '),
@@ -28,6 +32,11 @@ const saveToExcel = (result, patientData, conditionData, model, payload) => {
         'Completion Tokens': result.tokenUsage.completion_tokens,
         'Total Tokens': result.tokenUsage.total_tokens
     };
+
+    const records = conditionsList.map((c) => {
+        const { conditionName, conditionId } = getConditionDisplay(c);
+        return { ...baseRecord, 'Condition Name': conditionName, 'Condition ID': conditionId };
+    });
 
     let workbook;
     let worksheet;
@@ -48,8 +57,8 @@ const saveToExcel = (result, patientData, conditionData, model, payload) => {
         workbook = XLSX.utils.book_new();
     }
 
-    // Add new record to existing data
-    existingData.push(record);
+    // Add new record(s) to existing data (one row per condition)
+    existingData.push(...records);
 
     // Create new worksheet from updated data
     worksheet = XLSX.utils.json_to_sheet(existingData);

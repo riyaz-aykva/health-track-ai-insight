@@ -40,16 +40,17 @@ const escapeHtml = (str) => {
         .replace(/'/g, '&#39;');
 };
 
-// Normalize condition payload (supports both conditionName/conditionId and disease_title/condition_id)
+// Normalize condition payload (supports disease and symptom types: conditionName/conditionId, disease_title, symptom_title, condition_id)
 function normalizeCondition(conditionData) {
-    const name = conditionData.conditionName || conditionData.disease_title || 'N/A';
+    const name = conditionData.conditionName || conditionData.disease_title || conditionData.symptom_title || 'N/A';
     const id = conditionData.conditionId || conditionData.condition_id || 'N/A';
     const status = conditionData.status ? String(conditionData.status).charAt(0).toUpperCase() + conditionData.status.slice(1) : 'N/A';
     const createdAt = conditionData.createdAt || (conditionData.date_range && conditionData.date_range.start_date);
     const onsetStr = createdAt ? new Date(createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : id;
     const isCured = conditionData.isCured != null ? conditionData.isCured : (conditionData.status === 'cured');
+    const symptomTitleFallback = conditionData.symptom_title || 'N/A';
     const symptoms = (conditionData.symptoms || []).map(s => ({
-        title: s.title || 'N/A',
+        title: s.title != null && s.title !== '' ? s.title : symptomTitleFallback,
         score: s.score != null ? s.score : (s.records && s.records.length ? s.records[s.records.length - 1].severity : null),
         baseline: s.baseline != null ? s.baseline : (s.baselines && s.baselines.patient_baseline != null ? s.baselines.patient_baseline : null)
     }));

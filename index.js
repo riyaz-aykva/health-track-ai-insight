@@ -16,7 +16,7 @@ try {
 
 const OpenAI = require("openai");
 const fs = require("fs");
-const { saveToExcel, generatePDFReport } = require("./utils");
+const { saveToExcel } = require("./utils");
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
 
@@ -49,45 +49,153 @@ if (!OPENAI_API_KEY) {
 
 const client = new OpenAI({ apiKey: OPENAI_API_KEY });
 
-const conditions = {
-    "condition_id": "6985cb0d41eeb53a74254efe",
-    "type": "disease",
-    "status": "cured",
-    "disease_lookup_id": "e47e34b0-430a-4353-9935-7aa526d0686e",
-    "disease_title": "Alcohol Withdrawal",
-    "symptoms": [
-        {
-            "title": "confusion",
-            "records": [
-                { severity: 5, recorded_at: "2026-02-03T09:00:00.000Z" },
-                { severity: 6, recorded_at: "2026-02-04T09:15:00.000Z" },
-                { severity: 4, recorded_at: "2026-02-05T08:45:00.000Z" },
-                { severity: 5, recorded_at: "2026-02-06T09:30:00.000Z" },
-                { severity: 3, recorded_at: "2026-02-07T08:50:00.000Z" },
-                { severity: 4, recorded_at: "2026-02-08T09:10:00.000Z" },
-                { severity: 2, recorded_at: "2026-02-09T09:00:00.000Z" },
-            ],
-            "baselines": {
-                "patient_baseline": 8
-            }
-        },
-        {
-            "title": "sweating",
-            "records": [
-                { severity: 6, recorded_at: "2026-02-03T09:00:00.000Z" },
-                { severity: 5, recorded_at: "2026-02-04T09:15:00.000Z" },
-                { severity: 5, recorded_at: "2026-02-05T08:45:00.000Z" },
-                { severity: 4, recorded_at: "2026-02-06T09:30:00.000Z" },
-                { severity: 4, recorded_at: "2026-02-07T08:50:00.000Z" },
-                { severity: 3, recorded_at: "2026-02-08T09:10:00.000Z" },
-                { severity: 2, recorded_at: "2026-02-09T09:00:00.000Z" },
-            ],
-            "baselines": {
-                "patient_baseline": 8
-            }
-        }
-    ]
+/**
+ * Normalize conditions for payload:
+ * - type "disease" → only one condition (single object); wrapped to [one] internally.
+ * - type "symptom" → multiple conditions allowed (array).
+ * Accepts: single condition, array of conditions, or API response { success, data }.
+ * For symptom-type, symptom items without "title" get condition's symptom_title.
+ */
+function normalizeConditionsInput(input) {
+    let raw = input;
+    if (input && typeof input === "object" && "success" in input && "data" in input) {
+        raw = input.data;
+    }
+    const isArray = Array.isArray(raw);
+    const list = isArray ? raw : (raw != null ? [raw] : []);
+
+    return list.map((c) => {
+        if (!c || typeof c !== "object") return c;
+        const type = c.type || "disease";
+        const symptomTitle = c.symptom_title || null;
+        const symptoms = (c.symptoms || []).map((s) => {
+            const hasTitle = s && "title" in s && s.title != null && s.title !== "";
+            return { ...s, title: hasTitle ? s.title : (symptomTitle || "N/A") };
+        });
+        return { ...c, type, symptoms };
+    });
 }
+
+// Disease: single object only. Symptom: array of conditions (multiple allowed).
+// Example disease: conditionsInput = { type: "disease", disease_title: "...", condition_id: "...", symptoms: [...] };
+const conditionsInput1 = [
+    {
+        "condition_id": "6985cdf941eeb53a74254f5f",
+        "type": "symptom",
+        "status": "suspected",
+        "symptom_lookup_id": "56f51f54-0b28-4e3a-b5ca-1344f2f2cc4a",
+        "symptom_title": "short of breath",
+        "symptoms": [
+            {
+                "records": [
+                    {
+                        "severity": 6,
+                        "recorded_at": "2026-02-12T11:22:02.375Z",
+                    },
+                    {
+                        "severity": 7,
+                        "recorded_at": "2026-02-11T09:18:17.203Z",
+                    },
+                    {
+                        "severity": 8,
+                        "recorded_at": "2026-02-10T08:18:17.203Z",
+                    },
+                    {
+                        "severity": 10,
+                        "recorded_at": "2026-02-09T07:18:17.203Z",
+                    },
+                    {
+                        "severity": 5,
+                        "recorded_at": "2026-02-08T11:18:17.203Z",
+                    },
+                    {
+                        "severity": 5,
+                        "recorded_at": "2026-02-07T06:30:15.500Z",
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "condition_id": "698d82c7bb05e0b7c13a1f34",
+        "type": "symptom",
+        "status": "suspected",
+        "symptom_lookup_id": "cc50560b-a35e-4315-9856-7c693335dbb0",
+        "symptom_title": "ADHD-is forgetful in daily activities.(0-4)",
+        "symptoms": [
+            {
+                "records": [
+                    {
+                        "severity": 7,
+                        "recorded_at": "2026-02-12T07:35:35.042Z",
+                    },
+                    {
+                        "severity": 6,
+                        "recorded_at": "2026-02-11T07:35:35.042Z",
+                    },
+                    {
+                        "severity": 5,
+                        "recorded_at": "2026-02-10T07:35:35.042Z",
+                    },
+                    {
+                        "severity": 4,
+                        "recorded_at": "2026-02-09T07:35:35.042Z",
+                    },
+                    {
+                        "severity": 5,
+                        "recorded_at": "2026-02-08T07:35:35.042Z",
+                    },
+                    {
+                        "severity": 6,
+                        "recorded_at": "2026-02-07T07:35:35.042Z",
+                    },
+                    {
+                        "severity": 7,
+                        "recorded_at": "2026-02-06T07:35:35.042Z",
+                    }
+                ]
+            }
+        ]
+    }
+];
+
+const conditionsInput2 = [
+    {
+        "condition_id": "6985cb0d41eeb53a74254efe",
+        "type": "disease",
+        "status": "cured",
+        "disease_lookup_id": "e47e34b0-430a-4353-9935-7aa526d0686e",
+        "disease_title": "Alcohol Withdrawal",
+        "symptoms": [
+            {
+                "title": "confusion",
+                "records": [
+                    { severity: 5, recorded_at: "2026-02-03T09:00:00.000Z" },
+                    { severity: 6, recorded_at: "2026-02-04T09:15:00.000Z" },
+                    { severity: 4, recorded_at: "2026-02-05T08:45:00.000Z" },
+                    { severity: 5, recorded_at: "2026-02-06T09:30:00.000Z" },
+                    { severity: 3, recorded_at: "2026-02-07T08:50:00.000Z" },
+                    { severity: 4, recorded_at: "2026-02-08T09:10:00.000Z" },
+                    { severity: 2, recorded_at: "2026-02-09T09:00:00.000Z" },
+                ]
+            },
+            {
+                "title": "sweating",
+                "records": [
+                    { severity: 6, recorded_at: "2026-02-03T09:00:00.000Z" },
+                    { severity: 5, recorded_at: "2026-02-04T09:15:00.000Z" },
+                    { severity: 5, recorded_at: "2026-02-05T08:45:00.000Z" },
+                    { severity: 4, recorded_at: "2026-02-06T09:30:00.000Z" },
+                    { severity: 4, recorded_at: "2026-02-07T08:50:00.000Z" },
+                    { severity: 3, recorded_at: "2026-02-08T09:10:00.000Z" },
+                    { severity: 2, recorded_at: "2026-02-09T09:00:00.000Z" },
+                ]
+            }
+        ]
+    }
+];
+
+const conditions = normalizeConditionsInput(conditionsInput1);
 
 const vitals = [
     {
@@ -230,33 +338,37 @@ const medicalHealthModels = [
 ];
 
 const test = async () => {
-    const results = [];
-    for (const model of medicalHealthModels) {
-        try {
-            const response = await client.chat.completions.create({
-                model: model,
-                messages: [
-                    {
-                        role: "user",
-                        content: prompt,
-                    },
-                ],
-                response_format: { type: "json_object" },
-            });
+    // const results = [];
+    // for (const model of medicalHealthModels) {
 
-            const jsonResponse = JSON.parse(response.choices[0].message.content);
-            const result = {
-                data: jsonResponse,
-                tokenUsage: response.usage,
-            };
-            saveToExcel(result, payload.patient, conditions, model, payload);
-            results.push({ model, ok: true });
-        } catch (err) {
-            console.warn(`Skipping ${model}: ${err.message || err.status}`);
-            results.push({ model, ok: false, error: err.message || String(err.status) });
-        }
+    // }
+    // return results;
+
+    try {
+        const response = await client.chat.completions.create({
+            model: OPENAI_MODEL,
+            messages: [
+                {
+                    role: "user",
+                    content: prompt,
+                },
+            ],
+            response_format: { type: "json_object" },
+        });
+
+        const jsonResponse = JSON.parse(response.choices[0].message.content);
+        const result = {
+            data: jsonResponse,
+            tokenUsage: response.usage,
+        };
+
+        console.log(JSON.stringify(result, null, 2));
+        saveToExcel(result, payload.patient, conditions, OPENAI_MODEL, payload);
+        return result;
+    } catch (err) {
+        console.error(err);
+        return { error: err.message };
     }
-    return results;
 };
 
 test()

@@ -1,14 +1,3 @@
 {
-  "status": 404,
-  "headers": {},
-  "requestID": "req_4ac0a7e1ddcf4192865fddad26f05cfe",
-  "error": {
-    "message": "This is not a chat model and thus not supported in the v1/chat/completions endpoint. Did you mean to use v1/completions?",
-    "type": "invalid_request_error",
-    "param": "model",
-    "code": null
-  },
-  "code": null,
-  "param": "model",
-  "type": "invalid_request_error"
+  "code": "ERR_INVALID_ARG_TYPE"
 }

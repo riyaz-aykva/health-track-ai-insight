@@ -195,7 +195,7 @@ const conditionsForDisease = [
     }
 ];
 
-const conditions = normalizeConditionsInput(conditionsForDisease);
+const conditions = normalizeConditionsInput(conditionsForSymptom);
 
 const vitals = [
     {

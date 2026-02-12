@@ -1,6 +1,5 @@
 const fs = require("fs");
 const XLSX = require("xlsx");
-const { generatePDFReport } = require("./report-pdf");
 
 // Derive display name and id from a condition (disease or symptom type)
 const getConditionDisplay = (conditionData) => ({
@@ -97,7 +96,5 @@ const saveToExcel = (result, patientData, conditionData, model, payload) => {
     console.log(`Record saved to ${excelFileName}`);
 };
 
-// generatePDFReport is provided by report-pdf.js (HTML-to-PDF via Puppeteer).
-// Re-export for callers that require("./utils").
 
-module.exports = { saveToExcel, generatePDFReport };
+module.exports = { saveToExcel };

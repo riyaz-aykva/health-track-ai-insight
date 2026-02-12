@@ -1,41 +1,41 @@
 {
   "data": {
-    "overallSummary": "John Doe has shown improvement after recovering from alcohol withdrawal. Most vital signs are stable, but monitoring continues.",
+    "overallSummary": "John Doe, a 36-year-old male, exhibits symptoms of shortness of breath and suspected ADHD-related forgetfulness. Monitoring of vital signs shows consistent readings, but attention to shortness of breath is advised.",
     "healthAlerts": [
       {
-        "level": "LOW",
-        "message": "Mild confusion and sweating were noted but are improving."
+        "level": "HIGH",
+        "message": "Shortness of breath severity has reached an alarming level. Immediate assessment is recommended."
       }
     ],
     "vitalsSummary": [
-      "Blood Pressure: Stable around 120/80 mmHg.",
-      "Heart Rate: Ranging from 68 to 73 bpm, consistent.",
-      "SpO2: Levels are between 97% and 99%, indicating good oxygenation.",
-      "Body Temperature: Normal, between 98.4°F and 98.6°F.",
-      "Blood Sugar: Mostly within normal range, fluctuating slightly."
+      "Blood Pressure: Stable, consistently around 120/80 mmHg.",
+      "Heart Rate: Generally stable ranging from 68 to 73 bpm.",
+      "SpO2: Remained steady between 97% and 99%.",
+      "Body Temperature: Consistent normal range between 98.4°F and 98.6°F.",
+      "Blood Sugar: Minor fluctuations observed, mostly within normal range."
     ],
     "dailyPatterns": [
-      "Regular meals and light exercise contribute positively to overall well-being.",
-      "Increased sweating linked to stress or anxiety; maintaining hydration recommended."
+      "Routine meals occurring regularly with breakfast being the most frequent activity.",
+      "Activity levels include light exercise and morning walks which may help improve overall well-being."
     ],
     "smartAdvices": [
-      "Incorporate more fruits and vegetables into daily meals.",
-      "Practice relaxation techniques to manage stress and reduce sweating.",
-      "Stay hydrated, especially during activities."
+      "Engage in a breathing exercise regimen to alleviate shortness of breath.",
+      "Maintain a consistent eating schedule to support blood sugar levels.",
+      "Consider mindfulness activities to help manage ADHD symptoms."
     ],
     "careTeamNotes": [
-      "Continue monitoring symptoms of confusion and sweating.",
-      "Follow up in one month to reassess health status."
+      "Monitor shortness of breath severity and frequency closely.",
+      "Evaluate possible triggers for ADHD symptoms in daily activities."
     ],
     "nextSteps": [
-      "Schedule a follow-up appointment with your healthcare provider.",
-      "Consider joining a support group for ongoing recovery."
+      "Schedule a follow-up appointment for a thorough respiratory evaluation.",
+      "Consider a consultation with a mental health professional regarding ADHD."
     ]
   },
   "tokenUsage": {
-    "prompt_tokens": 2538,
-    "completion_tokens": 302,
-    "total_tokens": 2840,
+    "prompt_tokens": 2611,
+    "completion_tokens": 341,
+    "total_tokens": 2952,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0

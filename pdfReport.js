@@ -1,6 +1,4 @@
 const puppeteer = require("puppeteer");
-const path = require("path");
-
 // Branding
 const BRAND = {
     email: "support@mdht.com",
@@ -202,21 +200,25 @@ function generateHtmlContent(aiResult, payload) {
         }
 
         .section-title {
-            background: linear-gradient(to right, #0094ED 0%, #0094ED calc(100% - 8px), #5CE7A0 calc(100% - 8px), #5CE7A0 100%);
+            background: #1f8ed6;
             color: white;
-            padding: 8px 15px;
-            font-weight: 700;
-            font-size: 10pt;
-            margin-top: 15px;
-            margin-bottom: 8px;
-            border-radius: 3px;
-            text-transform: uppercase;
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 25px;
+            position: relative;
         }
 
-        .section-title::before {
-            content: ">> ";
+        .section-title::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 60px;
+            background: #47c27c;
+            border-radius: 0 4px 4px 0;
         }
-
         .section-content {
             font-size: 9pt;
             color: #1f2937;

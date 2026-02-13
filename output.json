@@ -1,38 +1,41 @@
 {
   "data": {
-    "overallSummary": "John Doe has shown improvement after recovering from Alcohol Withdrawal. Most vital signs are within normal ranges, indicating stable health.",
-    "healthAlerts": [],
+    "overallSummary": "John Doe has shown recovery from Alcohol Withdrawal, with notable fluctuations in symptoms like confusion and sweating. Vitals remain stable with normal blood pressure and heart rate.",
+    "healthAlerts": [
+      {
+        "level": "LOW",
+        "message": "Monitor for any returning symptoms of confusion or sweating."
+      }
+    ],
     "vitalsSummary": [
-      "Blood Pressure is stable, average reading of 120/80.",
-      "Heart Rate remains steady, averaging around 70 beats per minute.",
-      "SpO2 is consistently above 97%, indicating good oxygen levels.",
-      "Body Temperature is normal, averaging around 98.5°F.",
-      "Blood Sugar levels are mostly within normal limits but show slight variations."
+      "Blood Pressure: Stable around 120/80 mmHg",
+      "Heart Rate: Average around 70 bpm",
+      "SpO2: Maintained at 97-99%",
+      "Body Temperature: Consistently around 98.4°F-98.6°F",
+      "Blood Sugar: Varies from 95-105 mg/dL, requiring monitoring."
     ],
     "dailyPatterns": [
-      "Regular meals and morning walks support overall health.",
-      "Increased sweating and confusion were noted during Alcohol Withdrawal recovery days.",
-      "Stable vital signs indicate a positive response to daily routines."
+      "Routine meals and regular light exercise positively impacted heart rate and overall well-being.",
+      "Engaging in morning walks contributed to improved mental clarity."
     ],
     "smartAdvices": [
-      "Maintain a balanced diet with regular meals to keep blood sugar levels stable.",
-      "Stay physically active with regular walks or light exercises.",
-      "Ensure consistent hydration, especially during physical activities."
+      "Maintain a consistent meal schedule to stabilize blood sugar levels.",
+      "Incorporate daily walks for enhanced physical and mental health.",
+      "Stay hydrated and consider mindfulness practices to manage stress."
     ],
     "careTeamNotes": [
-      "Continued monitoring of mental health is essential after Alcohol Withdrawal.",
-      "Maintain follow-up visits to monitor essential vitals specifically during recovery."
+      "Continue observing symptoms closely and encourage patient engagement in physical activities.",
+      "Consider regular follow-ups to monitor recovery progress."
     ],
     "nextSteps": [
-      "Schedule a follow-up appointment with the healthcare provider.",
-      "Continue to track daily activities and symptoms for any changes.",
-      "Explore support groups for long-term recovery from Alcohol dependency."
+      "Schedule a follow-up consultation to discuss any recurring symptoms.",
+      "Continue tracking vital signs daily."
     ]
   },
   "tokenUsage": {
     "prompt_tokens": 2538,
-    "completion_tokens": 301,
-    "total_tokens": 2839,
+    "completion_tokens": 309,
+    "total_tokens": 2847,
     "prompt_tokens_details": {
       "cached_tokens": 2176,
       "audio_tokens": 0

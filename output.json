@@ -1,39 +1,42 @@
 {
   "data": {
-    "overallSummary": "John Doe, a 36-year-old male, is experiencing shortness of breath with increasing severity over the past week. Monitoring of vital signs shows stable blood pressure and heart rate, but attention is needed for management of respiratory symptoms.",
+    "overallSummary": "John Doe has experienced occasional shortness of breath and signs of forgetfulness. His vital signs remain mostly stable, but some aspects show variability that may need attention.",
     "healthAlerts": [
       {
         "level": "HIGH",
-        "message": "Shortness of breath has been reported with increasing severity. Immediate consultation is recommended."
+        "message": "Shortness of breath severity has reached critical levels. Immediate evaluation is advised."
       }
     ],
     "vitalsSummary": [
-      "Blood Pressure: Stable with values around 120/80 mmHg.",
-      "Heart Rate: Consistent around 70 bpm.",
-      "SpO2: Normal at 97-99%.",
-      "Body Temperature: Normal range 98.4-98.6°F.",
-      "Blood Sugar: Slight fluctuations noted, with a peak of 105 mg/dL."
+      "Blood pressure is generally stable, averaging 120/80 mmHg.",
+      "Heart rate fluctuates between 68 and 73 bpm.",
+      "SpO2 levels are consistently around 97-99%.",
+      "Body temperature remains normal at around 98.4-98.6°F.",
+      "Blood sugar levels show slight variability, peaking at 105 mg/dL."
     ],
     "dailyPatterns": [
-      "Regular meals and morning activity have been noted, correlated with stable blood pressure and heart rate.",
-      "Shortness of breath symptoms appear more pronounced after physical activities."
+      "Routine meals are consistent with breakfast being the most common activity.",
+      "Physical activity, such as morning walks, is integrated into the daily routine."
     ],
     "smartAdvices": [
-      "Consider relaxing activities like deep breathing exercises or yoga to help with shortness of breath.",
-      "Maintain a consistent eating schedule and stay hydrated."
+      "Consider deep breathing exercises to manage shortness of breath.",
+      "Increase physical activity, such as light exercises, to enhance overall fitness.",
+      "Establish reminders for daily activities to aid with forgetfulness."
     ],
     "careTeamNotes": [
-      "Monitoring of respiratory symptoms is essential. Recommend follow-up with a healthcare provider immediately if symptoms worsen."
+      "Monitor the severity of symptoms daily and adjust activities accordingly.",
+      "Focus on maintaining a balanced diet and regular exercise."
     ],
     "nextSteps": [
-      "Schedule a consultation with a healthcare provider regarding respiratory symptoms.",
-      "Continue monitoring vital signs daily and keep a record of any changes."
+      "Schedule a follow-up appointment with a healthcare provider to discuss shortness of breath.",
+      "Implement daily reminders for activities to support cognitive function.",
+      "Continue tracking vital signs and report any significant changes."
     ]
   },
   "tokenUsage": {
     "prompt_tokens": 2611,
-    "completion_tokens": 328,
-    "total_tokens": 2939,
+    "completion_tokens": 344,
+    "total_tokens": 2955,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0

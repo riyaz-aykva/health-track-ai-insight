@@ -20,22 +20,28 @@ function getPrimaryConditionInfo(payload) {
         };
     }
     const c = conditions[0];
-    const title = c.disease_title || c.symptom_title || "N/A";
-    const status = (c.status || "active").toLowerCase();
-    const isCured = status === "cured" ? "Yes" : "No";
-    const statusLabel =
-        status === "cured"
-            ? "Cured"
-            : status === "suspected"
-                ? "Suspected"
-                : status === "active"
-                    ? "Active"
-                    : (c.status || "Active");
+
+    if (c.type === "disease") {
+        return {
+            primaryCondition: c.disease_title,
+            conditionStatus: c.status,
+            conditionOnset: c.condition_onset || c.onset_date || "N/A",
+            isCured: c.status === "cured" ? "Yes" : "No",
+        };
+    }
+    if (c.type === "symptom") {
+        return {
+            primaryCondition: conditions.map((c) => c.symptom_title).join(", "),
+            conditionStatus: "Suspected",
+            conditionOnset: "N/A",
+            isCured: "No",
+        };
+    }
     return {
-        primaryCondition: title,
-        conditionStatus: statusLabel,
-        conditionOnset: c.condition_onset || c.onset_date || "N/A",
-        isCured,
+        primaryCondition: "N/A",
+        conditionStatus: "N/A",
+        conditionOnset: "N/A",
+        isCured: "No",
     };
 }
 

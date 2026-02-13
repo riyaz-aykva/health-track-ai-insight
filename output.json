@@ -1,42 +1,41 @@
 {
   "data": {
-    "overallSummary": "John Doe has successfully recovered from Alcohol Withdrawal with stable vital signs. However, some mild symptoms persist that need monitoring.",
+    "overallSummary": "John Doe is a 36-year-old male who has successfully overcome Alcohol Withdrawal and currently shows stable vital signs.",
     "healthAlerts": [
       {
         "level": "LOW",
-        "message": "Mild symptoms of confusion and sweating observed, but no immediate concern."
+        "message": "Mild confusion and sweating have been recorded but are decreasing over time."
       }
     ],
     "vitalsSummary": [
-      "Blood Pressure: Stable around 120/80, slightly elevated recently to 123/81.",
-      "Heart Rate: Consistent around 70 bpm.",
-      "SpO2: Maintained at healthy levels around 97-99%.",
-      "Body Temperature: Normal range between 98.4°F and 98.6°F.",
-      "Blood Sugar: Fluctuates slightly but remains within normal limits."
+      "Blood pressure remains stable with readings around 120/80 mmHg.",
+      "Heart rate is consistent, averaging around 70 bpm.",
+      "SpO2 levels are healthy at approximately 98%.",
+      "Body temperature is normal, fluctuating slightly around 98.4°F to 98.6°F.",
+      "Blood sugar levels are within a reasonable range, peaking at 105 mg/dL."
     ],
     "dailyPatterns": [
-      "Regular meals and light exercises appear to contribute positively to overall health.",
-      "Physical activities such as morning walks are linked to improvements in mood and energy levels."
+      "Regular meals are observed, primarily consisting of breakfast, lunch, and dinner.",
+      "Morning walks and light exercise contribute positively to overall health."
     ],
     "smartAdvices": [
-      "Continue regular meals and maintain hydration.",
-      "Incorporate more light exercises into daily routine for better stress management.",
-      "Avoid caffeine and alcohol to promote better sleep and health."
+      "Maintain a balanced diet with fruits and vegetables.",
+      "Stay hydrated and continue daily physical activity to improve wellness.",
+      "Monitor stress levels and practice relaxation techniques."
     ],
     "careTeamNotes": [
-      "Monitor the patient's mild symptoms. Ensure regular follow-ups to track improvement.",
-      "Encourage adherence to a balanced diet and maintain a consistent exercise regimen."
+      "Continued monitoring of mental and physical health is recommended post-recovery.",
+      "Focus on developing a consistent routine to ensure ongoing well-being."
     ],
     "nextSteps": [
-      "Schedule a follow-up appointment with the healthcare provider.",
-      "Continue to record any new symptoms or changes in health status.",
+      "Schedule a follow-up appointment with the healthcare provider in one month.",
       "Consider joining a support group for ongoing recovery support."
     ]
   },
   "tokenUsage": {
     "prompt_tokens": 2538,
-    "completion_tokens": 340,
-    "total_tokens": 2878,
+    "completion_tokens": 318,
+    "total_tokens": 2856,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0

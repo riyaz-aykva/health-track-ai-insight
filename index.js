@@ -17,6 +17,7 @@ try {
 const OpenAI = require("openai");
 const fs = require("fs");
 const { saveToExcel } = require("./utils");
+const { generateReportPdf } = require("./pdfReport");
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
 
@@ -401,6 +402,11 @@ const test = async () => {
 
         console.log(JSON.stringify(result, null, 2));
         await saveToExcel(result, payload.patient, conditions, OPENAI_MODEL, payload);
+
+        const pdfFileName = `health_report_${new Date().toISOString().slice(0, 10)}.pdf`;
+        await generateReportPdf(result, payload, pdfFileName);
+        console.log(`PDF report saved to ${pdfFileName}`);
+
         return result;
     } catch (err) {
         console.error(err);

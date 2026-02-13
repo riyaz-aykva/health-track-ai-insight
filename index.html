@@ -9,112 +9,139 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Open Sans', sans-serif;
             background: #F4FFFF;
-            margin: 0;
+            color: #333;
+            font-size: 10pt;
+            line-height: 1.5;
             padding: 20px;
         }
 
         .report-container {
-            margin: auto;
+            max-width: 8.5in;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
+            margin-bottom: 15px;
         }
 
         .logo img {
-            height: 50px;
+            height: 45px;
             width: auto;
         }
 
         .contact {
             text-align: right;
-            font-size: 14px;
-            color: #444;
+            font-size: 9pt;
+            color: #6b7280;
+            line-height: 1.4;
         }
 
         hr {
             border: none;
-            border-top: 2px solid #1f8ed6;
-            margin: 20px 0;
+            border-top: 2px solid #0094ED;
+            margin: 15px 0;
         }
 
         h1 {
-            font-size: 22px;
-            margin: 0;
+            font-size: 18pt;
+            margin: 10px 0 5px 0;
+            color: #0094ED;
+            font-weight: 700;
         }
 
         .subtext {
-            color: #666;
-            font-size: 14px;
+            color: #6b7280;
+            font-size: 9pt;
+            margin-bottom: 15px;
         }
 
         .section-title {
-            background: #1f8ed6;
+            background: linear-gradient(to right, #0094ED 0%, #0094ED calc(100% - 8px), #5CE7A0 calc(100% - 8px), #5CE7A0 100%);
             color: white;
-            padding: 12px 15px;
-            font-weight: bold;
-            border-radius: 4px;
-            margin-top: 25px;
-            position: relative;
+            padding: 8px 15px;
+            font-weight: 700;
+            font-size: 10pt;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
         }
 
-        .section-title::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            top: 0;
-            height: 100%;
-            width: 60px;
-            background: #47c27c;
-            border-radius: 0 4px 4px 0;
+        .section-title::before {
+            content: ">> ";
         }
 
         .section-content {
-            margin-top: 15px;
-            font-size: 15px;
-            color: #333;
+            font-size: 9pt;
+            color: #1f2937;
+            margin-bottom: 10px;
+            padding: 0 5px;
         }
 
         .section-content p {
-            margin: 6px 0;
+            margin: 5px 0;
+        }
+
+        .section-content strong {
+            font-weight: 600;
         }
 
         .alert {
-            padding: 12px 15px;
-            margin: 8px 0;
+            padding: 10px 12px;
+            margin: 6px 0;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 9pt;
+            border-left: 3px solid;
         }
 
         .high {
-            background: #f8d7da;
+            background: #FFE5E5;
+            border-left-color: #DC2626;
         }
 
         .medium {
-            background: #fff3cd;
+            background: #FFF4CC;
+            border-left-color: #F59E0B;
         }
 
         .low {
-            background: #d4edda;
+            background: #D1FAE5;
+            border-left-color: #10B981;
         }
 
         ul {
             padding-left: 20px;
+            margin: 5px 0;
+        }
+
+        ul li {
+            margin: 3px 0;
         }
 
         .footer-note {
-            background: #eef2f5;
-            padding: 12px;
-            border-radius: 6px;
+            background: #E5E7EB;
+            padding: 10px;
+            border-radius: 4px;
             text-align: center;
-            margin-top: 30px;
-            font-size: 14px;
-            color: #555;
+            margin-top: 20px;
+            font-size: 8pt;
+            color: #6b7280;
+            border: 1px solid #D1D5DB;
         }
     </style>
 </head>
@@ -125,7 +152,7 @@
 
         <div class="header">
             <div class="logo">
-                <img src="assets/mdh-logo-with-name.svg" alt="MDHealthTrak">
+
             </div>
             <div class="contact">
                 support@mdht.com<br>
@@ -139,51 +166,32 @@
         <h1>AI Overview Health Insights Report</h1>
         <div class="subtext">
             AI-Generated Medical Analysis<br>
-            Report Generated On: 26th January 2026 | Time: 09:08 PM
+            Report Generated On: 13th February 2026 | 09:08 PM
         </div>
 
-        <div class="section-title">
-            <span>
-                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
-            </span>
-            <span>PATIENT DEMOGRAPHICS</span>
-        </div>
+        <div class="section-title">Patient Demographics</div>
         <div class="section-content">
             <p><strong>Patient Name:</strong> John Doe</p>
             <p><strong>Age:</strong> 54</p>
             <p><strong>Gender:</strong> Male</p>
         </div>
 
-        <div class="section-title">
-            <span>
-                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
-            </span>
-            <span>CLINICAL INFORMATION</span>
-        </div>
+        <div class="section-title">Clinical Information</div>
         <div class="section-content">
             <p><strong>Primary Condition:</strong> Asthma Attack</p>
             <p><strong>Condition Status:</strong> Active</p>
-            <p><strong>Condition Onset:</strong> 658279729e092903203</p>
+            <p><strong>Condition Onset:</strong> January 2026</p>
             <p><strong>Is Cured:</strong> No</p>
         </div>
 
-        <div class="section-title">
-            <span>
-                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
-            </span>
-            <span>CONDITION ASSESSMENT</span>
-        </div>
+        <div class="section-title">Condition Assessment</div>
         <div class="section-content">
-            John Doe is currently experiencing an active asthma attack with several symptoms impacting daily life. Vital
-            signs remain stable, but symptom severity requires close monitoring and attention.
+            <p>John Doe is currently experiencing an active asthma attack with several symptoms impacting daily life.
+                Vital
+                signs remain stable, but symptom severity requires close monitoring and attention.</p>
         </div>
 
-        <div class="section-title">
-            <span>
-                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
-            </span>
-            <span>HEALTH ALERTS</span>
-        </div>
+        <div class="section-title">Health Alerts</div>
         <div class="section-content">
             <div class="alert high">
                 <strong>HIGH:</strong> Severe symptoms such as faster breathing, inability to perform usual tasks, and
@@ -199,12 +207,7 @@
             </div>
         </div>
 
-        <div class="section-title">
-            <span>
-                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
-            </span>
-            <span>VITALS SUMMARY</span>
-        </div>
+        <div class="section-title">Vitals Summary</div>
         <div class="section-content">
             <ul>
                 <li>Blood pressure is stable at 120/80 mmHg.</li>
@@ -215,12 +218,7 @@
             </ul>
         </div>
 
-        <div class="section-title">
-            <span>
-                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
-            </span>
-            <span>DAILY PATTERNS</span>
-        </div>
+        <div class="section-title">Daily Patterns</div>
         <div class="section-content">
             <ul>
                 <li>Symptoms worsen as asthma attack builds up.</li>
@@ -229,12 +227,7 @@
             </ul>
         </div>
 
-        <div class="section-title">
-            <span>
-                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
-            </span>
-            <span>SMART ADVICES</span>
-        </div>
+        <div class="section-title">Smart Advices</div>
         <div class="section-content">
             <ul>
                 <li>Avoid exposure to asthma triggers such as dust and smoke.</li>
@@ -244,12 +237,7 @@
             </ul>
         </div>
 
-        <div class="section-title">
-            <span>
-                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
-            </span>
-            <span>CARE TEAM NOTES</span>
-        </div>
+        <div class="section-title">Care Team Notes</div>
         <div class="section-content">
             <ul>
                 <li>Continue close monitoring of breathing and symptoms.</li>
@@ -258,12 +246,7 @@
             </ul>
         </div>
 
-        <div class="section-title">
-            <span>
-                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
-            </span>
-            <span>NEXT STEPS</span>
-        </div>
+        <div class="section-title">Next Steps</div>
         <div class="section-content">
             <ul>
                 <li>Schedule follow-up consultation within 24 hours.</li>

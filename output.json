@@ -1,45 +1,40 @@
 {
   "data": {
-    "overallSummary": "John Doe is recovering from Alcohol Withdrawal. His vital signs show stable readings, but symptoms like confusion and sweating still occasionally occur.",
-    "healthAlerts": [
-      {
-        "level": "MEDIUM",
-        "message": "Confusion and sweating levels indicate ongoing recovery challenges. Monitor these symptoms closely."
-      }
-    ],
+    "overallSummary": "John Doe has shown improvement after recovering from Alcohol Withdrawal. Most vital signs are within normal ranges, indicating stable health.",
+    "healthAlerts": [],
     "vitalsSummary": [
-      "Blood Pressure: stable between 119-123/79-81 mmHg.",
-      "Heart Rate: averages 70 bpm with minor fluctuations.",
-      "SpO2: consistent at 97-99%.",
-      "Body Temperature: remains within normal range (98.4-98.6°F).",
-      "Blood Sugar: fluctuates slightly between 95-105 mg/dL."
+      "Blood Pressure is stable, average reading of 120/80.",
+      "Heart Rate remains steady, averaging around 70 beats per minute.",
+      "SpO2 is consistently above 97%, indicating good oxygen levels.",
+      "Body Temperature is normal, averaging around 98.5°F.",
+      "Blood Sugar levels are mostly within normal limits but show slight variations."
     ],
     "dailyPatterns": [
-      "Regular breakfast and afternoon meals contribute to stable blood sugar levels.",
-      "Morning walks and light exercise have a positive effect on heart rate.",
-      "Increased levels of sweating correlate with higher severity of confusion symptoms."
+      "Regular meals and morning walks support overall health.",
+      "Increased sweating and confusion were noted during Alcohol Withdrawal recovery days.",
+      "Stable vital signs indicate a positive response to daily routines."
     ],
     "smartAdvices": [
-      "Maintain a consistent meal schedule to help regulate blood sugar levels.",
-      "Incorporate more light exercises to boost overall wellness.",
-      "Stay hydrated to manage sweating and support recovery."
+      "Maintain a balanced diet with regular meals to keep blood sugar levels stable.",
+      "Stay physically active with regular walks or light exercises.",
+      "Ensure consistent hydration, especially during physical activities."
     ],
     "careTeamNotes": [
-      "Continue monitoring symptoms of confusion and sweating.",
-      "Encourage John to maintain a consistent routine for meals and activities."
+      "Continued monitoring of mental health is essential after Alcohol Withdrawal.",
+      "Maintain follow-up visits to monitor essential vitals specifically during recovery."
     ],
     "nextSteps": [
       "Schedule a follow-up appointment with the healthcare provider.",
-      "Consider a consultation with a nutritionist to fine-tune dietary habits.",
-      "Monitor vital signs at home and report any significant changes."
+      "Continue to track daily activities and symptoms for any changes.",
+      "Explore support groups for long-term recovery from Alcohol dependency."
     ]
   },
   "tokenUsage": {
     "prompt_tokens": 2538,
-    "completion_tokens": 346,
-    "total_tokens": 2884,
+    "completion_tokens": 301,
+    "total_tokens": 2839,
     "prompt_tokens_details": {
-      "cached_tokens": 0,
+      "cached_tokens": 2176,
       "audio_tokens": 0
     },
     "completion_tokens_details": {

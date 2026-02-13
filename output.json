@@ -1,43 +1,41 @@
 {
   "data": {
-    "overallSummary": "John Doe has shown recovery from Alcohol Withdrawal, with notable fluctuations in symptoms like confusion and sweating. Vitals remain stable with normal blood pressure and heart rate.",
+    "overallSummary": "John Doe, a 36-year-old male, is experiencing shortness of breath with increasing severity over the past week. Monitoring of vital signs shows stable blood pressure and heart rate, but attention is needed for management of respiratory symptoms.",
     "healthAlerts": [
       {
-        "level": "LOW",
-        "message": "Monitor for any returning symptoms of confusion or sweating."
+        "level": "HIGH",
+        "message": "Shortness of breath has been reported with increasing severity. Immediate consultation is recommended."
       }
     ],
     "vitalsSummary": [
-      "Blood Pressure: Stable around 120/80 mmHg",
-      "Heart Rate: Average around 70 bpm",
-      "SpO2: Maintained at 97-99%",
-      "Body Temperature: Consistently around 98.4°F-98.6°F",
-      "Blood Sugar: Varies from 95-105 mg/dL, requiring monitoring."
+      "Blood Pressure: Stable with values around 120/80 mmHg.",
+      "Heart Rate: Consistent around 70 bpm.",
+      "SpO2: Normal at 97-99%.",
+      "Body Temperature: Normal range 98.4-98.6°F.",
+      "Blood Sugar: Slight fluctuations noted, with a peak of 105 mg/dL."
     ],
     "dailyPatterns": [
-      "Routine meals and regular light exercise positively impacted heart rate and overall well-being.",
-      "Engaging in morning walks contributed to improved mental clarity."
+      "Regular meals and morning activity have been noted, correlated with stable blood pressure and heart rate.",
+      "Shortness of breath symptoms appear more pronounced after physical activities."
     ],
     "smartAdvices": [
-      "Maintain a consistent meal schedule to stabilize blood sugar levels.",
-      "Incorporate daily walks for enhanced physical and mental health.",
-      "Stay hydrated and consider mindfulness practices to manage stress."
+      "Consider relaxing activities like deep breathing exercises or yoga to help with shortness of breath.",
+      "Maintain a consistent eating schedule and stay hydrated."
     ],
     "careTeamNotes": [
-      "Continue observing symptoms closely and encourage patient engagement in physical activities.",
-      "Consider regular follow-ups to monitor recovery progress."
+      "Monitoring of respiratory symptoms is essential. Recommend follow-up with a healthcare provider immediately if symptoms worsen."
     ],
     "nextSteps": [
-      "Schedule a follow-up consultation to discuss any recurring symptoms.",
-      "Continue tracking vital signs daily."
+      "Schedule a consultation with a healthcare provider regarding respiratory symptoms.",
+      "Continue monitoring vital signs daily and keep a record of any changes."
     ]
   },
   "tokenUsage": {
-    "prompt_tokens": 2538,
-    "completion_tokens": 309,
-    "total_tokens": 2847,
+    "prompt_tokens": 2611,
+    "completion_tokens": 328,
+    "total_tokens": 2939,
     "prompt_tokens_details": {
-      "cached_tokens": 2176,
+      "cached_tokens": 0,
       "audio_tokens": 0
     },
     "completion_tokens_details": {

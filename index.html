@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Overview Health Insights Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #F4FFFF;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .report-container {
+            /* max-width: 800px; */
+            margin: auto;
+            /* background: #ffffff; */
+            /* padding: 30px; */
+            /* border-radius: 8px; */
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .contact {
+            text-align: right;
+            font-size: 14px;
+            color: #444;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #1f8ed6;
+            margin: 20px 0;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 0;
+        }
+
+        .subtext {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .section-title {
+            background: #1f8ed6;
+            color: white;
+            padding: 12px 15px;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 25px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 60px;
+            background: #47c27c;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .section-content {
+            margin-top: 15px;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .section-content p {
+            margin: 6px 0;
+        }
+
+        .alert {
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .high {
+            background: #f8d7da;
+        }
+
+        .medium {
+            background: #fff3cd;
+        }
+
+        .low {
+            background: #d4edda;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .footer-note {
+            background: #eef2f5;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="report-container">
+
+        <div class="header">
+            <div class="logo">
+                <img src="assets/mdh-logo-with-name.svg" alt="MDHealthTrak">
+            </div>
+            <div class="contact">
+                support@mdht.com<br>
+                +91-90000 00000<br>
+                www.mdht.com
+            </div>
+        </div>
+
+        <hr>
+
+        <h1>AI Overview Health Insights Report</h1>
+        <div class="subtext">
+            AI-Generated Medical Analysis<br>
+            Report Generated On: 26th January 2026 | Time: 09:08 PM
+        </div>
+
+        <div class="section-title">
+            <span>
+                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
+            </span>
+            <span>PATIENT DEMOGRAPHICS</span>
+        </div>
+        <div class="section-content">
+            <p><strong>Patient Name:</strong> John Doe</p>
+            <p><strong>Age:</strong> 54</p>
+            <p><strong>Gender:</strong> Male</p>
+        </div>
+
+        <div class="section-title">
+            <span>
+                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
+            </span>
+            <span>CLINICAL INFORMATION</span>
+        </div>
+        <div class="section-content">
+            <p><strong>Primary Condition:</strong> Asthma Attack</p>
+            <p><strong>Condition Status:</strong> Active</p>
+            <p><strong>Condition Onset:</strong> 658279729e092903203</p>
+            <p><strong>Is Cured:</strong> No</p>
+        </div>
+
+        <div class="section-title">
+            <span>
+                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
+            </span>
+            <span>CONDITION ASSESSMENT</span>
+        </div>
+        <div class="section-content">
+            John Doe is currently experiencing an active asthma attack with several symptoms impacting daily life. Vital
+            signs remain stable, but symptom severity requires close monitoring and attention.
+        </div>
+
+        <div class="section-title">
+            <span>
+                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
+            </span>
+            <span>HEALTH ALERTS</span>
+        </div>
+        <div class="section-content">
+            <div class="alert high">
+                <strong>HIGH:</strong> Severe symptoms such as faster breathing, inability to perform usual tasks, and
+                inability to sleep indicate urgent medical attention.
+            </div>
+            <div class="alert medium">
+                <strong>MEDIUM:</strong> Severe symptoms such as faster breathing, inability to perform usual tasks, and
+                inability to sleep indicate medical attention.
+            </div>
+            <div class="alert low">
+                <strong>LOW:</strong> Severe symptoms such as faster breathing, inability to perform usual tasks, and
+                inability to sleep require monitoring.
+            </div>
+        </div>
+
+        <div class="section-title">
+            <span>
+                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
+            </span>
+            <span>VITALS SUMMARY</span>
+        </div>
+        <div class="section-content">
+            <ul>
+                <li>Blood pressure is stable at 120/80 mmHg.</li>
+                <li>Heart rate steady at 70 bpm.</li>
+                <li>Oxygen levels are within normal range at 98%.</li>
+                <li>Body temperature is normal at 98.6°F.</li>
+                <li>Blood sugar level is normal at 100 mg/dL.</li>
+            </ul>
+        </div>
+
+        <div class="section-title">
+            <span>
+                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
+            </span>
+            <span>DAILY PATTERNS</span>
+        </div>
+        <div class="section-content">
+            <ul>
+                <li>Symptoms worsen as asthma attack builds up.</li>
+                <li>Severe symptoms affect ability to eat, sleep, and perform daily tasks.</li>
+                <li>Routine meals are maintained but symptoms impact overall activity.</li>
+            </ul>
+        </div>
+
+        <div class="section-title">
+            <span>
+                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
+            </span>
+            <span>SMART ADVICES</span>
+        </div>
+        <div class="section-content">
+            <ul>
+                <li>Avoid exposure to asthma triggers such as dust and smoke.</li>
+                <li>Ensure calm and restful environment.</li>
+                <li>Maintain regular meal times and hydration.</li>
+                <li>Practice breathing exercises.</li>
+            </ul>
+        </div>
+
+        <div class="section-title">
+            <span>
+                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
+            </span>
+            <span>CARE TEAM NOTES</span>
+        </div>
+        <div class="section-content">
+            <ul>
+                <li>Continue close monitoring of breathing and symptoms.</li>
+                <li>No changes without direct medical evaluation.</li>
+                <li>Seek emergency care if symptoms worsen rapidly.</li>
+            </ul>
+        </div>
+
+        <div class="section-title">
+            <span>
+                <img height="12" width="12" src="assets/right-arrow.svg" alt="Right Arrow">
+            </span>
+            <span>NEXT STEPS</span>
+        </div>
+        <div class="section-content">
+            <ul>
+                <li>Schedule follow-up consultation within 24 hours.</li>
+                <li>Monitor symptoms closely.</li>
+                <li>Seek immediate emergency assistance if unable to talk, eat, or breathe properly.</li>
+            </ul>
+        </div>
+
+        <div class="footer-note">
+            The information is AI generated. Consult a doctor for medical advice.
+        </div>
+
+    </div>
+
+</body>
+
+</html>

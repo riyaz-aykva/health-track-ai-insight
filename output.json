@@ -1,41 +1,43 @@
 {
   "data": {
-    "overallSummary": "John Doe is a 36-year-old male who has successfully overcome Alcohol Withdrawal and currently shows stable vital signs.",
+    "overallSummary": "John Doe is recovering from Alcohol Withdrawal. His vital signs show stable readings, but symptoms like confusion and sweating still occasionally occur.",
     "healthAlerts": [
       {
-        "level": "LOW",
-        "message": "Mild confusion and sweating have been recorded but are decreasing over time."
+        "level": "MEDIUM",
+        "message": "Confusion and sweating levels indicate ongoing recovery challenges. Monitor these symptoms closely."
       }
     ],
     "vitalsSummary": [
-      "Blood pressure remains stable with readings around 120/80 mmHg.",
-      "Heart rate is consistent, averaging around 70 bpm.",
-      "SpO2 levels are healthy at approximately 98%.",
-      "Body temperature is normal, fluctuating slightly around 98.4°F to 98.6°F.",
-      "Blood sugar levels are within a reasonable range, peaking at 105 mg/dL."
+      "Blood Pressure: stable between 119-123/79-81 mmHg.",
+      "Heart Rate: averages 70 bpm with minor fluctuations.",
+      "SpO2: consistent at 97-99%.",
+      "Body Temperature: remains within normal range (98.4-98.6°F).",
+      "Blood Sugar: fluctuates slightly between 95-105 mg/dL."
     ],
     "dailyPatterns": [
-      "Regular meals are observed, primarily consisting of breakfast, lunch, and dinner.",
-      "Morning walks and light exercise contribute positively to overall health."
+      "Regular breakfast and afternoon meals contribute to stable blood sugar levels.",
+      "Morning walks and light exercise have a positive effect on heart rate.",
+      "Increased levels of sweating correlate with higher severity of confusion symptoms."
     ],
     "smartAdvices": [
-      "Maintain a balanced diet with fruits and vegetables.",
-      "Stay hydrated and continue daily physical activity to improve wellness.",
-      "Monitor stress levels and practice relaxation techniques."
+      "Maintain a consistent meal schedule to help regulate blood sugar levels.",
+      "Incorporate more light exercises to boost overall wellness.",
+      "Stay hydrated to manage sweating and support recovery."
     ],
     "careTeamNotes": [
-      "Continued monitoring of mental and physical health is recommended post-recovery.",
-      "Focus on developing a consistent routine to ensure ongoing well-being."
+      "Continue monitoring symptoms of confusion and sweating.",
+      "Encourage John to maintain a consistent routine for meals and activities."
     ],
     "nextSteps": [
-      "Schedule a follow-up appointment with the healthcare provider in one month.",
-      "Consider joining a support group for ongoing recovery support."
+      "Schedule a follow-up appointment with the healthcare provider.",
+      "Consider a consultation with a nutritionist to fine-tune dietary habits.",
+      "Monitor vital signs at home and report any significant changes."
     ]
   },
   "tokenUsage": {
     "prompt_tokens": 2538,
-    "completion_tokens": 318,
-    "total_tokens": 2856,
+    "completion_tokens": 346,
+    "total_tokens": 2884,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0

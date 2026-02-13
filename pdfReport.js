@@ -147,8 +147,8 @@ function addBulletLines(doc, lines, bullet = "•") {
     lines.forEach((line) => {
         const text = String(line).trim();
         if (!text) return;
-        doc.text(`${bullet} ${text}`, { width: wrapWidth, indent: 16, lineGap: 2 });
-        doc.moveDown(4);
+        doc.text(`${bullet} ${text}`, { width: wrapWidth, indent: 16, lineGap: 1 });
+        doc.moveDown(2);
     });
 }
 
@@ -159,7 +159,7 @@ function addKeyValueBlock(doc, pairs) {
     doc.fillColor(COLORS.text).fontSize(9);
     pairs.forEach(([key, value]) => {
         doc.text(`${key}: ${value != null && value !== "" ? value : "N/A"}`, { indent: 8 });
-        doc.moveDown(3);
+        doc.moveDown(1.5);
     });
 }
 
@@ -203,14 +203,15 @@ function drawReportHeader(doc, logoPngBuffer) {
 
     const headerBottomY = topY + (logoPngBuffer && logoPngBuffer.length ? (28 / 207) * LOGO_DISPLAY_WIDTH : 24);
     drawLine(doc, headerBottomY + 4);
-    doc.y = headerBottomY + 14;
+    const titleY = headerBottomY + 14;
 
     doc.fontSize(16).font(FONT_BOLD).fillColor(COLORS.primary);
-    doc.text("AI Overview Health Insights Report", { align: "left" });
+    doc.text("AI Overview Health Insights Report", MARGIN, titleY, { width: CONTENT_WIDTH, lineBreak: false });
+
     doc.fontSize(10).font(FONT_REGULAR).fillColor(COLORS.textMuted);
-    doc.text("AI-Generated Medical Analysis", { align: "left" });
-    doc.text(`Report Generated On: ${reportDateTime()}`, { align: "left" });
-    doc.moveDown(12);
+    doc.text("AI-Generated Medical Analysis", MARGIN, doc.y + 4, { width: CONTENT_WIDTH });
+    doc.text(`Report Generated On: ${reportDateTime()}`, MARGIN, doc.y + 2, { width: CONTENT_WIDTH });
+    doc.moveDown(6);
 }
 
 /**
@@ -236,19 +237,14 @@ function drawFooter(doc) {
  */
 function drawSectionMeasured(doc, title, type, data, options = {}) {
     const { marginTop = 10 } = options;
-    doc.moveDown(marginTop / 8);
+    doc.moveDown(marginTop / 12);
     const barY = doc.y;
     doc.rect(MARGIN, barY, CONTENT_WIDTH - SECTION_ACCENT_WIDTH, SECTION_BAR_HEIGHT).fill(COLORS.sectionBar);
     doc.rect(PAGE_WIDTH - MARGIN - SECTION_ACCENT_WIDTH, barY, SECTION_ACCENT_WIDTH, SECTION_BAR_HEIGHT).fill(COLORS.sectionAccent);
     doc.fillColor(COLORS.white).font(FONT_BOLD).fontSize(10);
     doc.text(`>> ${title.toUpperCase()}`, MARGIN + 10, barY + 6, { width: CONTENT_WIDTH - 20 });
     doc.fillColor(COLORS.text).font(FONT_REGULAR).fontSize(9);
-    doc.y = barY + SECTION_BAR_HEIGHT;
-
-    const panelTop = doc.y;
-    const panelHeight = measurePanelHeight(doc, type, data);
-    doc.rect(MARGIN, panelTop, CONTENT_WIDTH, panelHeight).fill(COLORS.contentBg);
-    doc.y = panelTop + 8;
+    doc.y = barY + SECTION_BAR_HEIGHT + 2;
 
     if (type === "paragraph") {
         addParagraph(doc, data || "No content.");
@@ -261,27 +257,21 @@ function drawSectionMeasured(doc, title, type, data, options = {}) {
         addKeyValueBlock(doc, pairs);
     } else if (type === "alerts") {
         const alerts = Array.isArray(data) ? data : [];
-        const alertColors = { HIGH: COLORS.alertHigh, MEDIUM: COLORS.alertMedium, LOW: COLORS.alertLow };
         if (!alerts.length) {
             doc.text("No health alerts.", { indent: 16 });
         } else {
             alerts.forEach((a) => {
                 const level = (a.level || "LOW").toUpperCase();
-                const bg = alertColors[level] || COLORS.contentBg;
-                const y = doc.y;
-                const lineH = 26;
-                doc.rect(MARGIN + 8, y, CONTENT_WIDTH - 16, lineH).fill(bg);
                 doc.fillColor(COLORS.text).font(FONT_BOLD).fontSize(9);
-                doc.text(`${level}:`, MARGIN + 16, y + 6);
-                const labelW = doc.widthOfString(`${level}: `) + 4;
-                doc.font(FONT_REGULAR).fontSize(9);
-                doc.text(a.message || "", MARGIN + 16 + labelW, y + 6, { width: CONTENT_WIDTH - 90 });
-                doc.y = y + lineH;
-                doc.moveDown(2);
+                doc.text(`${level}:`, { continued: true });
+                doc.font(FONT_REGULAR);
+                doc.text(` ${a.message || ""}`, { width: CONTENT_WIDTH - 16 });
+                doc.moveDown(1.5);
             });
         }
     }
-    doc.y = panelTop + panelHeight;
+    // Small spacing after section content
+    doc.moveDown(2);
 }
 
 function generateReportPdf(aiResult, payload, outputPath) {

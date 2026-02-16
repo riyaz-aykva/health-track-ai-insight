@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/riyaz-aykva/health-track-ai-insight/schemas/ai-insight-output.schema.json",
+  "title": "AI Health Insight Output",
+  "description": "Schema for storing AI-generated health overview output (conditions, vitals, activities analysis)",
+  "type": "object",
+  "required": ["data"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the stored insight (e.g. UUID, ObjectId). Set when persisting."
+    },
+    "patientId": {
+      "type": "string",
+      "description": "Reference to the patient this insight belongs to. Set when persisting."
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the insight was generated. Set when persisting."
+    },
+    "model": {
+      "type": "string",
+      "description": "OpenAI model used (e.g. gpt-4o-mini). Set when persisting."
+    },
+    "data": {
+      "type": "object",
+      "description": "AI-generated health overview content",
+      "required": ["overallSummary"],
+      "properties": {
+        "overallSummary": {
+          "type": "string",
+          "description": "High-level summary of health status and findings"
+        },
+        "healthAlerts": {
+          "type": "array",
+          "description": "Critical or abnormal findings requiring attention",
+          "items": {
+            "type": "object",
+            "required": ["level", "message"],
+            "properties": {
+              "level": {
+                "type": "string",
+                "enum": ["LOW", "MEDIUM", "HIGH"],
+                "description": "Severity of the alert"
+              },
+              "message": {
+                "type": "string",
+                "description": "Alert message text"
+              }
+            }
+          }
+        },
+        "vitalsSummary": {
+          "type": "array",
+          "description": "Consolidated AI insights on vital signs",
+          "items": { "type": "string" }
+        },
+        "dailyPatterns": {
+          "type": "array",
+          "description": "How routine impacts vitals and symptoms",
+          "items": { "type": "string" }
+        },
+        "smartAdvices": {
+          "type": "array",
+          "description": "AI-based lifestyle or diet suggestions",
+          "items": { "type": "string" }
+        },
+        "careTeamNotes": {
+          "type": "array",
+          "description": "Notes for doctor or caregiver from the AI report",
+          "items": { "type": "string" }
+        },
+        "nextSteps": {
+          "type": "array",
+          "description": "Recommended actions or consultation scheduling",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "tokenUsage": {
+      "type": "object",
+      "description": "OpenAI API token usage (optional; useful for cost/analytics)",
+      "properties": {
+        "prompt_tokens": { "type": "integer" },
+        "completion_tokens": { "type": "integer" },
+        "total_tokens": { "type": "integer" },
+        "prompt_tokens_details": {
+          "type": "object",
+          "properties": {
+            "cached_tokens": { "type": "integer" },
+            "audio_tokens": { "type": "integer" }
+          }
+        },
+        "completion_tokens_details": {
+          "type": "object",
+          "properties": {
+            "reasoning_tokens": { "type": "integer" },
+            "audio_tokens": { "type": "integer" },
+            "accepted_prediction_tokens": { "type": "integer" },
+            "rejected_prediction_tokens": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message when generation failed (e.g. API error). Use instead of data when storing failures."
+    }
+  }
+}

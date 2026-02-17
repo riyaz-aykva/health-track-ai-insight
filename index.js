@@ -404,7 +404,7 @@ const test = async () => {
     if (cached) {
         console.log("Cache hit: same payload, reusing stored response.");
         console.log(JSON.stringify(cached, null, 2));
-        const pdfFileName = `health_report_${new Date().toISOString().slice(0, 10)}.pdf`;
+        const pdfFileName = `./pdf/health_report_${new Date().toISOString()}.pdf`;
         await generateReportPdf(cached, payload, pdfFileName);
         console.log(`PDF report saved to ${pdfFileName}`);
         return cached;
@@ -432,7 +432,7 @@ const test = async () => {
         console.log(JSON.stringify(result, null, 2));
         await saveToExcel(result, payload.patient, conditions, OPENAI_MODEL, payload);
 
-        const pdfFileName = `health_report_${new Date().toISOString().slice(0, 10)}.pdf`;
+        const pdfFileName = `./pdf/health_report_${new Date().toISOString()}.pdf`;
         await generateReportPdf(result, payload, pdfFileName);
         console.log(`PDF report saved to ${pdfFileName}`);
 

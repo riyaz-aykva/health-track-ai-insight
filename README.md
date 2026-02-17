@@ -9,6 +9,7 @@ AI-powered health overview from patient conditions, vitals, and activities. Uses
 - **Activities**: Daily activities (meals, walks, exercise) with timestamps
 - **AI output**: Overall summary, health alerts (LOW/MEDIUM/HIGH), vitals summary, daily patterns, smart advice, care team notes, next steps
 - **Export**: Results written to `output.json` and appended to `health_records.xlsx` (Excel)
+- **Payload cache**: Same payload does not trigger a new API call; response is reused from local `cache/` (see [docs/PAYLOAD_CACHE.md](docs/PAYLOAD_CACHE.md))
 
 ## Prerequisites
 
@@ -92,6 +93,7 @@ Array of objects with at least `activity_name` and `createdAt` (e.g. `{ $date: "
 | File / folder    | Purpose                                                       |
 | ---------------- | ------------------------------------------------------------- |
 | `index.js`       | Main script: builds payload, calls OpenAI, saves JSON + Excel |
+| `docs/PAYLOAD_CACHE.md` | Payload cache: same payload → reuse stored response (local `cache/`) |
 | `utils.js`       | `saveToExcel()`, Excel read/write, sheet↔JSON                 |
 | `list-models.js` | Lists OpenAI models for your API key                          |
 | `package.json`   | Dependencies: dotenv, openai, exceljs                         |

@@ -198,108 +198,86 @@ const conditionsForDisease = [
 
 const conditions = normalizeConditionsInput(conditionsForSymptom);
 
+// Last seven days dummy records (Feb 11–17, 2026)
 const vitals = [
     {
-        lookup_id: "BLOOD_PRESSURE",
-        vital_name: "Blood Pressure",
-        records: [
-            {
-                recorded_at: "2026-02-03T08:15:00.000Z", value: {
-                    "systolic": 120,
-                    "diastolic": 80
-                }
-            },
-            {
-                recorded_at: "2026-02-04T08:20:00.000Z", value: {
-                    "systolic": 120,
-                    "diastolic": 80
-                }
-            },
-            {
-                recorded_at: "2026-02-05T08:10:00.000Z", value: {
-                    "systolic": 120,
-                    "diastolic": 80
-                }
-            },
-            {
-                recorded_at: "2026-02-06T08:25:00.000Z", value: {
-                    "systolic": 121,
-                    "diastolic": 79
-                }
-            },
-            {
-                recorded_at: "2026-02-07T08:30:00.000Z", value: {
-                    "systolic": 119,
-                    "diastolic": 81
-                }
-            },
-            {
-                recorded_at: "2026-02-08T08:18:00.000Z", value: {
-                    "systolic": 120,
-                    "diastolic": 80
-                }
-            },
-            {
-                recorded_at: "2026-02-09T08:22:00.000Z", value: {
-                    "systolic": 123,
-                    "diastolic": 81
-                }
-            },
+        "record_id": "698d8b1dbb05e0b7c13a201a",
+        "recorded_at": "2026-02-11T08:11:09.381Z",
+        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
+        "created_at": "2026-02-11T08:11:09.396Z",
+        "vitals": [
+            { "vital_id": "698d8b1dbb05e0b7c13a201b", "vital_type": "HEART_RATE", "value": 74, "unit": "bpm" },
+            { "vital_id": "698d8b1dbb05e0b7c13a201c", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 122, "diastolic": 82 }, "unit": "mmHg" },
+            { "vital_id": "698d8b1dbb05e0b7c13a201d", "vital_type": "SPO2", "value": 97, "unit": "%" }
         ]
     },
     {
-        lookup_id: "HEART_RATE",
-        vital_name: "Heart Rate",
-        records: [
-            { recorded_at: "2026-02-03T08:15:00.000Z", value: "68" },
-            { recorded_at: "2026-02-04T08:20:00.000Z", value: "72" },
-            { recorded_at: "2026-02-05T08:10:00.000Z", value: "70" },
-            { recorded_at: "2026-02-06T08:25:00.000Z", value: "71" },
-            { recorded_at: "2026-02-07T08:30:00.000Z", value: "69" },
-            { recorded_at: "2026-02-08T08:18:00.000Z", value: "70" },
-            { recorded_at: "2026-02-09T08:22:00.000Z", value: "73" },
+        "record_id": "698d8b1dbb05e0b7c13a201c",
+        "recorded_at": "2026-02-12T08:11:09.381Z",
+        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
+        "created_at": "2026-02-12T08:11:09.396Z",
+        "vitals": [
+            { "vital_id": "698d8b1dbb05e0b7c13a201e", "vital_type": "HEART_RATE", "value": 72, "unit": "bpm" },
+            { "vital_id": "698d8b1dbb05e0b7c13a2021", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 120, "diastolic": 80 }, "unit": "mmHg" },
+            { "vital_id": "698d8b1dbb05e0b7c13a2024", "vital_type": "SPO2", "value": 98, "unit": "%" }
         ]
     },
     {
-        lookup_id: "SPO2",
-        vital_name: "SpO2",
-        records: [
-            { recorded_at: "2026-02-03T08:15:00.000Z", value: "97" },
-            { recorded_at: "2026-02-04T08:20:00.000Z", value: "98" },
-            { recorded_at: "2026-02-05T08:10:00.000Z", value: "98" },
-            { recorded_at: "2026-02-06T08:25:00.000Z", value: "99" },
-            { recorded_at: "2026-02-07T08:30:00.000Z", value: "97" },
-            { recorded_at: "2026-02-08T08:18:00.000Z", value: "98" },
-            { recorded_at: "2026-02-09T08:22:00.000Z", value: "98" },
+        "record_id": "698d8b1dbb05e0b7c13a201d",
+        "recorded_at": "2026-02-13T08:11:09.381Z",
+        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
+        "created_at": "2026-02-13T08:11:09.396Z",
+        "vitals": [
+            { "vital_id": "698d8b1dbb05e0b7c13a201f", "vital_type": "HEART_RATE", "value": 70, "unit": "bpm" },
+            { "vital_id": "698d8b1dbb05e0b7c13a2022", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 118, "diastolic": 78 }, "unit": "mmHg" },
+            { "vital_id": "698d8b1dbb05e0b7c13a2025", "vital_type": "SPO2", "value": 99, "unit": "%" }
         ]
     },
     {
-        lookup_id: "BODY_TEMPERATURE",
-        vital_name: "Body Temperature",
-        records: [
-            { recorded_at: "2026-02-03T08:15:00.000Z", value: "98.4" },
-            { recorded_at: "2026-02-04T08:20:00.000Z", value: "98.6" },
-            { recorded_at: "2026-02-05T08:10:00.000Z", value: "98.5" },
-            { recorded_at: "2026-02-06T08:25:00.000Z", value: "98.6" },
-            { recorded_at: "2026-02-07T08:30:00.000Z", value: "98.4" },
-            { recorded_at: "2026-02-08T08:18:00.000Z", value: "98.5" },
-            { recorded_at: "2026-02-09T08:22:00.000Z", value: "98.6" },
+        "record_id": "698d8b1dbb05e0b7c13a2026",
+        "recorded_at": "2026-02-14T08:11:09.381Z",
+        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
+        "created_at": "2026-02-14T08:11:09.396Z",
+        "vitals": [
+            { "vital_id": "698d8b1dbb05e0b7c13a2027", "vital_type": "HEART_RATE", "value": 71, "unit": "bpm" },
+            { "vital_id": "698d8b1dbb05e0b7c13a2028", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 119, "diastolic": 79 }, "unit": "mmHg" },
+            { "vital_id": "698d8b1dbb05e0b7c13a2029", "vital_type": "SPO2", "value": 98, "unit": "%" }
         ]
     },
     {
-        lookup_id: "BLOOD_SUGAR",
-        vital_name: "Blood Sugar",
-        records: [
-            { recorded_at: "2026-02-03T08:15:00.000Z", value: "95" },
-            { recorded_at: "2026-02-04T08:20:00.000Z", value: "102" },
-            { recorded_at: "2026-02-05T08:10:00.000Z", value: "98" },
-            { recorded_at: "2026-02-06T08:25:00.000Z", value: "105" },
-            { recorded_at: "2026-02-07T08:30:00.000Z", value: "99" },
-            { recorded_at: "2026-02-08T08:18:00.000Z", value: "100" },
-            { recorded_at: "2026-02-09T08:22:00.000Z", value: "103" },
+        "record_id": "698d8b1dbb05e0b7c13a202a",
+        "recorded_at": "2026-02-15T08:11:09.381Z",
+        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
+        "created_at": "2026-02-15T08:11:09.396Z",
+        "vitals": [
+            { "vital_id": "698d8b1dbb05e0b7c13a202b", "vital_type": "HEART_RATE", "value": 69, "unit": "bpm" },
+            { "vital_id": "698d8b1dbb05e0b7c13a202c", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 117, "diastolic": 77 }, "unit": "mmHg" },
+            { "vital_id": "698d8b1dbb05e0b7c13a202d", "vital_type": "SPO2", "value": 99, "unit": "%" }
         ]
     },
-]
+    {
+        "record_id": "698d8b1dbb05e0b7c13a202e",
+        "recorded_at": "2026-02-16T08:11:09.381Z",
+        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
+        "created_at": "2026-02-16T08:11:09.396Z",
+        "vitals": [
+            { "vital_id": "698d8b1dbb05e0b7c13a202f", "vital_type": "HEART_RATE", "value": 73, "unit": "bpm" },
+            { "vital_id": "698d8b1dbb05e0b7c13a2030", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 121, "diastolic": 79 }, "unit": "mmHg" },
+            { "vital_id": "698d8b1dbb05e0b7c13a2031", "vital_type": "SPO2", "value": 98, "unit": "%" }
+        ]
+    },
+    {
+        "record_id": "698d8b1dbb05e0b7c13a2032",
+        "recorded_at": "2026-02-17T08:11:09.381Z",
+        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
+        "created_at": "2026-02-17T08:11:09.396Z",
+        "vitals": [
+            { "vital_id": "698d8b1dbb05e0b7c13a2033", "vital_type": "HEART_RATE", "value": 70, "unit": "bpm" },
+            { "vital_id": "698d8b1dbb05e0b7c13a2034", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 118, "diastolic": 78 }, "unit": "mmHg" },
+            { "vital_id": "698d8b1dbb05e0b7c13a2035", "vital_type": "SPO2", "value": 99, "unit": "%" }
+        ]
+    }
+];
 
 const activities = [
     { activity_name: "Breakfast", createdAt: { $date: "2026-02-03T07:30:00.000Z" }, updatedAt: { $date: "2026-02-03T07:30:00.000Z" }, __v: 0, image: "8187733396.png" },

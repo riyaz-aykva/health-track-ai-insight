@@ -77,34 +77,14 @@ const aiInsightSchema = new mongoose.Schema(
       ],
       index: true,
     },
-    vitals: {
-      type: [
-        {
-          vitalId: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-          },
-          lastRecordDate: {
-            type: Date,
-            required: true,
-          },
-        },
-      ],
+    vitalsLastRecordDate: {
+      type: Date,
+      required: true,
       index: true,
     },
-    activities: {
-      type: [
-        {
-          activityId: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-          },
-          lastRecordDate: {
-            type: Date,
-            required: true,
-          },
-        },
-      ],
+    activitiesLastRecordDate: {
+      type: Date,
+      required: true,
       index: true,
     },
     generatedAt: {

@@ -1,37 +1,38 @@
 {
   "data": {
-    "overallSummary": "John Doe is currently experiencing some concerning symptoms, including shortness of breath and forgetfulness linked to ADHD. Vitals have remained stable but require monitoring.",
+    "overallSummary": "John Doe, a 36-year-old male, has successfully overcome alcohol withdrawal symptoms. While confusion and sweating were significant during his recovery, current vital signs indicate stability. Continued monitoring and support are essential for long-term health.",
     "healthAlerts": [
       {
-        "level": "HIGH",
-        "message": "Shortness of breath severity levels have reached concerning heights. Immediate medical attention may be required."
+        "level": "MEDIUM",
+        "message": "Monitor signs of confusion and sweating closely to ensure ongoing improvement."
       }
     ],
     "vitalsSummary": [
-      "Heart rate has ranged from 69 to 74 bpm. Blood pressure readings are well within normal limits, ranging from 117/77 to 122/82 mmHg. Oxygen saturation levels have remained healthy, ranging from 97% to 99%."
+      "Heart Rate: Ranged from 69 to 74 bpm, indicating stability.",
+      "Blood Pressure: Consistently within normal limits, ranging from 117/77 to 122/82 mmHg.",
+      "Oxygen Saturation: Maintained between 97% to 99%, suggesting healthy lung function."
     ],
     "dailyPatterns": [
-      "Regular meals and light exercise like morning walks are observed, which may positively affect overall health.",
-      "Increased forgetfulness has been noted which could correlate with activities and routine."
+      "Regular meal times and light exercise appear to correlate with stable vitals.",
+      "Increased sweating and confusion were observed prior to certain activities, indicating a possible reaction to stress or environmental factors."
     ],
     "smartAdvices": [
-      "Maintain a consistent meal schedule to support cognitive function.",
-      "Incorporate more physical activities throughout the day to improve overall stamina.",
-      "Consider mindfulness or meditation practices to help with focus and attention."
+      "Maintain a balanced diet with a focus on hydration and nutrition to support recovery.",
+      "Incorporate a daily routine of light exercises, such as walking, to promote overall wellness."
     ],
     "careTeamNotes": [
-      "Monitor John's symptoms closely, particularly noting any episodes of shortness of breath.",
-      "Engagement in cognitive exercises could be beneficial for managing ADHD symptoms."
+      "Continue to monitor psychological and physical symptoms closely. Encourage regular check-ins.",
+      "Patient shows good progress, but vigilance is necessary for signs of relapse."
     ],
     "nextSteps": [
-      "Schedule a follow-up appointment to discuss shortness of breath and possible further evaluation.",
-      "Record daily symptoms and activities to identify triggers and improve symptom management."
+      "Schedule a follow-up consultation with the healthcare provider in one week.",
+      "Implement a daily log for symptoms and activities to discuss during the next appointment."
     ]
   },
   "tokenUsage": {
-    "prompt_tokens": 3169,
-    "completion_tokens": 321,
-    "total_tokens": 3490,
+    "prompt_tokens": 3096,
+    "completion_tokens": 340,
+    "total_tokens": 3436,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0

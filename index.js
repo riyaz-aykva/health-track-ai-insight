@@ -214,7 +214,7 @@ const conditionsForDisease = [
             {
                 "title": "confusion",
                 "records": [
-                    { severity: 5, recorded_at: "2026-02-03T09:00:00.000Z" },
+                    { severity: 7, recorded_at: "2026-02-03T09:00:00.000Z" },
                     { severity: 6, recorded_at: "2026-02-04T09:15:00.000Z" },
                     { severity: 4, recorded_at: "2026-02-05T08:45:00.000Z" },
                     { severity: 5, recorded_at: "2026-02-06T09:30:00.000Z" },
@@ -239,7 +239,7 @@ const conditionsForDisease = [
     }
 ];
 
-const conditions = normalizeConditionsInput(conditionsForSymptom);
+const conditions = normalizeConditionsInput(conditionsForDisease);
 
 // Last seven days dummy records (Feb 11–17, 2026)
 const vitals = [
@@ -398,7 +398,9 @@ const medicalHealthModels = [
 
 const test = async () => {
     const hash = getPayloadHash(payload);
+    console.log("Hash:", hash);
     const cached = readCache(hash);
+    console.log("Cached:", cached);
     if (cached) {
         console.log("Cache hit: same payload, reusing stored response.");
         console.log(JSON.stringify(cached, null, 2));

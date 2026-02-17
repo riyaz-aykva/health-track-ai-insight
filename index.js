@@ -49,8 +49,11 @@ if (!OPENAI_API_KEY) {
 
 
 const crypto = require("crypto");
+const path = require("path");
+
+const CACHE_DIR = path.join(__dirname, "cache");
+
 function getPayloadHash(payload) {
-    // Normalize: e.g. same key order, or omit volatile fields
     const str = JSON.stringify({
         conditions: payload.conditions,
         vitals: payload.vitals,
@@ -58,6 +61,34 @@ function getPayloadHash(payload) {
         patientLookupId: payload.patient?.lookup_id ?? payload.patient?.lookupId,
     });
     return crypto.createHash("sha256").update(str).digest("hex");
+}
+
+function getCachePath(hash) {
+    return path.join(CACHE_DIR, `${hash}.json`);
+}
+
+function readCache(hash) {
+    try {
+        const filePath = getCachePath(hash);
+        if (fs.existsSync(filePath)) {
+            const raw = fs.readFileSync(filePath, "utf8");
+            return JSON.parse(raw);
+        }
+    } catch (_) {
+        // ignore parse or read errors
+    }
+    return null;
+}
+
+function writeCache(hash, result) {
+    try {
+        if (!fs.existsSync(CACHE_DIR)) {
+            fs.mkdirSync(CACHE_DIR, { recursive: true });
+        }
+        fs.writeFileSync(getCachePath(hash), JSON.stringify(result, null, 2), "utf8");
+    } catch (err) {
+        console.warn("Cache write failed:", err.message);
+    }
 }
 
 const client = new OpenAI({ apiKey: OPENAI_API_KEY });
@@ -366,17 +397,16 @@ const medicalHealthModels = [
 ];
 
 const test = async () => {
-    // const results = [];
-    // for (const model of medicalHealthModels) {
-
-    // }
-    // return results;
-
-    // const hash = getPayloadHash(payload);
-    // const existing = await AiInsight.findOne({ payloadHash: hash });
-    // if (existing) {
-    //     return { data: existing.data, tokenUsage: existing.tokenUsage };
-    // }
+    const hash = getPayloadHash(payload);
+    const cached = readCache(hash);
+    if (cached) {
+        console.log("Cache hit: same payload, reusing stored response.");
+        console.log(JSON.stringify(cached, null, 2));
+        const pdfFileName = `health_report_${new Date().toISOString().slice(0, 10)}.pdf`;
+        await generateReportPdf(cached, payload, pdfFileName);
+        console.log(`PDF report saved to ${pdfFileName}`);
+        return cached;
+    }
 
     try {
         const response = await client.chat.completions.create({
@@ -396,6 +426,7 @@ const test = async () => {
             tokenUsage: response.usage,
         };
 
+        writeCache(hash, result);
         console.log(JSON.stringify(result, null, 2));
         await saveToExcel(result, payload.patient, conditions, OPENAI_MODEL, payload);
 

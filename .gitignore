@@ -145,3 +145,6 @@ dist
 
 *.pdf
 *.xlsx
+
+# Local payload cache (same payload → reuse response)
+cache/

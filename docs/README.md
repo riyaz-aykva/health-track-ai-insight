@@ -15,6 +15,12 @@ R&D and reference documentation for **Health Track AI Insight**.
 | [project-overview.md](project-overview.md) | Setup, usage, data structures, project structure, disclaimer |
 | [research-findings.md](research-findings.md) | **R&D findings and research** – model choice, prompt design, payload shapes, cache, schema, PDF, Excel |
 
+## Requirements & specification
+
+| Document | Description |
+|----------|-------------|
+| [AI-Insight-Overview-Specification.md](AI-Insight-Overview-Specification.md) | AI Overview: user stories, data sources, API design, PDF structure, open questions |
+
 ## Reference
 
 | Document | Description |

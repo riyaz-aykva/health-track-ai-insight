@@ -403,10 +403,10 @@ const test = async () => {
     console.log("Cached:", cached);
     if (cached) {
         console.log("Cache hit: same payload, reusing stored response.");
-        console.log(JSON.stringify(cached, null, 2));
-        const pdfFileName = `./pdf/health_report_${new Date().toISOString()}.pdf`;
-        await generateReportPdf(cached, payload, pdfFileName);
-        console.log(`PDF report saved to ${pdfFileName}`);
+        // console.log(JSON.stringify(cached, null, 2));
+        // const pdfFileName = `./pdf/health_report_${new Date().toISOString()}.pdf`;
+        // await generateReportPdf(cached, payload, pdfFileName);
+        // console.log(`PDF report saved to ${pdfFileName}`);
         return cached;
     }
 

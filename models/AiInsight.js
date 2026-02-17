@@ -68,6 +68,11 @@ const aiInsightSchema = new mongoose.Schema(
       index: true,
       unique: true,   // one stored result per hash (reuse same doc: findOne then return)
     },
+    conditionsIds: {
+      type: [mongoose.Schema.Types.ObjectId],
+      required: true,
+      index: true,
+    },
     generatedAt: {
       type: Date,
       default: () => new Date(),

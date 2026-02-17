@@ -88,6 +88,12 @@ Array of objects with at least `activity_name` and `createdAt` (e.g. `{ $date: "
 | `health_records.xlsx` | One row per condition with summary, alerts, vitals, etc. |
 | `error.json`          | Error payload if the run fails                           |
 
+## Documentation
+
+All documentation lives in the **[docs](.)** folder. See **[docs/README.md](README.md)** for the full index. Key documents:
+
+- **[research-findings.md](research-findings.md)** – R&D findings and research (model choice, prompt design, payload shapes, cache, schema, PDF, Excel).
+
 ## Project structure
 
 | File / folder    | Purpose                                                       |

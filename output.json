@@ -1,42 +1,37 @@
 {
   "data": {
-    "overallSummary": "John Doe has experienced occasional shortness of breath and signs of forgetfulness. His vital signs remain mostly stable, but some aspects show variability that may need attention.",
+    "overallSummary": "John Doe is currently experiencing some concerning symptoms, including shortness of breath and forgetfulness linked to ADHD. Vitals have remained stable but require monitoring.",
     "healthAlerts": [
       {
         "level": "HIGH",
-        "message": "Shortness of breath severity has reached critical levels. Immediate evaluation is advised."
+        "message": "Shortness of breath severity levels have reached concerning heights. Immediate medical attention may be required."
       }
     ],
     "vitalsSummary": [
-      "Blood pressure is generally stable, averaging 120/80 mmHg.",
-      "Heart rate fluctuates between 68 and 73 bpm.",
-      "SpO2 levels are consistently around 97-99%.",
-      "Body temperature remains normal at around 98.4-98.6°F.",
-      "Blood sugar levels show slight variability, peaking at 105 mg/dL."
+      "Heart rate has ranged from 69 to 74 bpm. Blood pressure readings are well within normal limits, ranging from 117/77 to 122/82 mmHg. Oxygen saturation levels have remained healthy, ranging from 97% to 99%."
     ],
     "dailyPatterns": [
-      "Routine meals are consistent with breakfast being the most common activity.",
-      "Physical activity, such as morning walks, is integrated into the daily routine."
+      "Regular meals and light exercise like morning walks are observed, which may positively affect overall health.",
+      "Increased forgetfulness has been noted which could correlate with activities and routine."
     ],
     "smartAdvices": [
-      "Consider deep breathing exercises to manage shortness of breath.",
-      "Increase physical activity, such as light exercises, to enhance overall fitness.",
-      "Establish reminders for daily activities to aid with forgetfulness."
+      "Maintain a consistent meal schedule to support cognitive function.",
+      "Incorporate more physical activities throughout the day to improve overall stamina.",
+      "Consider mindfulness or meditation practices to help with focus and attention."
     ],
     "careTeamNotes": [
-      "Monitor the severity of symptoms daily and adjust activities accordingly.",
-      "Focus on maintaining a balanced diet and regular exercise."
+      "Monitor John's symptoms closely, particularly noting any episodes of shortness of breath.",
+      "Engagement in cognitive exercises could be beneficial for managing ADHD symptoms."
     ],
     "nextSteps": [
-      "Schedule a follow-up appointment with a healthcare provider to discuss shortness of breath.",
-      "Implement daily reminders for activities to support cognitive function.",
-      "Continue tracking vital signs and report any significant changes."
+      "Schedule a follow-up appointment to discuss shortness of breath and possible further evaluation.",
+      "Record daily symptoms and activities to identify triggers and improve symptom management."
     ]
   },
   "tokenUsage": {
-    "prompt_tokens": 2611,
-    "completion_tokens": 344,
-    "total_tokens": 2955,
+    "prompt_tokens": 3169,
+    "completion_tokens": 321,
+    "total_tokens": 3490,
     "prompt_tokens_details": {
       "cached_tokens": 0,
       "audio_tokens": 0

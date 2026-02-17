@@ -62,30 +62,11 @@ const aiInsightSchema = new mongoose.Schema(
       required: true,
       index: true,
     },
-    conditions: {
-      type: [
-        {
-          conditionId: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-          },
-          lastRecordDate: {
-            type: Date,
-            required: true,
-          },
-        },
-      ],
-      index: true,
-    },
-    vitalsLastRecordDate: {
-      type: Date,
+    payloadHash: {
+      type: String,
       required: true,
       index: true,
-    },
-    activitiesLastRecordDate: {
-      type: Date,
-      required: true,
-      index: true,
+      unique: true,   // one stored result per hash (reuse same doc: findOne then return)
     },
     generatedAt: {
       type: Date,
@@ -117,8 +98,10 @@ const aiInsightSchema = new mongoose.Schema(
     collection: "ai_insights",
   }
 );
+// Unique: one insight per payload hash (reuse, no duplicate)
+aiInsightSchema.index({ payloadHash: 1 }, { unique: true });
 
-// Compound index for common queries: latest insight per patient
-aiInsightSchema.index({ lookupId: 1, generatedAt: -1 });
+// Or non-unique if you keep history (return latest)
+aiInsightSchema.index({ payloadHash: 1, generatedAt: -1 });
 
 module.exports = mongoose.model("AiInsight", aiInsightSchema);

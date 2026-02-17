@@ -48,6 +48,18 @@ if (!OPENAI_API_KEY) {
 }
 
 
+const crypto = require("crypto");
+function getPayloadHash(payload) {
+    // Normalize: e.g. same key order, or omit volatile fields
+    const str = JSON.stringify({
+        conditions: payload.conditions,
+        vitals: payload.vitals,
+        activities: payload.activities,
+        patientLookupId: payload.patient?.lookup_id ?? payload.patient?.lookupId,
+    });
+    return crypto.createHash("sha256").update(str).digest("hex");
+}
+
 const client = new OpenAI({ apiKey: OPENAI_API_KEY });
 
 /**
@@ -359,6 +371,12 @@ const test = async () => {
 
     // }
     // return results;
+
+    // const hash = getPayloadHash(payload);
+    // const existing = await AiInsight.findOne({ payloadHash: hash });
+    // if (existing) {
+    //     return { data: existing.data, tokenUsage: existing.tokenUsage };
+    // }
 
     try {
         const response = await client.chat.completions.create({

@@ -85,7 +85,7 @@ GPT-4o-mini was selected as the default based on the criteria below.
 The model is configurable so you can re-evaluate as APIs and use cases change:
 
 - **Environment:** Set `OPENAI_MODEL` in `.env` (e.g. `OPENAI_MODEL=gpt-4o-mini`).
-- **Default:** If unset, the application defaults to `gpt-4o-mini` (see `index.js` and README).
+- **Default:** If unset, the application defaults to `gpt-4o-mini` (see `index.js` and [project-overview.md](project-overview.md)).
 
 To list models available for your API key:
 
@@ -97,6 +97,6 @@ node list-models.js
 
 ## References
 
-- Project README: setup, usage, and disclaimer.
+- [project-overview.md](project-overview.md): setup, usage, and disclaimer.
 - `index.js`: `OPENAI_MODEL` default, `medicalHealthModels` (tested models), and API usage.
 - OpenAI model documentation for current capabilities and pricing.

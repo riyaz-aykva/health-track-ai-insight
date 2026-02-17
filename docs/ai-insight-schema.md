@@ -71,7 +71,7 @@ Collection **`ai_insights`** is defined by the Mongoose model:
 | `careTeamNotes`          | [String]                 | no       |
 | `nextSteps`              | [String]                 | no       |
 
-**Indexes:** `patientId`, `generatedAt`, `model`; compound `{ patientId: 1, generatedAt: -1 }` for “latest insight per patient”.
+**Indexes:** `patientId`, `generatedAt`, `model`; compound `{ patientId: 1, generatedAt: -1 }` for "latest insight per patient".
 
 ### Usage
 

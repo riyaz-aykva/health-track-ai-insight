@@ -2,6 +2,12 @@
 
 R&D and reference documentation for **Health Track AI Insight**.
 
+## Share with stakeholders
+
+| Document | Description |
+|----------|-------------|
+| [Research-Findings-For-Business-Analysis.md](Research-Findings-For-Business-Analysis.md) | **Single document for Business Analysis team** – all research findings in one place (model, inputs, outputs, cache, delivery, limitations) |
+
 ## Core docs
 
 | Document | Description |

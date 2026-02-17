@@ -77,6 +77,36 @@ const aiInsightSchema = new mongoose.Schema(
       ],
       index: true,
     },
+    vitals: {
+      type: [
+        {
+          vitalId: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+          },
+          lastRecordDate: {
+            type: Date,
+            required: true,
+          },
+        },
+      ],
+      index: true,
+    },
+    activities: {
+      type: [
+        {
+          activityId: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+          },
+          lastRecordDate: {
+            type: Date,
+            required: true,
+          },
+        },
+      ],
+      index: true,
+    },
     generatedAt: {
       type: Date,
       default: () => new Date(),
@@ -109,6 +139,6 @@ const aiInsightSchema = new mongoose.Schema(
 );
 
 // Compound index for common queries: latest insight per patient
-aiInsightSchema.index({ patientId: 1, generatedAt: -1 });
+aiInsightSchema.index({ lookupId: 1, generatedAt: -1 });
 
 module.exports = mongoose.model("AiInsight", aiInsightSchema);

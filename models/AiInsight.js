@@ -56,44 +56,48 @@ const tokenUsageSchema = new mongoose.Schema(
 
 const aiInsightSchema = new mongoose.Schema(
   {
-    lookupId: {
+    lookup_id: {
       type: String,
       ref: "users",
       required: true,
       index: true,
     },
-    payloadHash: {
+    pdf_url: {
+      type: String,
+      default: undefined,
+    },
+    payload_hash: {
       type: String,
       required: true,
       index: true,
       unique: true,   // one stored result per hash (reuse same doc: findOne then return)
     },
-    conditionsIds: {
+    conditions_ids: {
       type: [mongoose.Schema.Types.ObjectId],
       required: true,
       index: true,
     },
-    generatedAt: {
+    generated_at: {
       type: Date,
       default: () => new Date(),
       index: true,
     },
-    generatedBy: {
+    generated_by: {
       type: String,
       trim: true,
       index: true,
     },
-    model: {
+    model_name: {
       type: String,
       trim: true,
       index: true,
     },
-    data: {
+    insight_data: {
       type: insightDataSchema,
       required: true,
     },
-    tokenUsage: tokenUsageSchema,
-    error: {
+    token_usage: tokenUsageSchema,
+    error_message: {
       type: String,
       default: undefined,
     },

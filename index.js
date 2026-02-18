@@ -108,7 +108,7 @@ function normalizeConditionsInput(input) {
     const isArray = Array.isArray(raw);
     const list = isArray ? raw : (raw != null ? [raw] : []);
 
-    return list.map((c) => {
+    return list.sort((a, b) => a.condition_id.localeCompare(b.condition_id)).map((c) => {
         if (!c || typeof c !== "object") return c;
         const type = c.type || "disease";
         const symptomTitle = c.symptom_title || null;

@@ -124,43 +124,6 @@ function normalizeConditionsInput(input) {
 // Example disease: conditionsInput = { type: "disease", disease_title: "...", condition_id: "...", symptoms: [...] };
 const conditionsForSymptom = [
     {
-        "condition_id": "6985cdf941eeb53a74254f5f",
-        "type": "symptom",
-        "status": "suspected",
-        "symptom_lookup_id": "56f51f54-0b28-4e3a-b5ca-1344f2f2cc4a",
-        "symptom_title": "short of breath",
-        "symptoms": [
-            {
-                "records": [
-                    {
-                        "severity": 6,
-                        "recorded_at": "2026-02-12T11:22:02.375Z",
-                    },
-                    {
-                        "severity": 7,
-                        "recorded_at": "2026-02-11T09:18:17.203Z",
-                    },
-                    {
-                        "severity": 8,
-                        "recorded_at": "2026-02-10T08:18:17.203Z",
-                    },
-                    {
-                        "severity": 10,
-                        "recorded_at": "2026-02-09T07:18:17.203Z",
-                    },
-                    {
-                        "severity": 5,
-                        "recorded_at": "2026-02-08T11:18:17.203Z",
-                    },
-                    {
-                        "severity": 5,
-                        "recorded_at": "2026-02-07T06:30:15.500Z",
-                    }
-                ]
-            }
-        ]
-    },
-    {
         "condition_id": "698d82c7bb05e0b7c13a1f34",
         "type": "symptom",
         "status": "suspected",
@@ -200,7 +163,45 @@ const conditionsForSymptom = [
                 ]
             }
         ]
-    }
+    },
+    {
+        "condition_id": "6985cdf941eeb53a74254f5f",
+        "type": "symptom",
+        "status": "suspected",
+        "symptom_lookup_id": "56f51f54-0b28-4e3a-b5ca-1344f2f2cc4a",
+        "symptom_title": "short of breath",
+        "symptoms": [
+            {
+                "records": [
+                    {
+                        "severity": 6,
+                        "recorded_at": "2026-02-12T11:22:02.375Z",
+                    },
+                    {
+                        "severity": 7,
+                        "recorded_at": "2026-02-11T09:18:17.203Z",
+                    },
+                    {
+                        "severity": 8,
+                        "recorded_at": "2026-02-10T08:18:17.203Z",
+                    },
+                    {
+                        "severity": 10,
+                        "recorded_at": "2026-02-09T07:18:17.203Z",
+                    },
+                    {
+                        "severity": 5,
+                        "recorded_at": "2026-02-08T11:18:17.203Z",
+                    },
+                    {
+                        "severity": 5,
+                        "recorded_at": "2026-02-07T06:30:15.500Z",
+                    }
+                ]
+            }
+        ]
+    },
+
 ];
 
 const conditionsForDisease = [
@@ -239,7 +240,10 @@ const conditionsForDisease = [
     }
 ];
 
-const conditions = normalizeConditionsInput(conditionsForDisease);
+const conditions = normalizeConditionsInput(conditionsForSymptom);
+
+console.log(conditions);
+return;
 
 // Last seven days dummy records (Feb 11–17, 2026)
 const vitals = [

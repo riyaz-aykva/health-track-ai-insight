@@ -1,40 +1,42 @@
 {
   "data": {
-    "overallSummary": "John Doe, a 36-year-old male, has successfully overcome alcohol withdrawal symptoms. While confusion and sweating were significant during his recovery, current vital signs indicate stability. Continued monitoring and support are essential for long-term health.",
+    "overallSummary": "John Doe is experiencing symptoms related to Alcohol Withdrawal, including confusion, sweating, anxiety, and sleep disturbances. Vitals are fluctuating but mostly within normal ranges.",
     "healthAlerts": [
       {
-        "level": "MEDIUM",
-        "message": "Monitor signs of confusion and sweating closely to ensure ongoing improvement."
+        "level": "HIGH",
+        "message": "Symptoms of confusion and high anxiety indicate a need for immediate medical attention."
       }
     ],
     "vitalsSummary": [
-      "Heart Rate: Ranged from 69 to 74 bpm, indicating stability.",
-      "Blood Pressure: Consistently within normal limits, ranging from 117/77 to 122/82 mmHg.",
-      "Oxygen Saturation: Maintained between 97% to 99%, suggesting healthy lung function."
+      "Heart rate is generally within normal limits but shows fluctuations, particularly during periods of anxiety.",
+      "Blood pressure readings are mostly stable, with some slight fluctuations.",
+      "Oxygen saturation is consistently above 95%, indicating good respiratory function."
     ],
     "dailyPatterns": [
-      "Regular meal times and light exercise appear to correlate with stable vitals.",
-      "Increased sweating and confusion were observed prior to certain activities, indicating a possible reaction to stress or environmental factors."
+      "Routine activities like meals and walks seem to correlate with improved mood and symptom management.",
+      "Increased symptoms of anxiety and confusion are noticeable during times without structured activity."
     ],
     "smartAdvices": [
-      "Maintain a balanced diet with a focus on hydration and nutrition to support recovery.",
-      "Incorporate a daily routine of light exercises, such as walking, to promote overall wellness."
+      "Engage in regular light exercises to help manage anxiety and enhance mood.",
+      "Maintain a consistent sleep schedule and practice relaxation techniques before bedtime.",
+      "Consider a balanced diet rich in fruits, vegetables, and lean proteins."
     ],
     "careTeamNotes": [
-      "Continue to monitor psychological and physical symptoms closely. Encourage regular check-ins.",
-      "Patient shows good progress, but vigilance is necessary for signs of relapse."
+      "Close monitoring of John's symptoms is advised due to the severity of anxiety and confusion.",
+      "Encourage regular follow-ups to assess mental health status."
     ],
     "nextSteps": [
-      "Schedule a follow-up consultation with the healthcare provider in one week.",
-      "Implement a daily log for symptoms and activities to discuss during the next appointment."
+      "Schedule an appointment with a healthcare provider for a thorough assessment.",
+      "Implement a structured daily routine to help stabilize mood and anxiety levels.",
+      "Consider involving a mental health professional for additional support."
     ]
   },
   "tokenUsage": {
-    "prompt_tokens": 3096,
-    "completion_tokens": 340,
-    "total_tokens": 3436,
+    "prompt_tokens": 9772,
+    "completion_tokens": 323,
+    "total_tokens": 10095,
     "prompt_tokens_details": {
-      "cached_tokens": 0,
+      "cached_tokens": 8192,
       "audio_tokens": 0
     },
     "completion_tokens_details": {

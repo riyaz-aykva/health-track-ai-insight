@@ -100,24 +100,8 @@ const client = new OpenAI({ apiKey: OPENAI_API_KEY });
  * Accepts: single condition, array of conditions, or API response { success, data }.
  * For symptom-type, symptom items without "title" get condition's symptom_title.
  */
-function normalizeConditionsInput(input) {
-    let raw = input;
-    if (input && typeof input === "object" && "success" in input && "data" in input) {
-        raw = input.data;
-    }
-    const isArray = Array.isArray(raw);
-    const list = isArray ? raw : (raw != null ? [raw] : []);
-
-    return list.sort((a, b) => a.condition_id.localeCompare(b.condition_id)).map((c) => {
-        if (!c || typeof c !== "object") return c;
-        const type = c.type || "disease";
-        const symptomTitle = c.symptom_title || null;
-        const symptoms = (c.symptoms || []).map((s) => {
-            const hasTitle = s && "title" in s && s.title != null && s.title !== "";
-            return { ...s, title: hasTitle ? s.title : (symptomTitle || "N/A") };
-        });
-        return { ...c, type, symptoms };
-    });
+function conditionsSortById(list) {
+    return list.sort((a, b) => a.condition_id.localeCompare(b.condition_id));
 }
 
 // Disease: single object only. Symptom: array of conditions (multiple allowed).
@@ -126,40 +110,17 @@ const conditionsForSymptom = [
     {
         "condition_id": "698d82c7bb05e0b7c13a1f34",
         "type": "symptom",
-        "status": "suspected",
-        "symptom_lookup_id": "cc50560b-a35e-4315-9856-7c693335dbb0",
         "symptom_title": "ADHD-is forgetful in daily activities.(0-4)",
         "symptoms": [
             {
                 "records": [
-                    {
-                        "severity": 7,
-                        "recorded_at": "2026-02-12T07:35:35.042Z",
-                    },
-                    {
-                        "severity": 6,
-                        "recorded_at": "2026-02-11T07:35:35.042Z",
-                    },
-                    {
-                        "severity": 5,
-                        "recorded_at": "2026-02-10T07:35:35.042Z",
-                    },
-                    {
-                        "severity": 4,
-                        "recorded_at": "2026-02-09T07:35:35.042Z",
-                    },
-                    {
-                        "severity": 5,
-                        "recorded_at": "2026-02-08T07:35:35.042Z",
-                    },
-                    {
-                        "severity": 6,
-                        "recorded_at": "2026-02-07T07:35:35.042Z",
-                    },
-                    {
-                        "severity": 7,
-                        "recorded_at": "2026-02-06T07:35:35.042Z",
-                    }
+                    [4, "2026-02-12 07:35:35"],
+                    [4, "2026-02-11 07:35:35"],
+                    [4, "2026-02-10 07:35:35"],
+                    [9, "2026-02-09 07:35:35"],
+                    [4, "2026-02-08 07:35:35"],
+                    [4, "2026-02-07 07:35:35"],
+                    [4, "2026-02-06 07:35:35"]
                 ]
             }
         ]
@@ -167,36 +128,16 @@ const conditionsForSymptom = [
     {
         "condition_id": "6985cdf941eeb53a74254f5f",
         "type": "symptom",
-        "status": "suspected",
-        "symptom_lookup_id": "56f51f54-0b28-4e3a-b5ca-1344f2f2cc4a",
         "symptom_title": "short of breath",
         "symptoms": [
             {
                 "records": [
-                    {
-                        "severity": 6,
-                        "recorded_at": "2026-02-12T11:22:02.375Z",
-                    },
-                    {
-                        "severity": 7,
-                        "recorded_at": "2026-02-11T09:18:17.203Z",
-                    },
-                    {
-                        "severity": 8,
-                        "recorded_at": "2026-02-10T08:18:17.203Z",
-                    },
-                    {
-                        "severity": 10,
-                        "recorded_at": "2026-02-09T07:18:17.203Z",
-                    },
-                    {
-                        "severity": 5,
-                        "recorded_at": "2026-02-08T11:18:17.203Z",
-                    },
-                    {
-                        "severity": 5,
-                        "recorded_at": "2026-02-07T06:30:15.500Z",
-                    }
+                    [6, "2026-02-12 11:22:02"],
+                    [7, "2026-02-11 09:18:17"],
+                    [8, "2026-02-10 08:18:17"],
+                    [9, "2026-02-09 07:18:17"],
+                    [5, "2026-02-08 11:18:17"],
+                    [5, "2026-02-07 06:30:15"]
                 ]
             }
         ]
@@ -208,139 +149,148 @@ const conditionsForDisease = [
     {
         "condition_id": "6985cb0d41eeb53a74254efe",
         "type": "disease",
-        "status": "cured",
-        "disease_lookup_id": "e47e34b0-430a-4353-9935-7aa526d0686e",
         "disease_title": "Alcohol Withdrawal",
         "symptoms": [
             {
                 "title": "confusion",
                 "records": [
-                    { severity: 7, recorded_at: "2026-02-03T09:00:00.000Z" },
-                    { severity: 6, recorded_at: "2026-02-04T09:15:00.000Z" },
-                    { severity: 4, recorded_at: "2026-02-05T08:45:00.000Z" },
-                    { severity: 5, recorded_at: "2026-02-06T09:30:00.000Z" },
-                    { severity: 3, recorded_at: "2026-02-07T08:50:00.000Z" },
-                    { severity: 4, recorded_at: "2026-02-08T09:10:00.000Z" },
-                    { severity: 2, recorded_at: "2026-02-09T09:00:00.000Z" },
+                    [7, "2026-02-18 06:00:00"], [6, "2026-02-18 08:00:00"], [5, "2026-02-18 10:00:00"], [6, "2026-02-18 12:00:00"], [5, "2026-02-18 14:00:00"], [4, "2026-02-18 16:00:00"], [5, "2026-02-18 18:00:00"], [4, "2026-02-18 20:00:00"], [3, "2026-02-18 21:00:00"], [4, "2026-02-18 22:00:00"],
+                    [6, "2026-02-19 06:00:00"], [5, "2026-02-19 08:00:00"], [5, "2026-02-19 10:00:00"], [4, "2026-02-19 12:00:00"], [5, "2026-02-19 14:00:00"], [4, "2026-02-19 16:00:00"], [4, "2026-02-19 18:00:00"], [3, "2026-02-19 20:00:00"], [4, "2026-02-19 21:00:00"], [3, "2026-02-19 22:00:00"],
+                    [5, "2026-02-20 06:00:00"], [5, "2026-02-20 08:00:00"], [4, "2026-02-20 10:00:00"], [4, "2026-02-20 12:00:00"], [4, "2026-02-20 14:00:00"], [3, "2026-02-20 16:00:00"], [4, "2026-02-20 18:00:00"], [3, "2026-02-20 20:00:00"], [3, "2026-02-20 21:00:00"], [2, "2026-02-20 22:00:00"],
+                    [5, "2026-02-21 06:00:00"], [4, "2026-02-21 08:00:00"], [4, "2026-02-21 10:00:00"], [4, "2026-02-21 12:00:00"], [3, "2026-02-21 14:00:00"], [4, "2026-02-21 16:00:00"], [3, "2026-02-21 18:00:00"], [3, "2026-02-21 20:00:00"], [2, "2026-02-21 21:00:00"], [3, "2026-02-21 22:00:00"],
+                    [4, "2026-02-22 06:00:00"], [4, "2026-02-22 08:00:00"], [4, "2026-02-22 10:00:00"], [3, "2026-02-22 12:00:00"], [3, "2026-02-22 14:00:00"], [3, "2026-02-22 16:00:00"], [3, "2026-02-22 18:00:00"], [2, "2026-02-22 20:00:00"], [3, "2026-02-22 21:00:00"], [2, "2026-02-22 22:00:00"],
+                    [4, "2026-02-23 06:00:00"], [3, "2026-02-23 08:00:00"], [3, "2026-02-23 10:00:00"], [3, "2026-02-23 12:00:00"], [3, "2026-02-23 14:00:00"], [2, "2026-02-23 16:00:00"], [3, "2026-02-23 18:00:00"], [2, "2026-02-23 20:00:00"], [2, "2026-02-23 21:00:00"], [2, "2026-02-23 22:00:00"],
+                    [3, "2026-02-24 06:00:00"], [3, "2026-02-24 08:00:00"], [3, "2026-02-24 10:00:00"], [2, "2026-02-24 12:00:00"], [3, "2026-02-24 14:00:00"], [2, "2026-02-24 16:00:00"], [2, "2026-02-24 18:00:00"], [2, "2026-02-24 20:00:00"], [2, "2026-02-24 21:00:00"], [2, "2026-02-24 22:00:00"],
                 ]
             },
             {
                 "title": "sweating",
                 "records": [
-                    { severity: 6, recorded_at: "2026-02-03T09:00:00.000Z" },
-                    { severity: 5, recorded_at: "2026-02-04T09:15:00.000Z" },
-                    { severity: 5, recorded_at: "2026-02-05T08:45:00.000Z" },
-                    { severity: 4, recorded_at: "2026-02-06T09:30:00.000Z" },
-                    { severity: 4, recorded_at: "2026-02-07T08:50:00.000Z" },
-                    { severity: 3, recorded_at: "2026-02-08T09:10:00.000Z" },
-                    { severity: 2, recorded_at: "2026-02-09T09:00:00.000Z" },
+                    [6, "2026-02-18 06:00:00"], [6, "2026-02-18 08:00:00"], [5, "2026-02-18 10:00:00"], [5, "2026-02-18 12:00:00"], [5, "2026-02-18 14:00:00"], [4, "2026-02-18 16:00:00"], [4, "2026-02-18 18:00:00"], [4, "2026-02-18 20:00:00"], [3, "2026-02-18 21:00:00"], [4, "2026-02-18 22:00:00"],
+                    [5, "2026-02-19 06:00:00"], [5, "2026-02-19 08:00:00"], [5, "2026-02-19 10:00:00"], [4, "2026-02-19 12:00:00"], [4, "2026-02-19 14:00:00"], [4, "2026-02-19 16:00:00"], [3, "2026-02-19 18:00:00"], [4, "2026-02-19 20:00:00"], [3, "2026-02-19 21:00:00"], [3, "2026-02-19 22:00:00"],
+                    [5, "2026-02-20 06:00:00"], [4, "2026-02-20 08:00:00"], [4, "2026-02-20 10:00:00"], [4, "2026-02-20 12:00:00"], [4, "2026-02-20 14:00:00"], [3, "2026-02-20 16:00:00"], [3, "2026-02-20 18:00:00"], [3, "2026-02-20 20:00:00"], [3, "2026-02-20 21:00:00"], [2, "2026-02-20 22:00:00"],
+                    [4, "2026-02-21 06:00:00"], [4, "2026-02-21 08:00:00"], [4, "2026-02-21 10:00:00"], [3, "2026-02-21 12:00:00"], [4, "2026-02-21 14:00:00"], [3, "2026-02-21 16:00:00"], [3, "2026-02-21 18:00:00"], [3, "2026-02-21 20:00:00"], [2, "2026-02-21 21:00:00"], [3, "2026-02-21 22:00:00"],
+                    [4, "2026-02-22 06:00:00"], [4, "2026-02-22 08:00:00"], [3, "2026-02-22 10:00:00"], [3, "2026-02-22 12:00:00"], [3, "2026-02-22 14:00:00"], [3, "2026-02-22 16:00:00"], [3, "2026-02-22 18:00:00"], [2, "2026-02-22 20:00:00"], [3, "2026-02-22 21:00:00"], [2, "2026-02-22 22:00:00"],
+                    [3, "2026-02-23 06:00:00"], [3, "2026-02-23 08:00:00"], [3, "2026-02-23 10:00:00"], [3, "2026-02-23 12:00:00"], [2, "2026-02-23 14:00:00"], [3, "2026-02-23 16:00:00"], [2, "2026-02-23 18:00:00"], [2, "2026-02-23 20:00:00"], [2, "2026-02-23 21:00:00"], [2, "2026-02-23 22:00:00"],
+                    [3, "2026-02-24 06:00:00"], [3, "2026-02-24 08:00:00"], [2, "2026-02-24 10:00:00"], [2, "2026-02-24 12:00:00"], [2, "2026-02-24 14:00:00"], [2, "2026-02-24 16:00:00"], [2, "2026-02-24 18:00:00"], [2, "2026-02-24 20:00:00"], [2, "2026-02-24 21:00:00"], [2, "2026-02-24 22:00:00"],
                 ]
-            }
+            },
+            {
+                "title": "anxiety",
+                "records": [
+                    [6, "2026-02-18 06:00:00"], [6, "2026-02-18 08:00:00"], [5, "2026-02-18 10:00:00"], [5, "2026-02-18 12:00:00"], [5, "2026-02-18 14:00:00"], [4, "2026-02-18 16:00:00"], [4, "2026-02-18 18:00:00"], [4, "2026-02-18 20:00:00"], [3, "2026-02-18 21:00:00"], [4, "2026-02-18 22:00:00"],
+                    [5, "2026-02-19 06:00:00"], [5, "2026-02-19 08:00:00"], [5, "2026-02-19 10:00:00"], [4, "2026-02-19 12:00:00"], [4, "2026-02-19 14:00:00"], [4, "2026-02-19 16:00:00"], [3, "2026-02-19 18:00:00"], [4, "2026-02-19 20:00:00"], [3, "2026-02-19 21:00:00"], [3, "2026-02-19 22:00:00"],
+                    [5, "2026-02-20 06:00:00"], [4, "2026-02-20 08:00:00"], [4, "2026-02-20 10:00:00"], [4, "2026-02-20 12:00:00"], [4, "2026-02-20 14:00:00"], [3, "2026-02-20 16:00:00"], [3, "2026-02-20 18:00:00"], [3, "2026-02-20 20:00:00"], [3, "2026-02-20 21:00:00"], [2, "2026-02-20 22:00:00"],
+                    [4, "2026-02-21 06:00:00"], [4, "2026-02-21 08:00:00"], [4, "2026-02-21 10:00:00"], [3, "2026-02-21 12:00:00"], [4, "2026-02-21 14:00:00"], [3, "2026-02-21 16:00:00"], [3, "2026-02-21 18:00:00"], [3, "2026-02-21 20:00:00"], [2, "2026-02-21 21:00:00"], [3, "2026-02-21 22:00:00"],
+                    [4, "2026-02-22 06:00:00"], [4, "2026-02-22 08:00:00"], [3, "2026-02-22 10:00:00"], [3, "2026-02-22 12:00:00"], [3, "2026-02-22 14:00:00"], [3, "2026-02-22 16:00:00"], [3, "2026-02-22 18:00:00"], [2, "2026-02-22 20:00:00"], [3, "2026-02-22 21:00:00"], [2, "2026-02-22 22:00:00"],
+                    [3, "2026-02-23 06:00:00"], [3, "2026-02-23 08:00:00"], [3, "2026-02-23 10:00:00"], [3, "2026-02-23 12:00:00"], [2, "2026-02-23 14:00:00"], [3, "2026-02-23 16:00:00"], [2, "2026-02-23 18:00:00"], [2, "2026-02-23 20:00:00"], [2, "2026-02-23 21:00:00"], [2, "2026-02-23 22:00:00"],
+                    [3, "2026-02-24 06:00:00"], [3, "2026-02-24 08:00:00"], [2, "2026-02-24 10:00:00"], [2, "2026-02-24 12:00:00"], [2, "2026-02-24 14:00:00"], [2, "2026-02-24 16:00:00"], [2, "2026-02-24 18:00:00"], [2, "2026-02-24 20:00:00"], [2, "2026-02-24 21:00:00"], [2, "2026-02-24 22:00:00"],
+                ]
+            },
+            {
+                "title": "sleep",
+                "records": [
+                    [6, "2026-02-18 06:00:00"], [6, "2026-02-18 08:00:00"], [5, "2026-02-18 10:00:00"], [5, "2026-02-18 12:00:00"], [5, "2026-02-18 14:00:00"], [4, "2026-02-18 16:00:00"], [4, "2026-02-18 18:00:00"], [4, "2026-02-18 20:00:00"], [3, "2026-02-18 21:00:00"], [4, "2026-02-18 22:00:00"],
+                    [5, "2026-02-19 06:00:00"], [5, "2026-02-19 08:00:00"], [5, "2026-02-19 10:00:00"], [4, "2026-02-19 12:00:00"], [4, "2026-02-19 14:00:00"], [4, "2026-02-19 16:00:00"], [3, "2026-02-19 18:00:00"], [4, "2026-02-19 20:00:00"], [3, "2026-02-19 21:00:00"], [3, "2026-02-19 22:00:00"],
+                    [5, "2026-02-20 06:00:00"], [4, "2026-02-20 08:00:00"], [4, "2026-02-20 10:00:00"], [4, "2026-02-20 12:00:00"], [4, "2026-02-20 14:00:00"], [3, "2026-02-20 16:00:00"], [3, "2026-02-20 18:00:00"], [3, "2026-02-20 20:00:00"], [3, "2026-02-20 21:00:00"], [2, "2026-02-20 22:00:00"],
+                    [4, "2026-02-21 06:00:00"], [4, "2026-02-21 08:00:00"], [4, "2026-02-21 10:00:00"], [3, "2026-02-21 12:00:00"], [4, "2026-02-21 14:00:00"], [3, "2026-02-21 16:00:00"], [3, "2026-02-21 18:00:00"], [3, "2026-02-21 20:00:00"], [2, "2026-02-21 21:00:00"], [3, "2026-02-21 22:00:00"],
+                    [4, "2026-02-22 06:00:00"], [4, "2026-02-22 08:00:00"], [3, "2026-02-22 10:00:00"], [3, "2026-02-22 12:00:00"], [3, "2026-02-22 14:00:00"], [3, "2026-02-22 16:00:00"], [3, "2026-02-22 18:00:00"], [2, "2026-02-22 20:00:00"], [3, "2026-02-22 21:00:00"], [2, "2026-02-22 22:00:00"],
+                    [3, "2026-02-23 06:00:00"], [3, "2026-02-23 08:00:00"], [3, "2026-02-23 10:00:00"], [3, "2026-02-23 12:00:00"], [2, "2026-02-23 14:00:00"], [3, "2026-02-23 16:00:00"], [2, "2026-02-23 18:00:00"], [2, "2026-02-23 20:00:00"], [2, "2026-02-23 21:00:00"], [2, "2026-02-23 22:00:00"],
+                    [3, "2026-02-24 06:00:00"], [3, "2026-02-24 08:00:00"], [2, "2026-02-24 10:00:00"], [2, "2026-02-24 12:00:00"], [2, "2026-02-24 14:00:00"], [2, "2026-02-24 16:00:00"], [2, "2026-02-24 18:00:00"], [2, "2026-02-24 20:00:00"], [2, "2026-02-24 21:00:00"], [2, "2026-02-24 22:00:00"],
+                ]
+            },
+
         ]
     }
 ];
 
-const conditions = normalizeConditionsInput(conditionsForSymptom);
+const conditions = conditionsSortById(conditionsForDisease);
 
-console.log(conditions);
-return;
+// console.log(JSON.stringify(conditions, null, 2));
+// return;
 
 // Last seven days dummy records (Feb 11–17, 2026)
 const vitals = [
-    {
-        "record_id": "698d8b1dbb05e0b7c13a201a",
-        "recorded_at": "2026-02-11T08:11:09.381Z",
-        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
-        "created_at": "2026-02-11T08:11:09.396Z",
-        "vitals": [
-            { "vital_id": "698d8b1dbb05e0b7c13a201b", "vital_type": "HEART_RATE", "value": 74, "unit": "bpm" },
-            { "vital_id": "698d8b1dbb05e0b7c13a201c", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 122, "diastolic": 82 }, "unit": "mmHg" },
-            { "vital_id": "698d8b1dbb05e0b7c13a201d", "vital_type": "SPO2", "value": 97, "unit": "%" }
-        ]
-    },
-    {
-        "record_id": "698d8b1dbb05e0b7c13a201c",
-        "recorded_at": "2026-02-12T08:11:09.381Z",
-        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
-        "created_at": "2026-02-12T08:11:09.396Z",
-        "vitals": [
-            { "vital_id": "698d8b1dbb05e0b7c13a201e", "vital_type": "HEART_RATE", "value": 72, "unit": "bpm" },
-            { "vital_id": "698d8b1dbb05e0b7c13a2021", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 120, "diastolic": 80 }, "unit": "mmHg" },
-            { "vital_id": "698d8b1dbb05e0b7c13a2024", "vital_type": "SPO2", "value": 98, "unit": "%" }
-        ]
-    },
-    {
-        "record_id": "698d8b1dbb05e0b7c13a201d",
-        "recorded_at": "2026-02-13T08:11:09.381Z",
-        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
-        "created_at": "2026-02-13T08:11:09.396Z",
-        "vitals": [
-            { "vital_id": "698d8b1dbb05e0b7c13a201f", "vital_type": "HEART_RATE", "value": 70, "unit": "bpm" },
-            { "vital_id": "698d8b1dbb05e0b7c13a2022", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 118, "diastolic": 78 }, "unit": "mmHg" },
-            { "vital_id": "698d8b1dbb05e0b7c13a2025", "vital_type": "SPO2", "value": 99, "unit": "%" }
-        ]
-    },
-    {
-        "record_id": "698d8b1dbb05e0b7c13a2026",
-        "recorded_at": "2026-02-14T08:11:09.381Z",
-        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
-        "created_at": "2026-02-14T08:11:09.396Z",
-        "vitals": [
-            { "vital_id": "698d8b1dbb05e0b7c13a2027", "vital_type": "HEART_RATE", "value": 71, "unit": "bpm" },
-            { "vital_id": "698d8b1dbb05e0b7c13a2028", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 119, "diastolic": 79 }, "unit": "mmHg" },
-            { "vital_id": "698d8b1dbb05e0b7c13a2029", "vital_type": "SPO2", "value": 98, "unit": "%" }
-        ]
-    },
-    {
-        "record_id": "698d8b1dbb05e0b7c13a202a",
-        "recorded_at": "2026-02-15T08:11:09.381Z",
-        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
-        "created_at": "2026-02-15T08:11:09.396Z",
-        "vitals": [
-            { "vital_id": "698d8b1dbb05e0b7c13a202b", "vital_type": "HEART_RATE", "value": 69, "unit": "bpm" },
-            { "vital_id": "698d8b1dbb05e0b7c13a202c", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 117, "diastolic": 77 }, "unit": "mmHg" },
-            { "vital_id": "698d8b1dbb05e0b7c13a202d", "vital_type": "SPO2", "value": 99, "unit": "%" }
-        ]
-    },
-    {
-        "record_id": "698d8b1dbb05e0b7c13a202e",
-        "recorded_at": "2026-02-16T08:11:09.381Z",
-        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
-        "created_at": "2026-02-16T08:11:09.396Z",
-        "vitals": [
-            { "vital_id": "698d8b1dbb05e0b7c13a202f", "vital_type": "HEART_RATE", "value": 73, "unit": "bpm" },
-            { "vital_id": "698d8b1dbb05e0b7c13a2030", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 121, "diastolic": 79 }, "unit": "mmHg" },
-            { "vital_id": "698d8b1dbb05e0b7c13a2031", "vital_type": "SPO2", "value": 98, "unit": "%" }
-        ]
-    },
-    {
-        "record_id": "698d8b1dbb05e0b7c13a2032",
-        "recorded_at": "2026-02-17T08:11:09.381Z",
-        "recorded_by": { "role": "patient", "lookup_id": "66834a2a-e734-4378-b3fe-d43cc817a4de" },
-        "created_at": "2026-02-17T08:11:09.396Z",
-        "vitals": [
-            { "vital_id": "698d8b1dbb05e0b7c13a2033", "vital_type": "HEART_RATE", "value": 70, "unit": "bpm" },
-            { "vital_id": "698d8b1dbb05e0b7c13a2034", "vital_type": "BLOOD_PRESSURE", "value": { "systolic": 118, "diastolic": 78 }, "unit": "mmHg" },
-            { "vital_id": "698d8b1dbb05e0b7c13a2035", "vital_type": "SPO2", "value": 99, "unit": "%" }
-        ]
-    }
+    { "recorded_at": "2026-02-18 06:00:00", "vitals": [["HEART_RATE", 76], ["BLOOD_PRESSURE", { "systolic": 124, "diastolic": 84 }], ["SPO2", 96]] },
+    { "recorded_at": "2026-02-18 08:00:00", "vitals": [["HEART_RATE", 74], ["BLOOD_PRESSURE", { "systolic": 122, "diastolic": 82 }], ["SPO2", 97]] },
+    { "recorded_at": "2026-02-18 10:00:00", "vitals": [["HEART_RATE", 73], ["BLOOD_PRESSURE", { "systolic": 121, "diastolic": 81 }], ["SPO2", 97]] },
+    { "recorded_at": "2026-02-18 12:00:00", "vitals": [["HEART_RATE", 75], ["BLOOD_PRESSURE", { "systolic": 123, "diastolic": 83 }], ["SPO2", 97]] },
+    { "recorded_at": "2026-02-18 14:00:00", "vitals": [["HEART_RATE", 74], ["BLOOD_PRESSURE", { "systolic": 122, "diastolic": 82 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-18 16:00:00", "vitals": [["HEART_RATE", 72], ["BLOOD_PRESSURE", { "systolic": 120, "diastolic": 80 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-18 18:00:00", "vitals": [["HEART_RATE", 73], ["BLOOD_PRESSURE", { "systolic": 121, "diastolic": 81 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-18 20:00:00", "vitals": [["HEART_RATE", 71], ["BLOOD_PRESSURE", { "systolic": 119, "diastolic": 79 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-18 21:00:00", "vitals": [["HEART_RATE", 72], ["BLOOD_PRESSURE", { "systolic": 120, "diastolic": 80 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-18 22:00:00", "vitals": [["HEART_RATE", 70], ["BLOOD_PRESSURE", { "systolic": 118, "diastolic": 78 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-19 06:00:00", "vitals": [["HEART_RATE", 75], ["BLOOD_PRESSURE", { "systolic": 123, "diastolic": 83 }], ["SPO2", 97]] },
+    { "recorded_at": "2026-02-19 08:00:00", "vitals": [["HEART_RATE", 73], ["BLOOD_PRESSURE", { "systolic": 121, "diastolic": 81 }], ["SPO2", 97]] },
+    { "recorded_at": "2026-02-19 10:00:00", "vitals": [["HEART_RATE", 72], ["BLOOD_PRESSURE", { "systolic": 120, "diastolic": 80 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-19 12:00:00", "vitals": [["HEART_RATE", 74], ["BLOOD_PRESSURE", { "systolic": 122, "diastolic": 82 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-19 14:00:00", "vitals": [["HEART_RATE", 72], ["BLOOD_PRESSURE", { "systolic": 120, "diastolic": 80 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-19 16:00:00", "vitals": [["HEART_RATE", 71], ["BLOOD_PRESSURE", { "systolic": 119, "diastolic": 79 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-19 18:00:00", "vitals": [["HEART_RATE", 72], ["BLOOD_PRESSURE", { "systolic": 120, "diastolic": 80 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-19 20:00:00", "vitals": [["HEART_RATE", 70], ["BLOOD_PRESSURE", { "systolic": 118, "diastolic": 78 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-19 21:00:00", "vitals": [["HEART_RATE", 71], ["BLOOD_PRESSURE", { "systolic": 119, "diastolic": 79 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-19 22:00:00", "vitals": [["HEART_RATE", 69], ["BLOOD_PRESSURE", { "systolic": 117, "diastolic": 77 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-20 06:00:00", "vitals": [["HEART_RATE", 74], ["BLOOD_PRESSURE", { "systolic": 122, "diastolic": 82 }], ["SPO2", 97]] },
+    { "recorded_at": "2026-02-20 08:00:00", "vitals": [["HEART_RATE", 72], ["BLOOD_PRESSURE", { "systolic": 120, "diastolic": 80 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-20 10:00:00", "vitals": [["HEART_RATE", 71], ["BLOOD_PRESSURE", { "systolic": 119, "diastolic": 79 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-20 12:00:00", "vitals": [["HEART_RATE", 73], ["BLOOD_PRESSURE", { "systolic": 121, "diastolic": 81 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-20 14:00:00", "vitals": [["HEART_RATE", 71], ["BLOOD_PRESSURE", { "systolic": 119, "diastolic": 79 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-20 16:00:00", "vitals": [["HEART_RATE", 70], ["BLOOD_PRESSURE", { "systolic": 118, "diastolic": 78 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-20 18:00:00", "vitals": [["HEART_RATE", 71], ["BLOOD_PRESSURE", { "systolic": 119, "diastolic": 79 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-20 20:00:00", "vitals": [["HEART_RATE", 69], ["BLOOD_PRESSURE", { "systolic": 117, "diastolic": 77 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-20 21:00:00", "vitals": [["HEART_RATE", 70], ["BLOOD_PRESSURE", { "systolic": 118, "diastolic": 78 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-20 22:00:00", "vitals": [["HEART_RATE", 68], ["BLOOD_PRESSURE", { "systolic": 116, "diastolic": 76 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-21 06:00:00", "vitals": [["HEART_RATE", 73], ["BLOOD_PRESSURE", { "systolic": 121, "diastolic": 81 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-21 08:00:00", "vitals": [["HEART_RATE", 71], ["BLOOD_PRESSURE", { "systolic": 119, "diastolic": 79 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-21 10:00:00", "vitals": [["HEART_RATE", 70], ["BLOOD_PRESSURE", { "systolic": 118, "diastolic": 78 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-21 12:00:00", "vitals": [["HEART_RATE", 72], ["BLOOD_PRESSURE", { "systolic": 120, "diastolic": 80 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-21 14:00:00", "vitals": [["HEART_RATE", 70], ["BLOOD_PRESSURE", { "systolic": 118, "diastolic": 78 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-21 16:00:00", "vitals": [["HEART_RATE", 69], ["BLOOD_PRESSURE", { "systolic": 117, "diastolic": 77 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-21 18:00:00", "vitals": [["HEART_RATE", 70], ["BLOOD_PRESSURE", { "systolic": 118, "diastolic": 78 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-21 20:00:00", "vitals": [["HEART_RATE", 68], ["BLOOD_PRESSURE", { "systolic": 116, "diastolic": 76 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-21 21:00:00", "vitals": [["HEART_RATE", 69], ["BLOOD_PRESSURE", { "systolic": 117, "diastolic": 77 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-21 22:00:00", "vitals": [["HEART_RATE", 67], ["BLOOD_PRESSURE", { "systolic": 115, "diastolic": 75 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-22 06:00:00", "vitals": [["HEART_RATE", 72], ["BLOOD_PRESSURE", { "systolic": 120, "diastolic": 80 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-22 08:00:00", "vitals": [["HEART_RATE", 70], ["BLOOD_PRESSURE", { "systolic": 118, "diastolic": 78 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-22 10:00:00", "vitals": [["HEART_RATE", 69], ["BLOOD_PRESSURE", { "systolic": 117, "diastolic": 77 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-22 12:00:00", "vitals": [["HEART_RATE", 71], ["BLOOD_PRESSURE", { "systolic": 119, "diastolic": 79 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-22 14:00:00", "vitals": [["HEART_RATE", 69], ["BLOOD_PRESSURE", { "systolic": 117, "diastolic": 77 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-22 16:00:00", "vitals": [["HEART_RATE", 68], ["BLOOD_PRESSURE", { "systolic": 116, "diastolic": 76 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-22 18:00:00", "vitals": [["HEART_RATE", 69], ["BLOOD_PRESSURE", { "systolic": 117, "diastolic": 77 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-22 20:00:00", "vitals": [["HEART_RATE", 67], ["BLOOD_PRESSURE", { "systolic": 115, "diastolic": 75 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-22 21:00:00", "vitals": [["HEART_RATE", 68], ["BLOOD_PRESSURE", { "systolic": 116, "diastolic": 76 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-22 22:00:00", "vitals": [["HEART_RATE", 66], ["BLOOD_PRESSURE", { "systolic": 114, "diastolic": 74 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-23 06:00:00", "vitals": [["HEART_RATE", 71], ["BLOOD_PRESSURE", { "systolic": 119, "diastolic": 79 }], ["SPO2", 98]] },
+    { "recorded_at": "2026-02-23 08:00:00", "vitals": [["HEART_RATE", 69], ["BLOOD_PRESSURE", { "systolic": 117, "diastolic": 77 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-23 10:00:00", "vitals": [["HEART_RATE", 68], ["BLOOD_PRESSURE", { "systolic": 116, "diastolic": 76 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-23 12:00:00", "vitals": [["HEART_RATE", 70], ["BLOOD_PRESSURE", { "systolic": 118, "diastolic": 78 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-23 14:00:00", "vitals": [["HEART_RATE", 68], ["BLOOD_PRESSURE", { "systolic": 116, "diastolic": 76 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-23 16:00:00", "vitals": [["HEART_RATE", 67], ["BLOOD_PRESSURE", { "systolic": 115, "diastolic": 75 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-23 18:00:00", "vitals": [["HEART_RATE", 68], ["BLOOD_PRESSURE", { "systolic": 116, "diastolic": 76 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-23 20:00:00", "vitals": [["HEART_RATE", 66], ["BLOOD_PRESSURE", { "systolic": 114, "diastolic": 74 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-23 21:00:00", "vitals": [["HEART_RATE", 67], ["BLOOD_PRESSURE", { "systolic": 115, "diastolic": 75 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-23 22:00:00", "vitals": [["HEART_RATE", 65], ["BLOOD_PRESSURE", { "systolic": 113, "diastolic": 73 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-24 06:00:00", "vitals": [["HEART_RATE", 70], ["BLOOD_PRESSURE", { "systolic": 118, "diastolic": 78 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-24 08:00:00", "vitals": [["HEART_RATE", 68], ["BLOOD_PRESSURE", { "systolic": 116, "diastolic": 76 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-24 10:00:00", "vitals": [["HEART_RATE", 67], ["BLOOD_PRESSURE", { "systolic": 115, "diastolic": 75 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-24 12:00:00", "vitals": [["HEART_RATE", 69], ["BLOOD_PRESSURE", { "systolic": 117, "diastolic": 77 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-24 14:00:00", "vitals": [["HEART_RATE", 67], ["BLOOD_PRESSURE", { "systolic": 115, "diastolic": 75 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-24 16:00:00", "vitals": [["HEART_RATE", 66], ["BLOOD_PRESSURE", { "systolic": 114, "diastolic": 74 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-24 18:00:00", "vitals": [["HEART_RATE", 67], ["BLOOD_PRESSURE", { "systolic": 115, "diastolic": 75 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-24 20:00:00", "vitals": [["HEART_RATE", 65], ["BLOOD_PRESSURE", { "systolic": 113, "diastolic": 73 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-24 21:00:00", "vitals": [["HEART_RATE", 66], ["BLOOD_PRESSURE", { "systolic": 114, "diastolic": 74 }], ["SPO2", 99]] },
+    { "recorded_at": "2026-02-24 22:00:00", "vitals": [["HEART_RATE", 64], ["BLOOD_PRESSURE", { "systolic": 112, "diastolic": 72 }], ["SPO2", 99]] },
 ];
 
 const activities = [
-    { activity_name: "Breakfast", createdAt: { $date: "2026-02-03T07:30:00.000Z" }, updatedAt: { $date: "2026-02-03T07:30:00.000Z" }, __v: 0, image: "8187733396.png" },
-    { activity_name: "Morning Walk", createdAt: { $date: "2026-02-03T09:00:00.000Z" }, updatedAt: { $date: "2026-02-03T09:00:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Lunch", createdAt: { $date: "2026-02-03T12:45:00.000Z" }, updatedAt: { $date: "2026-02-03T12:45:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Breakfast", createdAt: { $date: "2026-02-04T08:00:00.000Z" }, updatedAt: { $date: "2026-02-04T08:00:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Dinner", createdAt: { $date: "2026-02-04T18:30:00.000Z" }, updatedAt: { $date: "2026-02-04T18:30:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Breakfast", createdAt: { $date: "2026-02-05T07:45:00.000Z" }, updatedAt: { $date: "2026-02-05T07:45:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Light Exercise", createdAt: { $date: "2026-02-05T10:15:00.000Z" }, updatedAt: { $date: "2026-02-05T10:15:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Breakfast", createdAt: { $date: "2026-02-06T08:20:00.000Z" }, updatedAt: { $date: "2026-02-06T08:20:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Lunch", createdAt: { $date: "2026-02-06T13:00:00.000Z" }, updatedAt: { $date: "2026-02-06T13:00:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Breakfast", createdAt: { $date: "2026-02-07T07:30:00.000Z" }, updatedAt: { $date: "2026-02-07T07:30:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Morning Walk", createdAt: { $date: "2026-02-07T09:30:00.000Z" }, updatedAt: { $date: "2026-02-07T09:30:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Breakfast", createdAt: { $date: "2026-02-08T08:00:00.000Z" }, updatedAt: { $date: "2026-02-08T08:00:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Dinner", createdAt: { $date: "2026-02-08T19:00:00.000Z" }, updatedAt: { $date: "2026-02-08T19:00:00.000Z" }, __v: 0, image: null },
-    { activity_name: "Breakfast", createdAt: { $date: "2026-02-09T08:15:00.000Z" }, updatedAt: { $date: "2026-02-09T08:15:00.000Z" }, __v: 0, image: null },
+    ["Breakfast", "2026-02-18 06:00:00"], ["Morning Walk", "2026-02-18 08:00:00"], ["Snack", "2026-02-18 10:00:00"], ["Lunch", "2026-02-18 12:00:00"], ["Rest", "2026-02-18 14:00:00"], ["Light Exercise", "2026-02-18 16:00:00"], ["Dinner", "2026-02-18 18:00:00"], ["Evening Walk", "2026-02-18 20:00:00"], ["Snack", "2026-02-18 21:00:00"], ["Rest", "2026-02-18 22:00:00"],
+    ["Breakfast", "2026-02-19 06:00:00"], ["Morning Walk", "2026-02-19 08:00:00"], ["Snack", "2026-02-19 10:00:00"], ["Lunch", "2026-02-19 12:00:00"], ["Rest", "2026-02-19 14:00:00"], ["Light Exercise", "2026-02-19 16:00:00"], ["Dinner", "2026-02-19 18:00:00"], ["Evening Walk", "2026-02-19 20:00:00"], ["Snack", "2026-02-19 21:00:00"], ["Rest", "2026-02-19 22:00:00"],
+    ["Breakfast", "2026-02-20 06:00:00"], ["Morning Walk", "2026-02-20 08:00:00"], ["Snack", "2026-02-20 10:00:00"], ["Lunch", "2026-02-20 12:00:00"], ["Rest", "2026-02-20 14:00:00"], ["Light Exercise", "2026-02-20 16:00:00"], ["Dinner", "2026-02-20 18:00:00"], ["Evening Walk", "2026-02-20 20:00:00"], ["Snack", "2026-02-20 21:00:00"], ["Rest", "2026-02-20 22:00:00"],
+    ["Breakfast", "2026-02-21 06:00:00"], ["Morning Walk", "2026-02-21 08:00:00"], ["Snack", "2026-02-21 10:00:00"], ["Lunch", "2026-02-21 12:00:00"], ["Rest", "2026-02-21 14:00:00"], ["Light Exercise", "2026-02-21 16:00:00"], ["Dinner", "2026-02-21 18:00:00"], ["Evening Walk", "2026-02-21 20:00:00"], ["Snack", "2026-02-21 21:00:00"], ["Rest", "2026-02-21 22:00:00"],
+    ["Breakfast", "2026-02-22 06:00:00"], ["Morning Walk", "2026-02-22 08:00:00"], ["Snack", "2026-02-22 10:00:00"], ["Lunch", "2026-02-22 12:00:00"], ["Rest", "2026-02-22 14:00:00"], ["Light Exercise", "2026-02-22 16:00:00"], ["Dinner", "2026-02-22 18:00:00"], ["Evening Walk", "2026-02-22 20:00:00"], ["Snack", "2026-02-22 21:00:00"], ["Rest", "2026-02-22 22:00:00"],
+    ["Breakfast", "2026-02-23 06:00:00"], ["Morning Walk", "2026-02-23 08:00:00"], ["Snack", "2026-02-23 10:00:00"], ["Lunch", "2026-02-23 12:00:00"], ["Rest", "2026-02-23 14:00:00"], ["Light Exercise", "2026-02-23 16:00:00"], ["Dinner", "2026-02-23 18:00:00"], ["Evening Walk", "2026-02-23 20:00:00"], ["Snack", "2026-02-23 21:00:00"], ["Rest", "2026-02-23 22:00:00"],
+    ["Breakfast", "2026-02-24 06:00:00"], ["Morning Walk", "2026-02-24 08:00:00"], ["Snack", "2026-02-24 10:00:00"], ["Lunch", "2026-02-24 12:00:00"], ["Rest", "2026-02-24 14:00:00"], ["Light Exercise", "2026-02-24 16:00:00"], ["Dinner", "2026-02-24 18:00:00"], ["Evening Walk", "2026-02-24 20:00:00"], ["Snack", "2026-02-24 21:00:00"], ["Rest", "2026-02-24 22:00:00"],
 ];
 
 const payload = {
@@ -355,7 +305,7 @@ const payload = {
 };
 
 const prompt = `
-   Generate AI health overview in JSON format with the following structure:
+Generate AI health overview in JSON format with the following structure:
 {
   "overallSummary": "string",
   "healthAlerts": [
@@ -370,21 +320,18 @@ const prompt = `
   "careTeamNotes": ["string"],
   "nextSteps": ["string"]
 }
-
 User Requirements:
-• Health Alerts: Critical or abnormal findings requiring urgent attention
-• Vitals Summary: Consolidated AI insights on vital signs
-• Daily Patterns: How routine impacts vitals and symptoms
-• Smart Advice: AI-based lifestyle or diet suggestions
-• Care Team Notes: Doctor or caregiver comments on the AI report
-• Next Steps: Recommended actions or consultation scheduling
-
+Health Alerts: Critical or abnormal findings requiring urgent attention
+Vitals Summary: Consolidated AI insights on vital signs
+Daily Patterns: How routine impacts vitals and symptoms
+Smart Advice: AI-based lifestyle or diet suggestions
+Care Team Notes: Doctor or caregiver comments on the AI report
+Next Steps: Recommended actions or consultation scheduling
 Rules:
 - Not a medical diagnosis
 - Simple language
 - No prescriptions
 - Return ONLY valid JSON, no additional text
-
 Data:
 ${JSON.stringify(payload)}
 `;

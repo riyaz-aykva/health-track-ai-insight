@@ -204,12 +204,35 @@ const conditionsForDisease = [
     }
 ];
 
-const conditions = conditionsSortById(conditionsForDisease);
 
-// console.log(JSON.stringify(conditions, null, 2));
-// return;
+const getGraphData = (conditions) => {
+    const graphData = [];
+    conditions.forEach(condition => {
+        if (condition.type === "disease") {
+            condition.symptoms.forEach(symptom => {
+                graphData.push({
+                    symptom_name: symptom.title,
+                    records: symptom.records.map(record => [record[0], record[1]]),
+                });
+            });
+        }
+        if (condition.type === "symptom") {
+            condition.symptoms.forEach(symptom => {
+                graphData.push({
+                    symptom_name: condition.symptom_title,
+                    records: symptom.records.map(record => [record[0], record[1]]),
+                });
+            });
+        }
+    });
+    return graphData;
+}
 
-// Last seven days dummy records (Feb 11–17, 2026)
+const graphData = getGraphData(conditionsForSymptom);
+console.log(JSON.stringify(graphData, null, 2));
+
+return;
+
 const vitals = [
     { "recorded_at": "2026-02-18 06:00:00", "vitals": [["HEART_RATE", 76], ["BLOOD_PRESSURE", { "systolic": 124, "diastolic": 84 }], ["SPO2", 96]] },
     { "recorded_at": "2026-02-18 08:00:00", "vitals": [["HEART_RATE", 74], ["BLOOD_PRESSURE", { "systolic": 122, "diastolic": 82 }], ["SPO2", 97]] },
